@@ -1,0 +1,47 @@
+/** {*/
+/*    outline: 1px solid red;*/
+/*}*/
+
+.wd-icon-large {
+    font-size: 30px;
+}
+
+.wd-banner {
+    padding-bottom: 75px;
+}
+
+.wd-portrait {
+    height: 150px;
+    width: 150px;
+    border-radius: 150px;
+    top: 125px;
+    z-index: 10;
+}
+
+.wd-camera-portrait {
+    bottom: 20px;
+    left: 55px;
+}
+
+.wd-grayscale {
+    filter: grayscale(75%);
+}
+
+.wd-textarea {
+    resize: none;
+}
+
+.wd-link-no-decor {
+    text-decoration: none;
+    color: white;
+}
+
+.wd-link-no-decor:hover {
+    text-decoration: none;
+    color: white;
+}
+
+.wd-z-index {
+    z-index: 10;
+}
+
