@@ -9,7 +9,7 @@ const BusinessHome = (
             name: "Red Lobster",
             bannerPicture: "nasa-profile-header.jpg",
             profilePicture: "NASA.jpg",
-            handler: "redlobster",
+            handler: "@redlobster",
             bio: "The best red lobster. Come and taste!",
             cuisine: "Seafood",
             price: "$$",
@@ -17,6 +17,7 @@ const BusinessHome = (
             open: "11:00 AM - 10:00 PM",
             close: "Wednesday",
             phone: "617-234-5678",
+            website: "www.delicious.com",
             posts: ["Intro of new dishes", "Discount info", "Special events",
                     "Temporary closed days"]
         }
@@ -25,18 +26,7 @@ const BusinessHome = (
     // const restaurant = useSelector(state => state.restaurant);
 
     return (
-        <div className="border border-light">
-            <div className="row row-cols-12 mt-2 mb-2">
-                <div className="col-2 d-flex align-items-center justify-content-center">
-                    <i className="bi bi-arrow-left-short wd-icon-large"> </i>
-                </div>
-                <div className="col-10">
-                    <span className="h4">{restaurant.name} {restaurant.handler}</span>
-                    <br/>
-                    <span className="text-secondary">
-                        {restaurant.bio}</span>
-                </div>
-            </div>
+        <div className="border">
             <div className="position-relative wd-banner">
                 <img src={`/images/${restaurant.bannerPicture}`}
                      className="w-100" height={200}/>
@@ -45,29 +35,42 @@ const BusinessHome = (
                 <Link to="../edit-restaurant"
                       className="btn btn-white border rounded-pill fw-bolder position-relative
             float-end me-3 mt-2">
-                    Edit Profile</Link>
+                    Edit</Link>
             </div>
             <div className="m-3 position-relative">
                 <span className="h5 fw-bolder">{restaurant.name} {restaurant.handler}
                 </span><br/>
                 <p className="mt-3 mb-3">{restaurant.bio}</p>
-                <div className="d-flex flex-row mb-3">
-                    <div>
-                        <i className="bi bi-geo-alt me-1"> </i>
-                        <span className="text-secondary me-3">{restaurant.location}</span>
-                    </div>
-                    <div>
-                        <i className="bi bi-balloon me-1"> </i>
-                        <span className="text-secondary me-3">
-                        Featured Items</span>
-                    </div>
-                    <div>
-                        <i className="bi bi-calendar3 me-1"> </i>
-                        <span className="text-secondary"> </span>
+                <div className="d-flex flex-row mb-3 border rounded-3">
+                    <div className="m-2">
+                        <span className="m-1">
+                            {restaurant.cuisine} | {restaurant.price}</span>
+                        <br/>
+                        <span className="m-1">
+                            Address: {restaurant.address}</span>
+                        <br/>
+                        <span className="m-1">
+                            Phone: {restaurant.phone}</span>
+                        <br/>
+                        <span className="m-1">
+                            Website: {restaurant.website}</span>
+                        <br/>
+                        <span className="m-1">
+                            Open Hours: {restaurant.open}</span>
+                        <br/>
+                        <span className="m-1">
+                            Closed on: {restaurant.close}</span>
+                        <br/>
                     </div>
                 </div>
-                <div className="d-flex flex-row">
-                    <h2>Professional Reviews</h2>
+                <div className="d-flex flex-row mb-3 border rounded-3">
+                    <h5>What's New</h5>
+                </div>
+                <div className="d-flex flex-row mb-3 border rounded-3">
+                    <h5>Featured Items</h5>
+                </div>
+                <div className="d-flex flex-row mb-3 border rounded-3">
+                    <h5>Professional Reviews</h5>
                 </div>
             </div>
             {/*<pre>{JSON.stringify(restaurant, null, 2)}</pre>*/}
