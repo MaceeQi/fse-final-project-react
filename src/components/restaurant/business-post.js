@@ -7,7 +7,7 @@ const BusinessPost = ({
                       }
 ) => {
     return (
-        <div className="d-flex flex-row mb-3 border rounded-3">
+        <div className="d-flex flex-row mb-3 border wd-border-radius">
             <div>
                 <h5 className="m-2">What's New</h5>
                 <ul>

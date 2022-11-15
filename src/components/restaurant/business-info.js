@@ -13,25 +13,36 @@ const BusinessInfo = ({
                       }
 ) => {
     return (
-        <div className="d-flex flex-row mb-3 border rounded-3">
+        <div className="d-flex flex-row mb-3 border wd-border-radius">
             <div className="m-2">
-                        <span className="m-1">
-                            {restaurant.cuisine} | {restaurant.price}</span>
+                        <span className="m-1 fw-bolder">
+                            {restaurant.cuisine} | {restaurant.price}
+                        </span>
                 <br/>
                 <span className="m-1">
-                            Address: {restaurant.address}</span>
+                    <span className="fw-bolder">Address: </span>
+                    {restaurant.address}
+                </span>
                 <br/>
                 <span className="m-1">
-                            Phone: {restaurant.phone}</span>
+                    <span className="fw-bolder">Phone: </span>
+                    {restaurant.phone}
+                </span>
                 <br/>
                 <span className="m-1">
-                            Website: {restaurant.website}</span>
+                    <span className="fw-bolder">Website: </span>
+                    {restaurant.website}
+                </span>
                 <br/>
                 <span className="m-1">
-                            Open Hours: {restaurant.open}</span>
+                    <span className="fw-bolder">Open Hours: </span>
+                    {restaurant.open}
+                </span>
                 <br/>
                 <span className="m-1">
-                            Closed on: {restaurant.close}</span>
+                    <span className="fw-bolder">Closed on: </span>
+                    {restaurant.close}
+                </span>
                 <br/>
             </div>
         </div>

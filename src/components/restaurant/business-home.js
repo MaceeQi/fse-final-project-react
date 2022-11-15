@@ -28,11 +28,11 @@ const BusinessHome = (
     // const restaurant = useSelector(state => state.restaurant);
 
     return (
-        <div className="border">
-            <div className="position-relative wd-banner">
+        <div className="border wd-border-radius">
+            <div className="position-relative wd-banner d-flex justify-content-center">
                 <img src={`/images/${restaurant.bannerPicture}`}
-                     className="w-100" height={200}/>
-                <img className="wd-portrait position-absolute start-0 ms-3"
+                     className="wd-border-radius wd-banner-width mt-3" height={200}/>
+                <img className="wd-portrait position-absolute start-0 ms-5"
                      src={`/images/${restaurant.profilePicture}`}/>
             {/*    <Link to="../edit-restaurant"*/}
             {/*          className="btn btn-white border rounded-pill fw-bolder position-relative*/}
@@ -42,13 +42,13 @@ const BusinessHome = (
             <div className="m-3 position-relative">
                 <span className="h5 fw-bolder">{restaurant.name} {restaurant.handler}
                 </span><br/>
-                <p className="mt-3 mb-3">{restaurant.bio}</p>
+                <p className="mt-3 mb-3 fw-bolder">{restaurant.bio}</p>
                 <BusinessInfo restaurant={restaurant}/>
                 <BusinessPost restaurant={restaurant}/>
-                <div className="d-flex flex-row mb-3 border rounded-3">
+                <div className="d-flex flex-row mb-3 border wd-border-radius">
                     <h5>Featured Items</h5>
                 </div>
-                <div className="d-flex flex-row mb-3 border rounded-3">
+                <div className="d-flex flex-row mb-3 border wd-border-radius">
                     <h5>Professional Reviews</h5>
                 </div>
             </div>
