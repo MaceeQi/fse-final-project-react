@@ -9,6 +9,7 @@ import FeaturedItems from "./featured-items";
 const BusinessHome = (
 {
     restaurant = {
+        _id: "123",
         name: "Red Lobster",
         bannerPicture: "redlobster-banner.jpeg",
         profilePicture: "redlobster-avatar.png",
@@ -17,10 +18,17 @@ const BusinessHome = (
         cuisine: "Seafood",
         price: "$$",
         address: "Silver Spring, MD",
-        open: "11:00 AM - 10:00 PM",
-        close: "Wednesday",
+        hours: [
+            {_id: "123", weekday: "Monday", hour: "11:00 AM - 10:00 PM"},
+            {_id: "124", weekday: "Tuesday", hour: "11:00 AM - 10:00 PM"},
+            {_id: "125", weekday: "Wednesday", hour: "11:00 AM - 10:00 PM"},
+            {_id: "126", weekday: "Thursday", hour: "11:00 AM - 10:00 PM"},
+            {_id: "127", weekday: "Friday", hour: "11:00 AM - 10:00 PM"},
+            {_id: "128", weekday: "Saturday", hour: "11:00 AM - 10:00 PM"},
+            {_id: "129", weekday: "Sunday", hour: "11:00 AM - 10:00 PM"}
+        ],
         phone: "617-234-5678",
-        website: "www.delicious.com",
+        website: "https://www.redlobster.com/?gclsrc=aw.ds&",
         posts: [
             {_id: "123", post: "Intro of new dishes"},
             {_id: "124", post: "Discount info"},

@@ -24,7 +24,10 @@ const FeaturedItems = ({
                                       src={`/images/${item.photo}`}
                                       alt="food image"/>
                                  {
-                                     item.popular && <i className="fa-solid fa-award wd-popular position-absolute"></i>
+                                     item.popular &&
+                                     <i className="fa-solid fa-award wd-popular position-absolute">
+
+                                     </i>
                                  }
                              </div>
 

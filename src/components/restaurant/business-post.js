@@ -12,7 +12,7 @@ const BusinessPost = ({
     return (
         <div className="mb-3 border wd-border-radius">
             <div>
-                <h5 className="m-2 fw-bolder">What's New</h5>
+                <h5 className="m-2 fw-bolder">Updates</h5>
                 <ul>
                     {
                         restaurant.posts.map(post =>
