@@ -76,10 +76,91 @@ const EditRestaurant = () => {
                             
                 </div>
                 <div className="border border-secondary rounded-3 p-2 mb-3">
-                    <label className="fw-bolder" htmlFor="hours">Open Hours</label>
-                    <input id="hours" placeholder="11:00 AM - 10:00 PM"
-                            className="p-0 form-control border-0"
+                    <label className="fw-bolder" htmlFor="hours">Hours</label>
+                    <div className="row">
+                        <label className="col-3 align-self-center">Monday</label>
+                        <div className="col-2">
+                            <select className="form-control form-control-sm align-self-center">
+                                <option>Open</option>
+                                <option>Closed</option>
+                            </select>
+                        </div>
+                        <input id="hours" placeholder="11:00 AM - 10:00 PM"
+                            className="col-6 align-self-center p-1 border-0"
                             type="hours"/>
+                    </div>
+                    <div className="row">
+                        <label className="col-3 align-self-center">Tuesday</label>
+                        <div className="col-2">
+                            <select className="form-control form-control-sm align-self-center">
+                                <option>Open</option>
+                                <option>Closed</option>
+                            </select>
+                        </div>
+                        <input id="hours" placeholder="11:00 AM - 10:00 PM"
+                            className="col-6 align-self-center p-1 border-0"
+                            type="hours"/>
+                    </div>
+                    <div className="row">
+                        <label className="col-3 align-self-center">Wednesday</label>
+                        <div className="col-2">
+                            <select className="form-control form-control-sm align-self-center">
+                                <option>Open</option>
+                                <option>Closed</option>
+                            </select>
+                        </div>
+                        <input id="hours" placeholder="11:00 AM - 10:00 PM"
+                            className="col-6 align-self-center p-1 border-0"
+                            type="hours"/>
+                    </div>
+                    <div className="row">
+                        <label className="col-3 align-self-center">Thursday</label>
+                        <div className="col-2">
+                            <select className="form-control form-control-sm align-self-center">
+                                <option>Open</option>
+                                <option>Closed</option>
+                            </select>
+                        </div>
+                        <input id="hours" placeholder="11:00 AM - 10:00 PM"
+                            className="col-6 align-self-center p-1 border-0"
+                            type="hours"/>
+                    </div>
+                    <div className="row">
+                        <label className="col-3 align-self-center">Friday</label>
+                        <div className="col-2">
+                            <select className="form-control form-control-sm align-self-center">
+                                <option>Open</option>
+                                <option>Closed</option>
+                            </select>
+                        </div>
+                        <input id="hours" placeholder="11:00 AM - 10:00 PM"
+                            className="col-6 align-self-center p-1 border-0"
+                            type="hours"/>
+                    </div>
+                    <div className="row">
+                        <label className="col-3 align-self-center">Saturday</label>
+                        <div className="col-2">
+                            <select className="form-control form-control-sm align-self-center">
+                                <option>Open</option>
+                                <option>Closed</option>
+                            </select>
+                        </div>
+                        <input id="hours" placeholder="11:00 AM - 10:00 PM"
+                            className="col-6 align-self-center p-1 border-0"
+                            type="hours"/>
+                    </div>
+                    <div className="row">
+                        <label className="col-3 align-self-center">Sunday</label>
+                        <div className="col-2">
+                            <select className="form-control form-control-sm align-self-center">
+                                <option>Open</option>
+                                <option>Closed</option>
+                            </select>
+                        </div>
+                        <input id="hours" placeholder="11:00 AM - 10:00 PM"
+                            className="col-6 align-self-center p-1 border-0"
+                            type="hours"/>
+                    </div>
                 </div>
             </div>
             
@@ -116,7 +197,7 @@ const EditRestaurant = () => {
                     </div>
                 </div>
                 <div className="row justify-content-center">
-                    <button className="col-2 btn btn-sm btn-secondary">Add Update</button>
+                    <button className="col-3 btn btn-sm btn-secondary">Add Update</button>
                 </div>
             </div>
 
@@ -133,6 +214,9 @@ const EditRestaurant = () => {
                         <div>Menu Item Price:</div>
                         <input id="itemPrice" placeholder="$15.00"
                             className="p-0 form-control"/>
+                        <input id="popularItem" type="checkbox"
+                            name="popularItem"/>
+                        <label className="p-2" for="popularItem">Popular Item</label>
                     </div>
                     <div className="col-1 p-0 align-self-center ">
                         <i className="btn fa-regular fa-trash-can"></i>
@@ -149,6 +233,9 @@ const EditRestaurant = () => {
                         <div>Menu Item Price:</div>
                         <input id="itemPrice" placeholder="$15.00"
                             className="p-0 form-control"/>
+                        <input id="popularItem" type="checkbox"
+                            name="popularItem"/>
+                        <label className="p-2" for="popularItem">Popular Item</label>
                     </div>
                     <div className="col-1 p-0 align-self-center ">
                         <i className="btn fa-regular fa-trash-can"></i>
