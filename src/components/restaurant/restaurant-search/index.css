@@ -4,6 +4,7 @@
     font-size: 18px;
 }
 
-.ttr-width-90 {
-    width: 90%;
+.ttr-restaurant-post-border {
+    border: 3px solid #F0F1F2;
+    border-radius: 15px;
 }
