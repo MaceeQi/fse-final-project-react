@@ -5,7 +5,7 @@ const RestaurantSearch = () => {
     return (
         <div >
             {/* search bar */}
-            <div className="row">
+            <div className="row mt-2">
                 {/* input field */}
                 <div className="ttr-width-90">
                     <div className="position-relative">
