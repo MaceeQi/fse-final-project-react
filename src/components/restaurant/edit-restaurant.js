@@ -91,7 +91,9 @@ const EditRestaurant = () => {
                                 className="form-control border-secondary"
                                 type="update"/>
                     </div>
-                    <i className="align-self-center col-1 fa fa-close"></i>
+                    <div className="col-1 p-0 align-self-center ">
+                        <i className="btn fa-regular fa-trash-can"></i>
+                    </div>
                 </div>
                 <div className="row pb-3">
                     <div className="col-11">
@@ -99,7 +101,9 @@ const EditRestaurant = () => {
                                 className="form-control border-secondary"
                                 type="update"/>
                     </div>
-                    <i className="align-self-center col-1 fa fa-close"></i>
+                    <div className="col-1 p-0 align-self-center ">
+                        <i className="btn fa-regular fa-trash-can"></i>
+                    </div>
                 </div>
                 <div className="row pb-3">
                     <div className="col-11">
@@ -107,7 +111,9 @@ const EditRestaurant = () => {
                                 className="form-control border-secondary"
                                 type="update"/>
                     </div>
-                    <i className="align-self-center col-1 fa fa-close"></i>
+                    <div className="col-1 p-0 align-self-center ">
+                        <i className="btn fa-regular fa-trash-can"></i>
+                    </div>
                 </div>
                 <div className="row justify-content-center">
                     <button className="col-2 btn btn-sm btn-secondary">Add Update</button>
