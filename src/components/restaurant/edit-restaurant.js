@@ -233,9 +233,9 @@ const EditRestaurant = () => {
                         <div>Menu Item Price:</div>
                         <input id="itemPrice" placeholder="$15.00"
                             className="p-0 form-control"/>
-                        <input id="popularItem" type="checkbox"
-                            name="popularItem"/>
-                        <label className="p-2" for="popularItem">Popular Item</label>
+                        <input id="popularItem2" type="checkbox"
+                            name="popularItem2"/>
+                        <label className="p-2" for="popularItem2">Popular Item</label>
                     </div>
                     <div className="col-1 p-0 align-self-center ">
                         <i className="btn fa-regular fa-trash-can"></i>
