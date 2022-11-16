@@ -44,7 +44,7 @@ const BusinessInfo = ({
                 <div className="m-1">
                     <span className="fw-bolder">Hours: </span><br/>
                         {restaurant.hours.map(day =>
-                            <div key={day._id} className="row row-cols-7 ps-1">
+                            <div key={day._id} className="row row-cols-7">
                                 <span className="col-2">{day.weekday}</span>
                                 <span className="col-5">{day.hour}</span>
                             </div>
