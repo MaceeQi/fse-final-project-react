@@ -1,19 +1,24 @@
 import React from "react";
 const BusinessPost = ({
                           restaurant = {
-                              posts: ["Intro of new dishes", "Discount info", "Special events",
-                                      "Temporary closed days"]
-                          }
+                              posts: [
+                                  {_id: "123", post: "Intro of new dishes"},
+                                  {_id: "124", post: "Discount info"},
+                                  {_id: "125", post: "Special events"},
+                                  {_id: "126", post: "Temporary closed days"}
+                              ]}
                       }
 ) => {
     return (
-        <div className="d-flex flex-row mb-3 border wd-border-radius">
+        <div className="mb-3 border wd-border-radius">
             <div>
-                <h5 className="m-2">What's New</h5>
+                <h5 className="m-2 fw-bolder">What's New</h5>
                 <ul>
                     {
                         restaurant.posts.map(post =>
-                                                 <li>{post}</li>
+                                                 <li key={post._id} >
+                                                     {post.post}
+                                                 </li>
                         )
                     }
                 </ul>

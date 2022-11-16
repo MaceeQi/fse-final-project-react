@@ -26,6 +26,39 @@
     border-radius: 20px;
 }
 
+.wd-scroll-menu {
+    overflow: auto;
+}
+
+.wd-card-block {
+    display: inline-block;
+    text-align: left;
+    margin-left: 12px;
+    height: 120px;
+    width: 160px;
+    border: 1px;
+    background: none;
+    border-radius: 20px;
+}
+
+.wd-card-photo {
+    height: 60px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.wd-card-text {
+    font-size: 15px;
+}
+
+.wd-popular {
+    color: #FCB90D;
+    left: 0px;
+    bottom: 35px;
+    z-index: 10;
+    font-size: 35px;
+}
+
 /*.wd-camera-portrait {*/
 /*    bottom: 20px;*/
 /*    left: 55px;*/
