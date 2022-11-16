@@ -5,7 +5,7 @@ import "./edit-restaurant.css";
 const EditRestaurant = () => {
     return(
       <div className="ttr-edit-profile">
-          <div className="border border-bottom-0">
+          <div className="border rounded-3 border-bottom-0">
               <Link to="/restaurant" className="btn btn-light rounded-pill fa-pull-left fw-bolder mt-2 mb-2 ms-2">
                   <i className="fa fa-close"></i>
               </Link>
