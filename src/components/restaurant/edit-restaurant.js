@@ -122,6 +122,38 @@ const EditRestaurant = () => {
 
             <div className="ttr-border p-2 mb-3">
                 <label className="fw-bolder p-2">Featured Items</label>
+                <div className="ttr-border row p-2 mb-3 m-1">
+                    <div className="col-3 align-self-center">
+                        <img className="w-100" src="../images/nasa-profile-header.jpg"/>
+                    </div>
+                    <div className="col-8">
+                        <div>Menu Item Name:</div>
+                        <input id="itemName" placeholder="Pasta"
+                            className="p-0 form-control"/>
+                        <div>Menu Item Price:</div>
+                        <input id="itemPrice" placeholder="$15.00"
+                            className="p-0 form-control"/>
+                    </div>
+                    <div className="col-1 p-0 align-self-center ">
+                        <i className="btn fa-regular fa-trash-can"></i>
+                    </div>
+                </div>
+                <div className="ttr-border row p-2 mb-3 m-1">
+                    <div className="col-3 align-self-center">
+                        <img className="w-100" src="../images/nasa-profile-header.jpg"/>
+                    </div>
+                    <div className="col-8">
+                        <div>Menu Item Name:</div>
+                        <input id="itemName" placeholder="Pasta"
+                            className="p-0 form-control"/>
+                        <div>Menu Item Price:</div>
+                        <input id="itemPrice" placeholder="$15.00"
+                            className="p-0 form-control"/>
+                    </div>
+                    <div className="col-1 p-0 align-self-center ">
+                        <i className="btn fa-regular fa-trash-can"></i>
+                    </div>
+                </div>
                 <div className="row justify-content-center">
                     <button className="col-3 btn btn-sm btn-secondary">Add Menu Item</button>
                 </div>
