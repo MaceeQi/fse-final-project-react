@@ -1,7 +1,7 @@
 import React from "react";
 import Navigation from "../navigation";
 import WhatsHappening from "../whats-happening";
-import {BrowserRouter, Routes, Route, HashRouter} from "react-router-dom";
+import {Routes, Route, HashRouter} from "react-router-dom";
 import Home from "../home";
 import Bookmarks from "../bookmarks";
 import Profile from "../profile";
@@ -15,6 +15,7 @@ import More from "../more";
 import {Login} from "../profile/login";
 import Movies from "../movies";
 import MovieDetails from "../movies/details";
+import BusinessHome from "../restaurant/business-home";
 import RestaurantSearch from "../restaurant/restaurant-search"
 
 function Tuiter () {
@@ -43,6 +44,7 @@ function Tuiter () {
               <Route path="/movies" element={<Movies/>}/>
               <Route path="/movies/:imdbID" element={<MovieDetails/>}/>
               <Route path="/restaurant" element={<RestaurantSearch/>}/>
+              <Route path="/restaurant/:rid" element={<BusinessHome/>}/>
               <Route path="/more" element={<More/>}/>
             </Routes>
           </div>
