@@ -13,7 +13,7 @@ const BusinessHome = (
         name: "Red Lobster",
         bannerPicture: "redlobster-banner.jpeg",
         profilePicture: "redlobster-avatar.png",
-        handler: "@redlobster",
+        handle: "@redlobster",
         bio: "The best red lobster. Come and taste!",
         cuisine: "Seafood",
         price: "$$",
@@ -59,7 +59,7 @@ const BusinessHome = (
             {/*        Edit</Link>*/}
             </div>
             <div className="m-3 position-relative">
-                <span className="h5 fw-bolder">{restaurant.name} {restaurant.handler}
+                <span className="h5 fw-bolder">{restaurant.name} {restaurant.handle}
                 </span><br/>
                 <p className="mt-3 mb-3">{restaurant.bio}</p>
                 <BusinessInfo restaurant={restaurant}/>
