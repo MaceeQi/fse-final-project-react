@@ -16,3 +16,8 @@
     height: 90px;
     object-fit: cover;
 }
+
+.ttr-remove-decoration {
+    text-decoration: none;
+    color: black;
+}
