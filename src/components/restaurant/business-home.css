@@ -1,0 +1,88 @@
+/** {*/
+/*    outline: 1px solid red;*/
+/*}*/
+
+.wd-icon-large {
+    font-size: 30px;
+}
+
+.wd-banner {
+    padding-bottom: 75px;
+}
+
+.wd-banner-width {
+    width: 95%;
+}
+
+.wd-portrait {
+    height: 150px;
+    width: 150px;
+    border-radius: 150px;
+    top: 125px;
+    z-index: 10;
+}
+
+.wd-border-radius {
+    border-radius: 20px;
+}
+
+.wd-scroll-menu {
+    overflow: auto;
+}
+
+.wd-card-block {
+    display: inline-block;
+    text-align: left;
+    margin-left: 12px;
+    height: 120px;
+    width: 160px;
+    border: 1px;
+    background: none;
+    border-radius: 20px;
+}
+
+.wd-card-photo {
+    height: 60px;
+    width: 100%;
+    border-radius: 20px;
+}
+
+.wd-card-text {
+    font-size: 15px;
+}
+
+.wd-popular {
+    color: #FCB90D;
+    left: 0px;
+    bottom: 35px;
+    z-index: 10;
+    font-size: 35px;
+}
+
+/*.wd-camera-portrait {*/
+/*    bottom: 20px;*/
+/*    left: 55px;*/
+/*}*/
+
+/*.wd-grayscale {*/
+/*    filter: grayscale(75%);*/
+/*}*/
+
+/*.wd-textarea {*/
+/*    resize: none;*/
+/*}*/
+
+/*.wd-link-no-decor {*/
+/*    text-decoration: none;*/
+/*    color: white;*/
+/*}*/
+
+/*.wd-link-no-decor:hover {*/
+/*    text-decoration: none;*/
+/*    color: white;*/
+/*}*/
+
+/*.wd-z-index {*/
+/*    z-index: 10;*/
+/*}*/
+
