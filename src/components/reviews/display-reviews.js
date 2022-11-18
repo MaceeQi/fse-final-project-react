@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import * as service from "../../services/reviews-service";
 import Tuit from "../tuits/tuit";
 
@@ -12,10 +12,6 @@ export const Review = () => {
     const findAllReviews = (restaurantid) =>
         service.findAllReviews(restaurantid);
 
-    const createReview = (restaurantid, uid, review) =>
-        service.createReview(restaurantid, uid, review)
-            .then(findAllReviews(restaurantid));
-
     const updateReview = (restaurantid, uid, reviewid, review) =>
         service.updateReview(restaurantid, uid, reviewid, review)
             .then(findAllReviews(restaurantid));
@@ -24,23 +20,9 @@ export const Review = () => {
         service.deleteReview(restaurantid, uid, reviewid)
             .then(findAllReviews(restaurantid));
 
-    const [review, setReview] = useState({review: ''});
-    const reviewChangeHandler = (event) => {
-        const currentReview = event.target.value;
-        const newReview = {
-            review: currentReview
-        };
-        setReview(newReview);
-    }
-
-
     return (
         <div>
             <h2>Professional Reviews</h2>
-            <input placeholder={"Input review here"}
-                   onChange={reviewChangeHandler}
-                   value={review.review}/>
-            <button onClick={createReview}>Submit</button>
             <ul>
                 {
                     testReviews.map && testReviews.map(item => {
