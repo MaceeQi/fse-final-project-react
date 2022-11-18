@@ -5,6 +5,7 @@ import "./business-home.css";
 import BusinessInfo from "./business-info";
 import BusinessPost from "./business-post";
 import FeaturedItems from "./featured-items";
+import ReviewList from "../reviews/reivew-list";
 
 const BusinessHome = (
 {
@@ -47,11 +48,11 @@ const BusinessHome = (
     // const restaurant = useSelector(state => state.restaurant);
 
     return (
-        <div className="border wd-border-radius">
-            <div className="position-relative wd-banner d-flex justify-content-center">
+        <div className="border ttr-border-radius">
+            <div className="position-relative ttr-banner d-flex justify-content-center">
                 <img src={`/images/${restaurant.bannerPicture}`}
-                     className="wd-border-radius wd-banner-width mt-3" height={200}/>
-                <img className="wd-portrait position-absolute start-0 ms-5"
+                     className="ttr-border-radius ttr-banner-width mt-3" height={200}/>
+                <img className="ttr-portrait position-absolute start-0 ms-5"
                      src={`/images/${restaurant.profilePicture}`}/>
             {/*    <Link to="../edit-restaurant"*/}
             {/*          className="btn btn-white border rounded-pill fw-bolder position-relative*/}
@@ -65,9 +66,7 @@ const BusinessHome = (
                 <BusinessInfo restaurant={restaurant}/>
                 <BusinessPost restaurant={restaurant}/>
                 <FeaturedItems restaurant={restaurant}/>
-                <div className="d-flex flex-row mb-3 border wd-border-radius">
-                    <h5>Professional Reviews</h5>
-                </div>
+                <ReviewList restaurant={restaurant}/>
             </div>
             {/*<pre>{JSON.stringify(restaurant, null, 2)}</pre>*/}
         </div>

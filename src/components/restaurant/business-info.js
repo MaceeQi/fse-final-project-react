@@ -20,7 +20,7 @@ const BusinessInfo = ({
                       }
 ) => {
     return (
-        <div className="mb-3 border wd-border-radius">
+        <div className="mb-3 border ttr-border-radius">
             <div className="m-2">
                         <span className="m-1 fw-bolder">
                             {restaurant.cuisine} | {restaurant.price}
