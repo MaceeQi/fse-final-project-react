@@ -2,32 +2,27 @@ import React from "react";
 import * as service from "../../services/reviews-service";
 import reviews from "./sample-reviews.json";
 import ReviewItem from "./review-item";
-import critics from "../data/critic-users.json";
 import "./reviews.css";
 
-const ReviewList = ({restaurant}) => {
-    // const testReviews = [
-    //     {restaurantid: "123", uid: "123", reviewid: "1234", review: "Great restaurant!"},
-    //     {restaurantid: "123", uid: "456", reviewid: "2345", review: "Decent price for its quality"},
-    //     {restaurantid: "123", uid: "789", reviewid: "3456", review: "Amazing"}
-    // ]
-    //
-    // const findAllReviews = (restaurantid) =>
-    //     service.findAllReviews(restaurantid);
-    //
-    // const updateReview = (restaurantid, uid, reviewid, review) =>
-    //     service.updateReview(restaurantid, uid, reviewid, review)
-    //         .then(findAllReviews(restaurantid));
-    //
-    // const deleteReview = (restaurantid, uid, reviewid) =>
-    //     service.deleteReview(restaurantid, uid, reviewid)
-    //         .then(findAllReviews(restaurantid));
-
+const ReviewList = ({restaurant, critics}) => {
     return (
-        <div className="mb-3 border ttr-border-radius">
-            <div className="m-2">
-                <h5 className="m-2 fw-bolder">Professional Reviews</h5>
-                <ul className="list-group ttr-border-radius">
+        // <div className="mb-3 border ttr-border-radius">
+        //     <div className="m-2">
+        //         <div className="row row-cols-12 mb-2">
+        //             <div className="col-10 justify-content-start">
+        //                 <h5 className="fw-bolder float-start">Professional Reviews</h5>
+        //             </div>
+        //             <div className="col-2">
+        //                 {
+        //                     loggedIn.type === "CRITIC" &&
+        //                     <button
+        //                         // onClick={AddReview}
+        //                         className="btn btn-white btn-sm border
+        //             rounded-pill fw-bolder position-relative float-end ps-2 pe-2">Review</button>
+        //                 }
+        //             </div>
+        //         </div>
+                <div className="list-group ttr-border-radius">
                     {
                         reviews.filter(review => review.restaurantId === restaurant._id)
                             .map(review =>
@@ -39,9 +34,9 @@ const ReviewList = ({restaurant}) => {
                                                          critic._id === review.criticId)[0]}/>
                                 )
                     }
-                </ul>
-            </div>
-        </div>
+                </div>
+        //     </div>
+        // </div>
     )
 };
 export default ReviewList;

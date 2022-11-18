@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import * as service from "../../services/reviews-service";
 import Tuit from "../tuits/tuit";
 
-export const CreateReview = () => {
+const CreateReview = () => {
     const findAllReviews = (restaurantId) =>
         service.findAllReviews(restaurantId);
 
@@ -29,11 +29,21 @@ export const CreateReview = () => {
 
     return (
         <div>
-            <h2>Professional Reviews</h2>
-            <input placeholder={"Input review here"}
-                   onChange={reviewChangeHandler}
-                   value={review.review}/>
-            <button onClick={createReview}>Submit</button>
+            <div className="row row-cols-12 mb-2">
+                <div className="col-10 justify-content-start">
+                    <input placeholder={"Input review here"}
+                           onChange={reviewChangeHandler}
+                           value={review.review}/>
+                </div>
+                <div className="col-2">
+                    <button
+                        // onClick={AddReview}
+                        className="btn btn-white btn-sm border
+                rounded-pill fw-bolder position-relative float-end ps-2 pe-2">Submit</button>
+
+                </div>
+            </div>
+
             {/*<ul>*/}
             {/*    {*/}
             {/*        reviews.map && reviews.map(item => {*/}
@@ -45,4 +55,5 @@ export const CreateReview = () => {
             {/*</ul>*/}
         </div>
     )
-}
+};
+export default CreateReview;
