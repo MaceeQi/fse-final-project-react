@@ -1,7 +1,7 @@
 import axios from "axios";
 const BASE_URL = "http://localhost:4000";
 
-const RESTAURANTS_API = `${BASE_URL}/api/restaurants`;
+const RESTAURANTS_API = `${BASE_URL}/api/restaurant`;
 
 export const findAllReviews = (restaurantid) =>
     axios.get(`${RESTAURANTS_API}/${restaurantid}/reviews`)

@@ -16,7 +16,8 @@ import {Login} from "../profile/login";
 import Movies from "../movies";
 import MovieDetails from "../movies/details";
 import BusinessHome from "../restaurant/business-home";
-import RestaurantSearch from "../restaurant/restaurant-search"
+import RestaurantSearch from "../restaurant/restaurant-search";
+import {Review} from "../reviews/create-review";
 
 function Tuiter () {
   return(
@@ -45,6 +46,7 @@ function Tuiter () {
               <Route path="/movies/:imdbID" element={<MovieDetails/>}/>
               <Route path="/restaurant" element={<RestaurantSearch/>}/>
               <Route path="/restaurant/:rid" element={<BusinessHome/>}/>
+              <Route path="/restaurant/:rid/reviews" element={<Review/>}/>
               <Route path="/more" element={<More/>}/>
             </Routes>
           </div>
