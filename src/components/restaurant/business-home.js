@@ -17,9 +17,9 @@ const BusinessHome = ({restaurant=restaurants[0]}) => {
 
     // hardcode logged in user info, need to update later
     // critic user: will see the review textbox and submit button
-    // const loggedIn = critics[0];
+    const loggedIn = critics[0];
     // average user: can only see the reviews list
-    const loggedIn = users[0];
+    // const loggedIn = users[0];
 
     return (
         <div className="border ttr-border-radius">

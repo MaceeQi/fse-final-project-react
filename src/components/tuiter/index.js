@@ -46,13 +46,13 @@ function Tuiter () {
                 <Route path="/messages" element={<Messages/>}/>
                 <Route path="/bookmarks" element={<Bookmarks/>}/>
                 <Route path="/lists" element={<Lists/>}/>
-                <Route path="/profile/*" element={<Profile/>}/>
+                <Route path="/profile/" element={<Profile/>}/>
                 {/*need to update the path below later, for testing only currently*/}
                 <Route path="/profile/business/:rid" element={<BusinessProfile/>}/>
                 <Route path="/profile/edit" element={<EditProfile/>}/>
                 <Route path="/movies" element={<Movies/>}/>
                 <Route path="/movies/:imdbID" element={<MovieDetails/>}/>
-                <Route path="/restaurant/*" element={<RestaurantSearch/>}/>
+                <Route path="/restaurant/" element={<RestaurantSearch/>}/>
                 <Route path="/restaurant/:rid/" element={<BusinessHome/>}/>
                 <Route path="/more" element={<More/>}/>
               </Routes>

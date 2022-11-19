@@ -4,11 +4,10 @@ import {Link} from "react-router-dom";
 import restaurants from "../data/restaurants.json";
 import critics from "../data/critic-users.json";
 import ReviewList from "../reviews/reivew-list";
-import "../restaurant/business-home.css";
 import BusinessInfo from "../restaurant/business-info";
 import BusinessPost from "../restaurant/business-post";
 import FeaturedItems from "../restaurant/featured-items";
-import CreateReview from "../reviews/create-review";
+import "../restaurant/business-home.css";
 
 // hardcode restaurant input, need to change later
 const BusinessProfile = ({restaurant=restaurants[0]}) => {
@@ -22,13 +21,14 @@ const BusinessProfile = ({restaurant=restaurants[0]}) => {
             <img className="ttr-portrait position-absolute start-0 ms-5"
                  src={`/images/${restaurant.profilePicture}`}/>
         </div>
-        {/*Profile edit button*/}
-        <Link to="./edit-restaurant"
-              className="btn btn-white border rounded-pill fw-bolder position-relative
-                float-end me-3 mt-2">Edit</Link>
         <div className="m-3 position-relative">
                 <span className="h5 fw-bolder">{restaurant.name} {restaurant.handle}
                 </span><br/>
+            {/*Profile edit button*/}
+            <Link to="./edit-restaurant">
+                <button className="btn btn-white border rounded-pill fw-bolder
+            float-end me-3 mt-2">Edit</button>
+            </Link>
             <p className="mt-3 mb-3">{restaurant.bio}</p>
             <BusinessInfo restaurant={restaurant}/>
             <BusinessPost restaurant={restaurant}/>
