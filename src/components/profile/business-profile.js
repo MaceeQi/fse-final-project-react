@@ -25,7 +25,7 @@ const BusinessProfile = ({restaurant=restaurants[0]}) => {
                 <span className="h5 fw-bolder">{restaurant.name} {restaurant.handle}
                 </span><br/>
             {/*Profile edit button*/}
-            <Link to="./edit-restaurant">
+            <Link to="./edit">
                 <button className="btn btn-white border rounded-pill fw-bolder
             float-end me-3 mt-2">Edit</button>
             </Link>

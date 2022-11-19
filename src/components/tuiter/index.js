@@ -48,7 +48,7 @@ function Tuiter () {
                 <Route path="/lists" element={<Lists/>}/>
                 <Route path="/profile/" element={<Profile/>}/>
                 {/*need to update the path below later, for testing only currently*/}
-                <Route path="/profile/business/:rid" element={<BusinessProfile/>}/>
+                <Route path="/profile/restaurant/:rid" element={<BusinessProfile/>}/>
                 <Route path="/profile/edit" element={<EditProfile/>}/>
                 <Route path="/movies" element={<Movies/>}/>
                 <Route path="/movies/:imdbID" element={<MovieDetails/>}/>
