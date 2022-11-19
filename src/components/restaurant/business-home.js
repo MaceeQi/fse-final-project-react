@@ -11,14 +11,15 @@ import critics from "../data/critic-users.json";
 import users from "../data/average-users.json";
 import restaurants from "../data/restaurants.json";
 
+// hardcode restaurant input, need to update later
 const BusinessHome = ({restaurant=restaurants[0]}) => {
     // const restaurant = useSelector(state => state.restaurant);
 
-    // hardcode logged in user info, needs to update later
+    // hardcode logged in user info, need to update later
     // critic user: will see the review textbox and submit button
-    const loggedIn = critics[0];
+    // const loggedIn = critics[0];
     // average user: can only see the reviews list
-    // const loggedIn = users[0];
+    const loggedIn = users[0];
 
     return (
         <div className="border ttr-border-radius">

@@ -21,6 +21,7 @@ import RestaurantSearch from "../restaurant/restaurant-search";
 import reviewsReducer from "../reviews/review-reducer";
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
+import BusinessProfile from "../profile/business-profile";
 const store = configureStore({reducer: {reviews: reviewsReducer}});
 
 function Tuiter () {
@@ -46,6 +47,8 @@ function Tuiter () {
                 <Route path="/bookmarks" element={<Bookmarks/>}/>
                 <Route path="/lists" element={<Lists/>}/>
                 <Route path="/profile/*" element={<Profile/>}/>
+                {/*need to update the path below later, for testing only currently*/}
+                <Route path="/profile/business/:rid" element={<BusinessProfile/>}/>
                 <Route path="/profile/edit" element={<EditProfile/>}/>
                 <Route path="/movies" element={<Movies/>}/>
                 <Route path="/movies/:imdbID" element={<MovieDetails/>}/>
