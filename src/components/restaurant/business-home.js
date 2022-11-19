@@ -80,9 +80,8 @@ const BusinessHome = (
                 {/*</Router>*/}
                 <div className="mb-3 border ttr-border-radius">
                     <div className="m-2">
-                        <div>
-                            <h5 className="fw-bolder float-start">Professional Reviews</h5>
-                        </div>
+                        <h5 className="fw-bolder float-start">Professional Reviews</h5>
+                        <br/>
                     {/*    <div className="row row-cols-12 mb-2">*/}
                     {/*        <div className="col-10 justify-content-start">*/}
                     {/*            <h5 className="fw-bolder float-start">Professional Reviews</h5>*/}

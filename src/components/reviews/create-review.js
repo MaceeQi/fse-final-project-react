@@ -2,38 +2,45 @@ import React, {useState} from "react";
 import * as service from "../../services/reviews-service";
 import Tuit from "../tuits/tuit";
 
-const CreateReview = () => {
-    const findAllReviews = (restaurantId) =>
-        service.findAllReviews(restaurantId);
+const CreateReview = ({restaurant, critic}) => {
+    // const findAllReviews = (restaurantId) =>
+    //     service.findAllReviews(restaurantId);
+    //
+    // const createReview = (restaurantId, criticId, review) =>
+    //     service.createReview(restaurantId, criticId, review)
+    //         .then(findAllReviews(restaurantId));
+    //
+    // const updateReview = (restaurantId, criticId, reviewid, review) =>
+    //     service.updateReview(restaurantId, criticId, reviewid, review)
+    //         .then(findAllReviews(restaurantId));
+    //
+    // const deleteReview = (restaurantId, criticId, reviewid) =>
+    //     service.deleteReview(restaurantId, criticId, reviewid)
+    //         .then(findAllReviews(restaurantId));
 
-    const createReview = (restaurantId, criticId, review) =>
-        service.createReview(restaurantId, criticId, review)
-            .then(findAllReviews(restaurantId));
-
-    const updateReview = (restaurantId, criticId, reviewid, review) =>
-        service.updateReview(restaurantId, criticId, reviewid, review)
-            .then(findAllReviews(restaurantId));
-
-    const deleteReview = (restaurantId, criticId, reviewid) =>
-        service.deleteReview(restaurantId, criticId, reviewid)
-            .then(findAllReviews(restaurantId));
-
-    const [review, setReview] = useState({review: ''});
-    const reviewChangeHandler = (event) => {
-        const currentReview = event.target.value;
+    const [review, setReview] = useState('');
+    const reviewSubmitHandler = () => {
         const newReview = {
-            review: currentReview
-        };
-        setReview(newReview);
+            _id: new Date().getTime() + "",
+            "restaurantId": restaurant._id,
+            "criticId": critic._id,
+            review: review,
+            time: new Date().getDate() + ""
+        }
+        dispatch(createReview(newReview));
+    }
+    const reviewChangeHandler = (event) => {
+        setReview(event.target.value);
     }
 
     return (
-        <div>
+        <div className="mt-2 mb-2">
             <div className="row row-cols-12 mb-2">
                 <div className="col-10 justify-content-start">
-                    <input placeholder={"Input review here"}
-                           onChange={reviewChangeHandler}
-                           value={review.review}/>
+                    <textarea className="float-start w-100 border ttr-border-radius p-2"
+                              placeholder="Write down your reviews!"
+                              onChange={reviewChangeHandler}
+                              value={review.review}/>
                 </div>
                 <div className="col-2">
                     <button
@@ -43,16 +50,6 @@ const CreateReview = () => {
 
                 </div>
             </div>
-
-            {/*<ul>*/}
-            {/*    {*/}
-            {/*        reviews.map && reviews.map(item => {*/}
-            {/*            return (*/}
-            {/*                <Tuit tuit={item.review}/>*/}
-            {/*            );*/}
-            {/*        })*/}
-            {/*    }*/}
-            {/*</ul>*/}
         </div>
     )
 };
