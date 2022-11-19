@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import reviews from "./sample-reviews.json";
+import reviews from "../data/sample-reviews.json";
 
 const reviewSlice = createSlice({
    name: "reviews",
