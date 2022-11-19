@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import * as service from "../../services/reviews-service";
 import Tuit from "../tuits/tuit";
+import {createReview} from "./review-reducer";
+import {useDispatch} from "react-redux";
 
 const CreateReview = ({restaurant, critic}) => {
     // const findAllReviews = (restaurantId) =>
@@ -19,18 +21,17 @@ const CreateReview = ({restaurant, critic}) => {
     //         .then(findAllReviews(restaurantId));
 
     const [review, setReview] = useState('');
-    const reviewSubmitHandler = () => {
-        const newReview = {
-            _id: new Date().getTime() + "",
-            "restaurantId": restaurant._id,
-            "criticId": critic._id,
-            review: review,
-            time: new Date().getDate() + ""
-        }
-        dispatch(createReview(newReview));
-    }
     const reviewChangeHandler = (event) => {
         setReview(event.target.value);
+    }
+    const dispatch = useDispatch();
+    const reviewSubmitHandler = () => {
+        const newReview = {
+            review: review,
+            restaurantId: restaurant._id,
+            criticId: critic._id
+        }
+        dispatch(createReview(newReview));
     }
 
     return (
@@ -40,11 +41,11 @@ const CreateReview = ({restaurant, critic}) => {
                     <textarea className="float-start w-100 border ttr-border-radius p-2"
                               placeholder="Write down your reviews!"
                               onChange={reviewChangeHandler}
-                              value={review.review}/>
+                              value={review}/>
                 </div>
                 <div className="col-2">
                     <button
-                        // onClick={AddReview}
+                        onClick={reviewSubmitHandler}
                         className="btn btn-white btn-sm border
                 rounded-pill fw-bolder position-relative float-end ps-2 pe-2">Submit</button>
 

@@ -97,7 +97,8 @@ const BusinessHome = (
                     {/*        </div>*/}
                     {/*    </div>*/}
                         {
-                            loggedIn.type === "CRITIC" && <CreateReview/>
+                            loggedIn.type === "CRITIC" && <CreateReview restaurant={restaurant}
+                                                                        critic={loggedIn}/>
                         }
                         <ReviewList restaurant={restaurant} critics={critics}/>
                     </div>

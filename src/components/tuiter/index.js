@@ -17,45 +17,50 @@ import Movies from "../movies";
 import MovieDetails from "../movies/details";
 import BusinessHome from "../restaurant/business-home";
 import RestaurantSearch from "../restaurant/restaurant-search";
-import CreateReview from "../reviews/create-review";
+
+import reviewsReducer from "../reviews/review-reducer";
+import {Provider} from "react-redux";
+import {configureStore} from "@reduxjs/toolkit";
+const store = configureStore({reducer: {reviews: reviewsReducer}});
 
 function Tuiter () {
   return(
-    <HashRouter>
-      <div className="container">
-        <div className="ttr-tuiter">
-          <div className="ttr-left-column">
-            <Navigation/>
-          </div>
-          <div className="ttr-center-column">
-            <Routes>
-              <Route path="/*" element={<Home/>}/>
-              <Route path="/login" element={<Login/>}/>
-              <Route path="/tuiter" element={<Home/>}/>
-              <Route path="/tuiter/:uid" element={<Home/>}/>
-              <Route path="/home" element={<Home/>}/>
-              <Route path="/home/:uid" element={<Home/>}/>
-              <Route path="/explore" element={<Explore/>}/>
-              <Route path="/notifications" element={<Notifications/>}/>
-              <Route path="/messages" element={<Messages/>}/>
-              <Route path="/bookmarks" element={<Bookmarks/>}/>
-              <Route path="/lists" element={<Lists/>}/>
-              <Route path="/profile/*" element={<Profile/>}/>
-              <Route path="/profile/edit" element={<EditProfile/>}/>
-              <Route path="/movies" element={<Movies/>}/>
-              <Route path="/movies/:imdbID" element={<MovieDetails/>}/>
-              <Route path="/restaurant/*" element={<RestaurantSearch/>}/>
-              <Route path="/restaurant/:rid/" element={<BusinessHome/>}/>
-              <Route path="/restaurant/:rid/:criticId/reviews" element={<CreateReview/>}/>
-              <Route path="/more" element={<More/>}/>
-            </Routes>
-          </div>
-          <div className="ttr-right-column">
-            <WhatsHappening/>
+      <Provider store={store}>
+        <HashRouter>
+        <div className="container">
+          <div className="ttr-tuiter">
+            <div className="ttr-left-column">
+              <Navigation/>
+            </div>
+            <div className="ttr-center-column">
+              <Routes>
+                <Route path="/*" element={<Home/>}/>
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/tuiter" element={<Home/>}/>
+                <Route path="/tuiter/:uid" element={<Home/>}/>
+                <Route path="/home" element={<Home/>}/>
+                <Route path="/home/:uid" element={<Home/>}/>
+                <Route path="/explore" element={<Explore/>}/>
+                <Route path="/notifications" element={<Notifications/>}/>
+                <Route path="/messages" element={<Messages/>}/>
+                <Route path="/bookmarks" element={<Bookmarks/>}/>
+                <Route path="/lists" element={<Lists/>}/>
+                <Route path="/profile/*" element={<Profile/>}/>
+                <Route path="/profile/edit" element={<EditProfile/>}/>
+                <Route path="/movies" element={<Movies/>}/>
+                <Route path="/movies/:imdbID" element={<MovieDetails/>}/>
+                <Route path="/restaurant/*" element={<RestaurantSearch/>}/>
+                <Route path="/restaurant/:rid/" element={<BusinessHome/>}/>
+                <Route path="/more" element={<More/>}/>
+              </Routes>
+            </div>
+            <div className="ttr-right-column">
+              <WhatsHappening/>
+            </div>
           </div>
         </div>
-      </div>
-    </HashRouter>
+      </HashRouter>
+      </Provider>
   );
 }
 export default Tuiter;
