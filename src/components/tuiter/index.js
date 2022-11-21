@@ -45,7 +45,7 @@ function Tuiter () {
               <Route path="/movies/:imdbID" element={<MovieDetails/>}/>
               <Route path="/restaurant/:rid" element={<BusinessHome/>}/>
               <Route path="/more" element={<More/>}/>
-              <Route path="/restaurant/:rid/edit" element={<EditRestaurant/>}/>
+              <Route path="/profile/business/:rid/edit" element={<EditRestaurant/>}/>
             </Routes>
           </div>
           <div className="ttr-right-column">
