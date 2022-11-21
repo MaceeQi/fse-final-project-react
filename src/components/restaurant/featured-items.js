@@ -12,27 +12,27 @@ const FeaturedItems = ({
     }
 ) => {
     return (
-        <div className="mb-3 border wd-border-radius">
+        <div className="mb-3 border ttr-border-radius">
             <h5 className="m-2 fw-bolder">Featured Items</h5>
-            <div className="wd-scroll-menu m-2">
+            <div className="ttr-scroll-menu m-2">
                 <div className="row flex-row flex-nowrap">
                 {
                     restaurant.featured.map(item =>
-                         <div className="card wd-card-block border" key={item._id}>
+                         <div className="card ttr-card-block border" key={item._id}>
                              <div className="position-relative">
-                                 <img className="card-img-top wd-card-photo mt-2 mb-1"
+                                 <img className="card-img-top ttr-card-photo mt-2 mb-1"
                                       src={`/images/${item.photo}`}
                                       alt="food image"/>
                                  {
                                      item.popular &&
-                                     <i className="fa-solid fa-award wd-popular position-absolute">
+                                     <i className="fa-solid fa-award ttr-popular position-absolute">
 
                                      </i>
                                  }
                              </div>
 
-                             <div className="wd-card-text">{item.food}</div>
-                             <div className="wd-card-text">{item.price}</div>
+                             <div className="ttr-card-text">{item.food}</div>
+                             <div className="ttr-card-text">{item.price}</div>
                          </div>
                     )
                 }

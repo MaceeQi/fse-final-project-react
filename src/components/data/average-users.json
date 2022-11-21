@@ -1,0 +1,19 @@
+[
+  {"_id": "123",
+    "type": "AVERAGE",
+    "avatarIcon": "alice.jpg",
+    "userName": "UserA",
+    "handle": "a"},
+
+  {"_id": "124",
+    "type": "AVERAGE",
+    "avatarIcon": "bob.jpg",
+    "userName": "UserB",
+    "handle": "b"},
+
+  {"_id": "125",
+    "type": "AVERAGE",
+    "avatarIcon": "chaplin.jpg",
+    "userName": "UserC",
+    "handle": "c"}
+]
