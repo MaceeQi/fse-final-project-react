@@ -16,8 +16,8 @@ import {Login} from "../profile/login";
 import Movies from "../movies";
 import MovieDetails from "../movies/details";
 import BusinessHome from "../restaurant/business-home";
+import EditRestaurant from "../restaurant/edit-restaurant";
 import RestaurantSearch from "../restaurant/restaurant-search";
-
 import reviewsReducer from "../reviews/review-reducer";
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
@@ -26,8 +26,8 @@ const store = configureStore({reducer: {reviews: reviewsReducer}});
 
 function Tuiter () {
   return(
-      <Provider store={store}>
-        <HashRouter>
+    <Provider store={store}>
+      <HashRouter>
         <div className="container">
           <div className="ttr-tuiter">
             <div className="ttr-left-column">
@@ -35,7 +35,7 @@ function Tuiter () {
             </div>
             <div className="ttr-center-column">
               <Routes>
-                <Route path="/*" element={<Home/>}/>
+                <Route path="/" element={<Home/>}/>
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/tuiter" element={<Home/>}/>
                 <Route path="/tuiter/:uid" element={<Home/>}/>
@@ -46,14 +46,15 @@ function Tuiter () {
                 <Route path="/messages" element={<Messages/>}/>
                 <Route path="/bookmarks" element={<Bookmarks/>}/>
                 <Route path="/lists" element={<Lists/>}/>
-                <Route path="/profile/" element={<Profile/>}/>
-                {/*need to update the path below later, for testing only currently*/}
-                <Route path="/profile/restaurant/:rid" element={<BusinessProfile/>}/>
+                <Route path="/profile" element={<Profile/>}/>
                 <Route path="/profile/edit" element={<EditProfile/>}/>
+                {/*need to update the path below later, for testing only currently*/}
+                <Route path="/profile/business/:rid" element={<BusinessProfile/>}/>
+                <Route path="/profile/business/:rid/edit" element={<EditRestaurant/>}/>
                 <Route path="/movies" element={<Movies/>}/>
                 <Route path="/movies/:imdbID" element={<MovieDetails/>}/>
-                <Route path="/restaurant/" element={<RestaurantSearch/>}/>
-                <Route path="/restaurant/:rid/" element={<BusinessHome/>}/>
+                <Route path="/restaurant" element={<RestaurantSearch/>}/>
+                <Route path="/restaurant/:rid" element={<BusinessHome/>}/>
                 <Route path="/more" element={<More/>}/>
               </Routes>
             </div>
@@ -63,7 +64,7 @@ function Tuiter () {
           </div>
         </div>
       </HashRouter>
-      </Provider>
+    </Provider>
   );
 }
 export default Tuiter;
