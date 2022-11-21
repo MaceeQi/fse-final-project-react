@@ -16,7 +16,8 @@ import {Login} from "../profile/login";
 import Movies from "../movies";
 import MovieDetails from "../movies/details";
 import BusinessHome from "../restaurant/business-home";
-import RestaurantSearch from "../restaurant/restaurant-search"
+import EditRestaurant from "../restaurant/edit-restaurant";
+import RestaurantSearch from "../restaurant/restaurant-search";
 
 function Tuiter () {
   return(
@@ -46,6 +47,7 @@ function Tuiter () {
               <Route path="/restaurant" element={<RestaurantSearch/>}/>
               <Route path="/restaurant/:rid" element={<BusinessHome/>}/>
               <Route path="/more" element={<More/>}/>
+              <Route path="/profile/business/:rid/edit" element={<EditRestaurant/>}/>
             </Routes>
           </div>
           <div className="ttr-right-column">
