@@ -6,10 +6,10 @@ const EditRestaurant = () => {
     return(
       <div className="ttr-border p-3">
           <div>
-              <Link to="/restaurant/:rid" className="btn btn-light rounded-pill fa-pull-left fw-bolder mt-2 mb-2 ms-2">
+              <Link to="/profile/business/:rid" className="btn btn-light rounded-pill fa-pull-left fw-bolder mt-2 mb-2 ms-2">
                   <i className="fa fa-close"></i>
               </Link>
-              <Link to="/restaurant/:rid" className="btn btn-secondary rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2">
+              <Link to="/profile/business/:rid" className="btn btn-secondary rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2">
                   Save
               </Link>
               <h4 className="p-2 mb-0 pb-0 fw-bolder">Edit Restaurant</h4>
