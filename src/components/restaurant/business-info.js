@@ -5,15 +5,13 @@ const BusinessInfo = ({
                               cuisine: "Seafood",
                               price: "$$",
                               address: "Silver Spring, MD",
-                              hours: [
-                                  {_id: "123", weekday: "Monday", hour: "11:00 AM - 10:00 PM"},
-                                  {_id: "124", weekday: "Tuesday", hour: "11:00 AM - 10:00 PM"},
-                                  {_id: "125", weekday: "Wednesday", hour: "11:00 AM - 10:00 PM"},
-                                  {_id: "126", weekday: "Thursday", hour: "11:00 AM - 10:00 PM"},
-                                  {_id: "127", weekday: "Friday", hour: "11:00 AM - 10:00 PM"},
-                                  {_id: "128", weekday: "Saturday", hour: "11:00 AM - 10:00 PM"},
-                                  {_id: "129", weekday: "Sunday", hour: "11:00 AM - 10:00 PM"}
-                              ],
+                              monday:"Open",
+                              tuesday:"Open",
+                              wednesday:"Open",
+                              thursday:"Open",
+                              friday:"Open",
+                              saturday:"Open",
+                              sunday:"Open",
                               phone: "617-234-5678",
                               website: "https://www.redlobster.com/?gclsrc=aw.ds&",
                           }
@@ -43,12 +41,40 @@ const BusinessInfo = ({
                 <br/>
                 <div className="m-1">
                     <span className="fw-bolder">Hours: </span><br/>
-                        {restaurant.hours.map(day =>
-                            <div key={day._id} className="row row-cols-7">
-                                <span className="col-2">{day.weekday}</span>
-                                <span className="col-5">{day.hour}</span>
-                            </div>
-                        )}
+                    <div className="row">
+                        <span className="col-3">Monday</span>
+                        <span className="col-5">{restaurant.monday}</span>
+                    </div>
+                    <div className="row">
+                        <span className="col-3">Tuesday</span>
+                        <span className="col-5">{restaurant.tuesday}</span>
+                    </div>
+                    <div className="row">
+                        <span className="col-3">Wednesday</span>
+                        <span className="col-5">{restaurant.wednesday}</span>
+                    </div>
+                    <div className="row">
+                        <span className="col-3">Thursday</span>
+                        <span className="col-5">{restaurant.thursday}</span>
+                    </div>
+                    <div className="row">
+                        <span className="col-3">Friday</span>
+                        <span className="col-5">{restaurant.friday}</span>
+                    </div>
+                    <div className="row">
+                        <span className="col-3">Saturday</span>
+                        <span className="col-5">{restaurant.saturday}</span>
+                    </div>
+                    <div className="row">
+                        <span className="col-3">Sunday</span>
+                        <span className="col-5">{restaurant.sunday}</span>
+                    </div>
+                    {/* {restaurant.hours.map(day =>
+                        <div className="row">
+                            <span className="col-3">{day.weekday}</span>
+                            <span className="col-5">{day.open === "closed" ? "Closed": day.hour}</span>
+                        </div>
+                    )} */}
                 </div>
             </div>
         </div>

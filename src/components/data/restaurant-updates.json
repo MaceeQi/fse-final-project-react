@@ -1,0 +1,18 @@
+[
+    {"_id": "1234",
+      "restaurantId": "123",
+      "update": "Intro of new dishes"
+    },
+    {"_id": "2345",
+      "restaurantId": "123",
+      "update": "Discount info"
+    },
+    {"_id": "3456",
+      "restaurantId": "124",
+      "update": "Special events"
+    },
+    {"_id": "4567",
+      "restaurantId": "123",
+      "update": "Temporary closed days"
+    }
+]

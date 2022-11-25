@@ -3,11 +3,11 @@ import React from "react";
 import {Routes, Route, Router} from "react-router";
 import "./business-home.css";
 import BusinessInfo from "./business-info";
-import BusinessPost from "./business-post";
 import FeaturedItems from "./featured-items";
 import ReviewList from "../reviews/reivew-list";
 import CreateReview from "../reviews/create-review";
 import critics from "../data/critic-users.json";
+import UpdateList from "./restaurant-updates/update-list";
 import users from "../data/average-users.json";
 import restaurants from "../data/restaurants.json";
 
@@ -34,7 +34,7 @@ const BusinessHome = ({restaurant=restaurants[0]}) => {
                 </span><br/>
                 <p className="mt-3 mb-3">{restaurant.bio}</p>
                 <BusinessInfo restaurant={restaurant}/>
-                <BusinessPost restaurant={restaurant}/>
+                <UpdateList restaurant={restaurant}/>
                 <FeaturedItems restaurant={restaurant}/>
                 <div className="mb-3 border ttr-border-radius">
                     <div className="m-2">

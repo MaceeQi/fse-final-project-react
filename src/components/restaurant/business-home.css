@@ -20,10 +20,12 @@
     border-radius: 150px;
     top: 125px;
     z-index: 10;
+    object-fit: cover;
 }
 
 .ttr-border-radius {
     border-radius: 20px;
+    object-fit: cover;
 }
 
 .ttr-scroll-menu {
@@ -45,6 +47,7 @@
     height: 60px;
     width: 100%;
     border-radius: 20px;
+    object-fit: cover;
 }
 
 .ttr-card-text {

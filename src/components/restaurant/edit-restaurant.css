@@ -4,3 +4,18 @@
     border-color: rgb(199, 194, 194);
     border-width: 1px;
 }
+.ttr-profile-nudge-up {
+    bottom:-60px;
+    left: 40px;
+ }
+
+.ttr-edit-banner {
+    width: 100%;
+    border-radius: 20px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.ttr-mb7 {
+    margin-bottom: 70px;
+}

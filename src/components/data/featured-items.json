@@ -1,0 +1,30 @@
+[
+    {"_id": "1234",
+      "restaurant": "123",
+      "food": "Lobseter Roll",
+      "price": "$20.00",
+      "photo": "",
+      "popular": ""
+    },
+    {"_id": "1234",
+      "restaurant": "123",
+      "food": "Lobseter Roll",
+      "price": "$20.00",
+      "photo": "",
+      "popular": ""
+    },
+    {"_id": "1234",
+      "restaurant": "123",
+      "food": "Lobseter Roll",
+      "price": "$20.00",
+      "photo": "",
+      "popular": ""
+    },
+    {"_id": "1234",
+      "restaurant": "124",
+      "food": "Steak",
+      "price": "$50.00",
+      "photo": "",
+      "popular": ""
+    },
+]

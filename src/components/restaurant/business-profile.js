@@ -1,17 +1,17 @@
 import React from "react";
-// import {useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 import restaurants from "../data/restaurants.json";
 import critics from "../data/critic-users.json";
 import ReviewList from "../reviews/reivew-list";
-import BusinessInfo from "../restaurant/business-info";
-import BusinessPost from "../restaurant/business-post";
-import FeaturedItems from "../restaurant/featured-items";
+import BusinessInfo from "./business-info";
+import UpdateList from "./restaurant-updates/update-list";
+import FeaturedItems from "./featured-items";
 import "../restaurant/business-home.css";
 
 // hardcode restaurant input, need to change later
-const BusinessProfile = ({restaurant=restaurants[0]}) => {
-    // const restaurant = useSelector(state => state.restaurant);
+const BusinessProfile = () => {
+    const restaurant = useSelector(state => state.restaurants);
 
     return (
     <div className="border ttr-border-radius">
@@ -31,7 +31,7 @@ const BusinessProfile = ({restaurant=restaurants[0]}) => {
             </Link>
             <p className="mt-3 mb-3">{restaurant.bio}</p>
             <BusinessInfo restaurant={restaurant}/>
-            <BusinessPost restaurant={restaurant}/>
+            <UpdateList restaurant={restaurant}/>
             <FeaturedItems restaurant={restaurant}/>
             <div className="mb-3 border ttr-border-radius">
                 <div className="m-2">
