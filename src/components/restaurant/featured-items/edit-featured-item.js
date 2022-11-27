@@ -91,13 +91,13 @@ const EditFeature = ({restaurant}) => {
                     <input id="itemPrice" value={editPrice} onChange={priceChangeHandler}
                         className="p-0 form-control"/>
                     <input id="popularItem" type="checkbox" onChange={popularChangeHandler}
-                        name="popularItem" value={editPopular}/>
+                        name="popularItem" checked={editPopular}/>
                     <label id="popularItem" className="p-2">Popular Item</label>
                 </div>
             </div>
 
             <div className="row justify-content-center">
-                <button onClick={createFeatureHandler}
+                <button onClick={createFeatureHandler} type="button"
                 className="col-3 btn btn-sm btn-secondary">Add Menu Item</button>
             </div>
         </div>

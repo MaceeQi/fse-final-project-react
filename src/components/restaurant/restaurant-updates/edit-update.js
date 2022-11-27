@@ -58,7 +58,7 @@ const EditUpdate = ({restaurant}) => {
                                 value={editUpdate}/>
                     </div>
                     <div className="row justify-content-center">
-                        <button 
+                        <button type="button"
                         onClick={updateSubmitHandler}
                         className="col-3 btn btn-sm btn-secondary">Add Update</button>
                     </div>
