@@ -2,8 +2,9 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import { updateRestaurant } from "./restaurant-reducer";
-import CreateUpdate from "./restaurant-updates/edit-update";
-import "./edit-restaurant.css";
+import EditUpdate from "./restaurant-updates/edit-update";
+import EditFeature from "./featured-items/edit-featured-item";
+import "./restaurant.css";
 
 const EditRestaurant = () => {
     const restaurant = useSelector(state => state.restaurants);
@@ -27,9 +28,10 @@ const EditRestaurant = () => {
               </Link>
               <h4 className="p-2 mb-0 pb-0 fw-bolder">Edit Restaurant</h4>
               <div className="position-relative ttr-mb7">
-                <img className="ttr-edit-banner" src={`../images/${restaurant.bannerPicture}`}/>
+                <img className="ttr-edit-banner" alt="banner"
+                    src={`../images/${restaurant.bannerPicture}`}/>
                 <div className="position-absolute ttr-profile-nudge-up">
-                    <img className="rounded-circle" width = {160}
+                    <img className="rounded-circle" width = {160} alt="profile"
                         src={`../images/${restaurant.profilePicture}`}/>
                 </div>
               </div>
@@ -71,7 +73,8 @@ const EditRestaurant = () => {
                     </textarea>
                 </div>
             </div>
-
+            
+            {/* hours */}
             <div className="ttr-border p-2 mb-3">
                 <label className="fw-bolder p-2">Restaurant Information</label>
                 <div className="border border-secondary rounded-3 p-2 mb-3">
@@ -180,54 +183,11 @@ const EditRestaurant = () => {
             </div>
 
             {/* Updates */}
-            <CreateUpdate restaurant={restaurant}/>
-            
+            <EditUpdate restaurant={restaurant}/>
+
             {/* featured items */}
-            <div className="ttr-border p-2 mb-3">
-                <label className="fw-bolder p-2">Featured Items</label>
-                <div className="ttr-border row p-2 mb-3 m-1">
-                    <div className="col-3 align-self-center">
-                        <img className="w-100" src="../images/nasa-profile-header.jpg"/>
-                    </div>
-                    <div className="col-8">
-                        <div>Menu Item Name:</div>
-                        <input id="itemName" placeholder="Pasta"
-                            className="p-0 form-control"/>
-                        <div>Menu Item Price:</div>
-                        <input id="itemPrice" placeholder="$15.00"
-                            className="p-0 form-control"/>
-                        <input id="popularItem" type="checkbox"
-                            name="popularItem"/>
-                        <label className="p-2" htmlFor="popularItem">Popular Item</label>
-                    </div>
-                    <div className="col-1 p-0 align-self-center ">
-                        <i className="btn fa-regular fa-trash-can"></i>
-                    </div>
-                </div>
-                <div className="ttr-border row p-2 mb-3 m-1">
-                    <div className="col-3 align-self-center">
-                        <img className="w-100" src="../images/nasa-profile-header.jpg"/>
-                    </div>
-                    <div className="col-8">
-                        <div>Menu Item Name:</div>
-                        <input id="itemName" placeholder="Pasta"
-                            className="p-0 form-control"/>
-                        <div>Menu Item Price:</div>
-                        <input id="itemPrice" placeholder="$15.00"
-                            className="p-0 form-control"/>
-                        <input id="popularItem2" type="checkbox"
-                            name="popularItem2"/>
-                        <label className="p-2" htmlFor="popularItem2">Popular Item</label>
-                    </div>
-                    <div className="col-1 p-0 align-self-center ">
-                        <i className="btn fa-regular fa-trash-can"></i>
-                    </div>
-                </div>
-                <div className="row justify-content-center">
-                    <button className="col-3 btn btn-sm btn-secondary">Add Menu Item</button>
-                </div>
-            </div>
-            </form></div>
+            <EditFeature restaurant={restaurant}/>
+        </form></div>
     );
 };
 export default EditRestaurant;

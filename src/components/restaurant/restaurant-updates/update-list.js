@@ -1,5 +1,4 @@
 import React from "react";
-import UpdateItem from "./update-item";
 import {useSelector} from "react-redux";
 
 const UpdateList = ({restaurant}) => {

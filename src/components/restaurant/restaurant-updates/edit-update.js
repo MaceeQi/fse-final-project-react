@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { createUpdate,deleteUpdate } from "./update-reducer";
 import {useDispatch, useSelector} from "react-redux";
 
-const CreateUpdate = ({restaurant}) => {
+const EditUpdate = ({restaurant}) => {
     const updates = useSelector(state=> state.updates);
     const [editUpdate, setUpdate] = useState('');
     const dispatch = useDispatch();
@@ -37,7 +37,7 @@ const CreateUpdate = ({restaurant}) => {
                                     <div className="col-11">
                                         <textarea id="update" placeholder="New dish is out!"
                                                 className="form-control border-secondary"
-                                                type="update" defaultValue={update.update}/>
+                                                type="update" defaultValue={update.update} readOnly/>
                                     </div>
                                     <div className="col-1 p-0 align-self-center ">
                                         <i className="btn fa-regular fa-trash-can"
@@ -67,4 +67,4 @@ const CreateUpdate = ({restaurant}) => {
         </div>
     )
 };
-export default CreateUpdate;
+export default EditUpdate;
