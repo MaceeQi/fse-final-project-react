@@ -9,15 +9,13 @@
     "cuisine": "Seafood",
     "price": "$$",
     "address": "Silver Spring, MD",
-    "hours": [
-      {"_id": "123", "weekday": "Monday", "hour": "11:00 AM - 10:00 PM"},
-      {"_id": "124", "weekday": "Tuesday", "hour": "11:00 AM - 10:00 PM"},
-      {"_id": "125", "weekday": "Wednesday", "hour": "11:00 AM - 10:00 PM"},
-      {"_id": "126", "weekday": "Thursday", "hour": "11:00 AM - 10:00 PM"},
-      {"_id": "127", "weekday": "Friday", "hour": "11:00 AM - 10:00 PM"},
-      {"_id": "128", "weekday": "Saturday", "hour": "11:00 AM - 10:00 PM"},
-      {"_id": "129", "weekday": "Sunday", "hour": "11:00 AM - 10:00 PM"}
-    ],
+    "monday": "11:00 AM - 10:00 PM",
+    "tuesday": "11:00 AM - 10:00 PM",
+    "wednesday": "11:00 AM - 10:00 PM",
+    "thursday": "11:00 AM - 10:00 PM",
+    "friday": "11:00 AM - 10:00 PM",
+    "saturday": "Closed",
+    "sunday": "Closed",
     "phone": "617-234-5678",
     "website": "https://www.redlobster.com/?gclsrc=aw.ds&",
     "posts": [
