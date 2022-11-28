@@ -1,7 +1,7 @@
 import axios from "axios";
 const BASE_URL = "http://localhost:4000";
 
-const RESTAURANTS_API = `${BASE_URL}/api/restaurant`;
+const RESTAURANTS_API = `${BASE_URL}/api/restaurants`;
 const REVIEWS_API = `${BASE_URL}/api/reviews`;
 
 export const findAllReviews = () =>
