@@ -7,6 +7,15 @@ import {useSelector} from "react-redux";
 const ReviewList = ({restaurant, critics}) => {
     const reviews = useSelector(state => state.reviews);
 
+    const findAllReviews = () =>
+        service.findAllReviews();
+
+    const findAllReviewsForRestaurant = (restaurantid) =>
+        service.findAllReviews(restaurantid);
+
+    const findAllReviewsByCritic = (criticid) =>
+        service.findAllReviews(criticid);
+
     return (
         <div className="list-group ttr-border-radius">
             {

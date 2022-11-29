@@ -5,20 +5,20 @@ import {createReview} from "./review-reducer";
 import {useDispatch} from "react-redux";
 
 const CreateReview = ({restaurant, critic}) => {
-    // const findAllReviews = (restaurantId) =>
-    //     service.findAllReviews(restaurantId);
-    //
-    // const createReview = (restaurantId, criticId, review) =>
-    //     service.createReview(restaurantId, criticId, review)
-    //         .then(findAllReviews(restaurantId));
-    //
-    // const updateReview = (restaurantId, criticId, reviewid, review) =>
-    //     service.updateReview(restaurantId, criticId, reviewid, review)
-    //         .then(findAllReviews(restaurantId));
-    //
-    // const deleteReview = (restaurantId, criticId, reviewid) =>
-    //     service.deleteReview(restaurantId, criticId, reviewid)
-    //         .then(findAllReviews(restaurantId));
+    const findAllReviewsForRestaurant = (restaurantId) =>
+        service.findAllReviews(restaurantId);
+
+    const createReview = (restaurantId, criticId, review) =>
+        service.createReview(restaurantId, criticId, review)
+            .then(findAllReviewsForRestaurant(restaurantId));
+
+    const updateReview = (restaurantId, criticId, reviewid, review) =>
+        service.updateReview(restaurantId, criticId, reviewid, review)
+            .then(findAllReviewsForRestaurant(restaurantId));
+
+    const deleteReview = (restaurantId, criticId, reviewid) =>
+        service.deleteReview(restaurantId, criticId, reviewid)
+            .then(findAllReviewsForRestaurant(restaurantId));
 
     const [review, setReview] = useState('');
     const reviewChangeHandler = (event) => {
