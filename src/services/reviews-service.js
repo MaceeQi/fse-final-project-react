@@ -15,7 +15,7 @@ export const findAllReviewsForRestaurant = (restaurantid) =>
         .then(response => response.data);
 
 export const findAllReviewsByCritic = (criticid) =>
-    axios.get(`${BASE_URL}/users/${criticid}/reviews`)
+    axios.get(`${BASE_URL}/api/users/${criticid}/reviews`)
         .then(response => response.data);
 
 export const findReviewById = (reviewid) =>
