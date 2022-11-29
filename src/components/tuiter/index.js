@@ -19,10 +19,13 @@ import BusinessHome from "../restaurant/business-home";
 import EditRestaurant from "../restaurant/edit-restaurant";
 import RestaurantSearch from "../restaurant/restaurant-search";
 import reviewsReducer from "../reviews/review-reducer";
+import updateReducer from "../restaurant/restaurant-updates/update-reducer";
+import featuredReducer from "../restaurant/featured-items/featured-item-reducer";
+import restaurantReducer from "../restaurant/restaurant-reducer";
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
-import BusinessProfile from "../profile/business-profile";
-const store = configureStore({reducer: {reviews: reviewsReducer}});
+import BusinessProfile from "../restaurant/business-profile";
+const store = configureStore({reducer: {reviews: reviewsReducer, restaurants: restaurantReducer, updates:updateReducer, features:featuredReducer}});
 
 function Tuiter () {
   return(
