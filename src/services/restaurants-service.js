@@ -12,12 +12,12 @@ export const findRestaurantById = (rid) =>
     axios.get(`${RESTAURANTS_API}/${rid}`)
         .then(response => response.data);
 
-export const createRestaurant = (uid, restaurant) =>
-    axios.post(`${USERS_API}/${uid}/restaurants`, restaurant)
+export const createRestaurant = (restaurant) =>
+    axios.post(`${RESTAURANTS_API}`, restaurant)
         .then(response => response.data);
 
-export const updateRestaurant = (rid, restaurant) =>
-    axios.put(`${RESTAURANTS_API}/${rid}`, restaurant)
+export const updateRestaurant = (restaurant) =>
+    axios.put(`${RESTAURANTS_API}/${restaurant._id}`, restaurant)
         .then(response => response.data);
 
 export const deleteRestaurant = (rid) =>
