@@ -13,30 +13,28 @@ const restaurantSlice = createSlice({
     extraReducers: {
       [findAllRestaurantsThunk.fulfilled]:
           (state, action) => {
-            state.restaurants = action.payload;
+            state = action.payload;
           },
       [findRestaurantByIdThunk.fulfilled]:
           (state, action) => {
-            state.restaurants = state.restaurants
-                .filter(r => r._id === action.payload);
+            state = state.filter(r => r._id === action.payload);
           },
       [createRestaurantThunk.fulfilled]:
           (state, action) => {
-            state.restaurants.push(action.payload);
+            state.push(action.payload);
           },
       [updateRestaurantThunk.fulfilled]:
           (state, action) => {
-            const restIndex = state.restaurants
-                .findIndex(t => t._id === action.payload._id)
-              state.restaurants[restIndex] = {
-                ...state.restaurants[restIndex],
+            const restIndex = state.findIndex(t => t._id === action.payload._id)
+              state[restIndex] = {
+                ...state[restIndex],
                 ...action.payload
               }
           },
       [deleteRestaurantThunk.fulfilled]:
           (state, action) => {
-            state.restaurants = state.restaurants
-                .filter(r => r._id !== action.payload._id);
+            const index = state.findIndex(r => r._id === action.payload._id);
+            state.splice(index, 1);
           }
     },
     // reducers: {
