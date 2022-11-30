@@ -21,14 +21,14 @@ import RestaurantSearch from "../restaurant/restaurant-search";
 import reviewsReducer from "../reviews/review-reducer";
 import updateReducer from "../restaurant/restaurant-updates/update-reducer";
 import featuredReducer from "../restaurant/featured-items/featured-item-reducer";
-import restaurantReducer from "../restaurant/restaurant-reducer";
+import restaurantsReducer from "../restaurant/restaurants-reducer";
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
 import BusinessProfile from "../restaurant/business-profile";
 
-// revised restaurants to restaurantsData to differentiate the new reducer with thunks from the old one
+// revised restaurants to restaurantsData for the new reducer with thunks
 const store = configureStore({reducer: {reviews: reviewsReducer,
-    restaurantsData: restaurantReducer, updates:updateReducer, features:featuredReducer}});
+    restaurantsData: restaurantsReducer, updates:updateReducer, features:featuredReducer}});
 
 function Tuiter () {
   return(
