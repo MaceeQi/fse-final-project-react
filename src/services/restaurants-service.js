@@ -2,7 +2,6 @@ import axios from "axios";
 const BASE_URL = "http://localhost:4000";
 
 const RESTAURANTS_API = `${BASE_URL}/api/restaurants`;
-const USERS_API = `${BASE_URL}/api/users`;
 
 export const findAllRestaurants = () =>
     axios.get(`${RESTAURANTS_API}`)

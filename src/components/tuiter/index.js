@@ -25,7 +25,10 @@ import restaurantReducer from "../restaurant/restaurant-reducer";
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
 import BusinessProfile from "../restaurant/business-profile";
-const store = configureStore({reducer: {reviews: reviewsReducer, restaurants: restaurantReducer, updates:updateReducer, features:featuredReducer}});
+
+// revised restaurants to restaurantsData to differentiate the new reducer with thunks from the old one
+const store = configureStore({reducer: {reviews: reviewsReducer,
+    restaurantsData: restaurantReducer, updates:updateReducer, features:featuredReducer}});
 
 function Tuiter () {
   return(
