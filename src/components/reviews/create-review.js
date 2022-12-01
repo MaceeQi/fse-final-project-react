@@ -1,37 +1,22 @@
 import React, {useState} from "react";
 import * as service from "../../services/reviews-service";
-import Tuit from "../tuits/tuit";
-import {createReview} from "./review-reducer";
+// import {createReview} from "./review-reducer";
 import {useDispatch} from "react-redux";
+import {createReviewThunk} from "../../services/reviews-thunks";
 
 const CreateReview = ({restaurant, critic}) => {
-    const findAllReviewsForRestaurant = (restaurantId) =>
-        service.findAllReviews(restaurantId);
-
-    const createReview = (restaurantId, criticId, review) =>
-        service.createReview(restaurantId, criticId, review)
-            .then(findAllReviewsForRestaurant(restaurantId));
-
-    const updateReview = (restaurantId, criticId, reviewid, review) =>
-        service.updateReview(restaurantId, criticId, reviewid, review)
-            .then(findAllReviewsForRestaurant(restaurantId));
-
-    const deleteReview = (restaurantId, criticId, reviewid) =>
-        service.deleteReview(restaurantId, criticId, reviewid)
-            .then(findAllReviewsForRestaurant(restaurantId));
-
     const [review, setReview] = useState('');
     const reviewChangeHandler = (event) => {
         setReview(event.target.value);
     }
     const dispatch = useDispatch();
     const reviewSubmitHandler = () => {
-        const newReview = {
-            review: review,
-            restaurantId: restaurant._id,
-            criticId: critic._id
-        }
-        dispatch(createReview(newReview));
+        // const newReview = {
+        //     review: review,
+        //     restaurantId: restaurant._id,
+        //     criticId: critic._id
+        // }
+        dispatch(createReviewThunk(restaurant._id, critic._id, review));
     }
 
     return (

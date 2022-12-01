@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {deleteReviewThunk} from "../../services/reviews-thunks";
+import {useDispatch} from "react-redux";
 
 const ReviewItem = ({
                         review={
@@ -15,9 +17,13 @@ const ReviewItem = ({
                             "userName": "Alice",
                             "handle": "alice"
                         }
+
 }) => {
     // const critics = allCritics.filter(critic => critic._id === review.criticId);
-
+    const dispatch = useDispatch();
+    const deleteReviewHandler = (reviewid) => {
+        dispatch(deleteReviewThunk(reviewid));
+    }
     return (
         <li className="list-group-item">
             <div className="row row-cols-12 m-0 pt-2">
