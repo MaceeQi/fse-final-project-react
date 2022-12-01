@@ -1,9 +1,17 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./index.css";
 import RestaurantList from "./restaurant-list";
-import restaurants from "./restaurants.json";
+import {useDispatch, useSelector} from "react-redux";
+import {findAllRestaurantsThunk} from "../../../services/restaurants-thunks";
 
 const RestaurantSearch = () => {
+    const restaurants = useSelector(state => state.restaurants);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(findAllRestaurantsThunk())
+    }, []);
+
     return (
         <div className="p-2">
             {/* search bar */}

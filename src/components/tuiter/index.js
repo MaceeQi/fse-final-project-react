@@ -25,7 +25,12 @@ import restaurantReducer from "../restaurant/restaurants-reducer";
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
 import BusinessProfile from "../restaurant/business-profile";
-const store = configureStore({reducer: {reviews: reviewsReducer, restaurants: restaurantReducer, updates:updateReducer, features:featuredReducer}});
+const store = configureStore({reducer: {
+    reviews: reviewsReducer,
+    restaurants: restaurantReducer,
+    updates:updateReducer,
+    features:featuredReducer
+}});
 
 function Tuiter () {
   return(

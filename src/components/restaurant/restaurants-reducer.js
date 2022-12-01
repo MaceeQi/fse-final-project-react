@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-// import restaurants from "../data/restaurants.json";
 import {
     createRestaurantThunk, deleteRestaurantThunk,
     findAllRestaurantsThunk,
@@ -8,12 +7,12 @@ import {
 
 const restaurantSlice = createSlice({
     name: "restaurants",
-    // initialState: restaurants[0],
     initialState: [],
     extraReducers: {
         [findAllRestaurantsThunk.fulfilled]:
             (state, action) => {
                 state = action.payload;
+                return state;
             },
         [findRestaurantByIdThunk.fulfilled]:
             (state, action) => {
@@ -37,12 +36,12 @@ const restaurantSlice = createSlice({
                 state.splice(index, 1);
             }
     },
-    // reducers: {
-    //     updateRestaurant(state, action) {
-    //         return {...action.payload};
-    //     }
-    // }
+    reducers: {
+        updateRestaurant(state, action) {
+            return {...action.payload};
+        }
+    }
 });
 
-// export const {updateRestaurant} = restaurantSlice.actions;
+export const {updateRestaurant} = restaurantSlice.actions;
 export default restaurantSlice.reducer;
