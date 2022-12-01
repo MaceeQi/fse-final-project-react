@@ -22,8 +22,10 @@ export const findReviewByIdThunk = createAsyncThunk(
 )
 
 export const createReviewThunk = createAsyncThunk(
-    'reviews/createReview', async (restaurantid, criticid, review) =>
-        await reviewsService.createReview(restaurantid, criticid, review)
+    'reviews/createReview', async (review) =>
+        // await reviewsService.createReview(review.criticid, review.restaurantid, review.review)
+        await reviewsService.createReview("6383e8fde3994dcd7623e825", "637c1ccb59bca90266c414a7", review.review)
+        // Currently hardcoded because test restaurant and users have ids "123", which are too short
 )
 
 export const updateReviewThunk = createAsyncThunk(
@@ -32,6 +34,8 @@ export const updateReviewThunk = createAsyncThunk(
 )
 
 export const deleteReviewThunk = createAsyncThunk(
-    'reviews/deleteReview', async (reviewid) =>
+    'reviews/deleteReview', async (reviewid) => {
         await reviewsService.deleteReview(reviewid)
+        return reviewid
+    }
 )

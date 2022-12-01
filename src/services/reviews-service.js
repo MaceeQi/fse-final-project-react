@@ -22,7 +22,7 @@ export const findReviewById = (reviewid) =>
     axios.get(`${REVIEWS_API}/${reviewid}`)
         .then(response => response.data);
 
-export const createReview = (restaurantid, criticid, review) =>
+export const createReview = (criticid, restaurantid, review) =>
     axios.post(`${RESTAURANTS_API}/${restaurantid}/users/${criticid}/reviews`, review)
         .then(response => response.data);
 

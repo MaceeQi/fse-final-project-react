@@ -3,40 +3,26 @@ import {createSlice} from "@reduxjs/toolkit";
 import {findAllReviewsThunk, createReviewThunk,
     updateReviewThunk, deleteReviewThunk} from "../../services/reviews-thunks";
 
-const initialState = {
-    reviews: [],
-    loading: false
-}
-
-const reviewSlice = createSlice({
+const reviewsReducer = createSlice({
     name: "reviews",
-    initialState,
+    initialState: {
+        reviews: []
+    },
     extraReducers: {
-       [findAllReviewsThunk().pending]: (state) => {
-           state.loading = true
-           state.reviews = []
+       [findAllReviewsThunk.fulfilled]: (state, action) => {
+           state.reviews = action.payload
        },
-       [findAllReviewsThunk().fulfilled]: (state, { payload }) => {
-           state.loading = false
-           state.reviews = payload
+       [deleteReviewThunk.fulfilled] : (state, action) => {
+           state.reviews = state.filter(review => review._id !== action.payload)
        },
-       [findAllReviewsThunk().rejected]: (state) => {
-           state.loading = false
+       [createReviewThunk.fulfilled]: (state, action) => {
+           state.reviews.push(action.payload)
        },
-       [deleteReviewThunk().fulfilled] : (state, { payload }) => {
-           state.loading = false
-           state.tuits = state.tuits.filter(review => review._id !== payload)
-       },
-       [createReviewThunk.fulfilled]: (state, { payload }) => {
-
-           state.reviews.push(payload);
-       },
-       [updateReviewThunk.fulfilled]: (state, { payload }) => {
-           state.loading = false
-           const reviewNdx = state.reviews.findIndex(review => review._id === payload._id)
-           state.reviews[reviewNdx] = {...state.reviews[reviewNdx], ...payload}
+       [updateReviewThunk.fulfilled]: (state, action) => {
+           const reviewNdx = state.reviews.findIndex((review) => review._id === action.payload._id)
+           state.reviews[reviewNdx] = {...state.reviews[reviewNdx], ...action.payload}
        }
-    }
+    },
    // reducers: {
    //     createReview(state, action) {
    //         state.unshift({
@@ -48,5 +34,5 @@ const reviewSlice = createSlice({
    // }
 });
 
-export const {createReview} = reviewSlice.actions;
-export default reviewSlice.reducer;
+// export const {createReview} = reviewSlice.actions;
+export default reviewsReducer.reducer;

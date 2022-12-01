@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {deleteReviewThunk} from "../../services/reviews-thunks";
 import {useDispatch} from "react-redux";
 
