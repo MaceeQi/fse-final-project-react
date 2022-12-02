@@ -8,7 +8,7 @@ import {
 } from "../../../services/restaurants-thunks";
 
 const RestaurantSearch = () => {
-    let restaurants = useSelector(state => state.restaurants);
+    const restaurants = useSelector(state => state.restaurants);
     const [restaurantName, setRestaurantName] = useState('')
     const dispatch = useDispatch();
 
