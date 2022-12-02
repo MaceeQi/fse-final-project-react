@@ -29,15 +29,16 @@ const BusinessHome = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const restId = paths[paths.length-1];
-    // console.log(restId);
+    console.log(restId);
 
     let [restaurant, setRestaurant] = useState({});
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findRestaurantByIdThunk(restId));
-        setRestaurant(restaurants[0]);
-    }, []);
-    // console.log(restaurant);
+        setRestaurant(restaurants.filter(r => r._id === restId)[0]);
+    }, [restId]);
+
+    console.log(restaurant);
 
     return (
         <div className="border ttr-border-radius">

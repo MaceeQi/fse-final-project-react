@@ -10,7 +10,7 @@ export const findAllRestaurants = () =>
 export const findRestaurantById = (rid) =>
     axios.get(`${RESTAURANTS_API}/${rid}`)
         .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             return response.data;
         });
 

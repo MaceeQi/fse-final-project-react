@@ -16,20 +16,25 @@ const BusinessProfile = () => {
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const restId = paths[paths.length-1];
-    // console.log(restId);
+    console.log(restId);
 
     let [restaurant, setRestaurant] = useState({});
     const dispatch = useDispatch();
-    useEffect(() => {
+    useEffect(  () => {
         dispatch(findRestaurantByIdThunk(restId));
-        setRestaurant(restaurants[0]);
-    }, []);
+        // console.log(restaurants);
+
+        setRestaurant(restaurants.filter(r => r._id === restId)[0]);
+    }, [restId]);
+    console.log(restaurant);
 
     return (
     <div className="border ttr-border-radius">
         {
             loading &&
-            <h5>Loading...</h5>
+            <h5>
+                Loading...
+            </h5>
         }
         <div className="position-relative ttr-banner d-flex justify-content-center">
             <img src={`/images/${restaurant.bannerPicture}`}

@@ -17,7 +17,7 @@ const restaurantSlice = createSlice({
     initialState,
     extraReducers: {
         [findAllRestaurantsThunk.pending]:
-            (state, action) => {
+            (state) => {
                 state.loading = true
                 state.restaurants = []
             },
@@ -28,9 +28,9 @@ const restaurantSlice = createSlice({
             },
         [findRestaurantByIdThunk.fulfilled]:
             (state, action) => {
-                state.loading = false
-                state.restaurants = state.restaurants.filter(r => r._id === action.payload);
-                console.log(state.restaurants);
+                state.loading = false;
+                state.restaurants.filter(r => r._id === action.payload);
+                console.log(state.restaurant);
             },
         [createRestaurantThunk.fulfilled]:
             (state, action) => {
