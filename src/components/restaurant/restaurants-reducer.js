@@ -6,43 +6,59 @@ import {
     findRestaurantByIdThunk, updateRestaurantThunk
 } from "../../services/restaurants-thunks";
 
+const initialState = {
+    restaurants: [],
+    loading: false
+}
+
 const restaurantSlice = createSlice({
     name: "restaurants",
     // initialState: restaurants[0],
-    initialState: [],
+    initialState,
     extraReducers: {
-      [findAllRestaurantsThunk.fulfilled]:
-          (state, action) => {
-            state = action.payload;
-          },
-      [findRestaurantByIdThunk.fulfilled]:
-          (state, action) => {
-            state = state.filter(r => r._id === action.payload);
-          },
-      [createRestaurantThunk.fulfilled]:
-          (state, action) => {
-            state.push(action.payload);
-          },
-      [updateRestaurantThunk.fulfilled]:
-          (state, action) => {
-            const restIndex = state.findIndex(t => t._id === action.payload._id)
-              state[restIndex] = {
-                ...state[restIndex],
-                ...action.payload
-              }
-          },
-      [deleteRestaurantThunk.fulfilled]:
-          (state, action) => {
-            const index = state.findIndex(r => r._id === action.payload._id);
-            state.splice(index, 1);
-          }
+        [findAllRestaurantsThunk.pending]:
+            (state, action) => {
+                state.loading = true
+                state.restaurants = []
+            },
+        [findAllRestaurantsThunk.fulfilled]:
+            (state, action) => {
+                state.loading = false
+                state.restaurants = action.payload;
+                // console.log(state);
+            },
+        [findRestaurantByIdThunk.fulfilled]:
+            (state, action) => {
+                state.loading = false
+                state.restaurants = state.restaurants.filter(r => r._id === action.payload);
+            },
+        [createRestaurantThunk.fulfilled]:
+            (state, action) => {
+                state.loading = false
+                state.restaurants.push(action.payload);
+            },
+        [updateRestaurantThunk.fulfilled]:
+            (state, action) => {
+                state.loading = false
+                const restIndex = state.restaurants.findIndex(r => r._id === action.payload._id)
+                    state.restaurants[restIndex] = {
+                        ...state.restaurants[restIndex],
+                        ...action.payload
+                }
+            },
+        [deleteRestaurantThunk.fulfilled]:
+            (state, action) => {
+                state.loading = false
+                const index = state.restaurants.findIndex(r => r._id === action.payload._id);
+                state.restaurants.splice(index, 1);
+            }
     },
-    // reducers: {
-    //     updateRestaurant(state, action) {
-    //         return {...action.payload};
-    //     }
-    // }
+    reducers: {
+        updateRestaurant(state, action) {
+            return {...action.payload};
+        }
+    }
 });
 
-// export const {updateRestaurant} = restaurantSlice.actions;
+export const {updateRestaurant} = restaurantSlice.actions;
 export default restaurantSlice.reducer;

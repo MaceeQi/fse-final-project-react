@@ -1,19 +1,18 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./index.css";
 import RestaurantList from "./restaurant-list";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "@types/react";
-import {findFeaturedItemsByRestaurantThunk} from "../../../services/featured-item-thunks";
 import {findAllRestaurantsThunk} from "../../../services/restaurants-thunks";
 // import restaurants from "./restaurants.json";
 
 const RestaurantSearch = () => {
-    const restaurants = useSelector(state => state.restaurantsData);
+    const {restaurants, loading} = useSelector(state => state.restaurantsData);
 
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findAllRestaurantsThunk());
     }, [])
+    // console.log(restaurants);
 
     return (
         <div className="p-2">
@@ -32,7 +31,15 @@ const RestaurantSearch = () => {
 
             {/* Results - display list of restaurants */}
             <div>
-                <RestaurantList restaurants={restaurants}/>
+                {
+                    loading &&
+                    <li className="list-group-item">
+                        Loading...
+                    </li>
+                }
+                {
+                    <RestaurantList restaurants={restaurants}/>
+                }
             </div>
         </div>
     );
