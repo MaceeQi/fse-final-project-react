@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {
     createRestaurantThunk, deleteRestaurantThunk,
     findAllRestaurantsThunk,
-    findRestaurantByIdThunk, updateRestaurantThunk
+    findRestaurantByIdThunk, findRestaurantsByNameThunk, updateRestaurantThunk
 } from "../../services/restaurants-thunks";
 
 const restaurantSlice = createSlice({
@@ -12,6 +12,7 @@ const restaurantSlice = createSlice({
         [findAllRestaurantsThunk.fulfilled]:
             (state, action) => {
                 state = action.payload;
+                state = state.sort((a,b) => a.name.localeCompare(b.name));
                 return state;
             },
         [findRestaurantByIdThunk.fulfilled]:
@@ -34,6 +35,12 @@ const restaurantSlice = createSlice({
             (state, action) => {
                 const index = state.findIndex(r => r._id === action.payload._id);
                 state.splice(index, 1);
+            },
+        [findRestaurantsByNameThunk.fulfilled]:
+            (state, action) => {
+                state = action.payload;
+                state = state.sort((a,b) => a.name.localeCompare(b.name));
+                return state;
             }
     },
     reducers: {

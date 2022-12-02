@@ -25,3 +25,8 @@ export const deleteRestaurantThunk = createAsyncThunk(
     'restaurants/deleteRestaurant', async (rid) =>
         await restaurantsService.deleteRestaurant(rid)
 )
+
+export const findRestaurantsByNameThunk = createAsyncThunk(
+    'restaurants/findRestaurantsByName', async (name) =>
+        await restaurantsService.findRestaurantsByName(name)
+)

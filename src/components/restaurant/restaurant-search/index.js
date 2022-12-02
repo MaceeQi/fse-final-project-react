@@ -2,16 +2,23 @@ import React, {useEffect, useState} from "react";
 import "./index.css";
 import RestaurantList from "./restaurant-list";
 import {useDispatch, useSelector} from "react-redux";
-import {findAllRestaurantsThunk} from "../../../services/restaurants-thunks";
+import {
+    findAllRestaurantsThunk,
+    findRestaurantsByNameThunk
+} from "../../../services/restaurants-thunks";
 
 const RestaurantSearch = () => {
-    const restaurants = useSelector(state => state.restaurants);
+    let restaurants = useSelector(state => state.restaurants);
     const [restaurantName, setRestaurantName] = useState('')
     const dispatch = useDispatch();
 
     const searchChangeHandler = (event) => {
         const restaurant = event.target.value;
         setRestaurantName(restaurant);
+    }
+
+    const searchRestaurantClickHandler = () => {
+        dispatch(findRestaurantsByNameThunk(restaurantName));
     }
 
     useEffect(() => {
@@ -33,7 +40,8 @@ const RestaurantSearch = () => {
                                value={restaurantName}/>
                         <i className="position-absolute ttr-search bi bi-search"></i>
                         <button className="btn btn-primary position-absolute rounded-pill
-                                           ttr-search-button ps-3 pe-3">
+                                           ttr-search-button ps-3 pe-3"
+                                onClick={searchRestaurantClickHandler}>
                             Search
                         </button>
                     </div>
