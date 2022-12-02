@@ -25,12 +25,12 @@ const restaurantSlice = createSlice({
             (state, action) => {
                 state.loading = false
                 state.restaurants = action.payload;
-                // console.log(state);
             },
         [findRestaurantByIdThunk.fulfilled]:
             (state, action) => {
                 state.loading = false
                 state.restaurants = state.restaurants.filter(r => r._id === action.payload);
+                console.log(state.restaurants);
             },
         [createRestaurantThunk.fulfilled]:
             (state, action) => {

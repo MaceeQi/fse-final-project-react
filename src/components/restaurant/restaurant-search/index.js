@@ -33,9 +33,9 @@ const RestaurantSearch = () => {
             <div>
                 {
                     loading &&
-                    <li className="list-group-item">
+                    <h5>
                         Loading...
-                    </li>
+                    </h5>
                 }
                 {
                     <RestaurantList restaurants={restaurants}/>
