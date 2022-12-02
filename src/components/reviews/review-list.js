@@ -7,8 +7,8 @@ import {findAllReviewsThunk} from "../../services/reviews-thunks";
 const ReviewList = ({restaurant, critics}) => {
     const reviews = useSelector(state => state.reviews);
     const dispatch = useDispatch();
-    useEffect(() => {dispatch(findAllReviewsThunk())}, [])
-
+    useEffect(() => {dispatch(findAllReviewsThunk())})
+    // useEffect(() => {dispatch(findAllReviewsForRestaurantThunk(restaurant._id))})
     return (
         <div className="list-group ttr-border-radius">
             {
@@ -20,7 +20,7 @@ const ReviewList = ({restaurant, critics}) => {
                                  review={review}
                                  critic={critics
                                      .filter(critic =>
-                                                 critic._id === review.criticId)[0]}/>
+                                                 critic._id === review.criticid)[0]}/>
                         )
             }
         </div>

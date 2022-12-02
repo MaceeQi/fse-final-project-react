@@ -12,13 +12,16 @@ const reviewsReducer = createSlice({
        [findAllReviewsThunk.fulfilled]: (state, action) => {
            state.reviews = action.payload
        },
-       [deleteReviewThunk.fulfilled] : (state, action) => {
-           state.reviews = state.filter(review => review._id !== action.payload)
-       },
-       [createReviewThunk.fulfilled]: (state, action) => {
-           state.reviews.push(action.payload)
-       },
-       [updateReviewThunk.fulfilled]: (state, action) => {
+        [deleteReviewThunk.fulfilled] :
+            (state, { payload }) => {
+                state.reviews = state.reviews
+                    .filter(r => r._id !== payload)
+            },
+        [createReviewThunk.fulfilled]:
+            (state, { payload }) => {
+                state.reviews.push(payload)
+            },
+        [updateReviewThunk.fulfilled]: (state, action) => {
            const reviewNdx = state.reviews.findIndex((review) => review._id === action.payload._id)
            state.reviews[reviewNdx] = {...state.reviews[reviewNdx], ...action.payload}
        }
