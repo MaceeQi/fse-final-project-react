@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import "./index.css";
 import RestaurantList from "./restaurant-list";
 import {useDispatch, useSelector} from "react-redux";
@@ -6,7 +6,13 @@ import {findAllRestaurantsThunk} from "../../../services/restaurants-thunks";
 
 const RestaurantSearch = () => {
     const restaurants = useSelector(state => state.restaurants);
+    const [restaurantName, setRestaurantName] = useState('')
     const dispatch = useDispatch();
+
+    const searchChangeHandler = (event) => {
+        const restaurant = event.target.value;
+        setRestaurantName(restaurant);
+    }
 
     useEffect(() => {
         dispatch(findAllRestaurantsThunk())
@@ -21,8 +27,15 @@ const RestaurantSearch = () => {
                     <div className="position-relative">
                         <input className="ps-5 bg-secondary bg-opacity-10 border-0 form-control
                                           form-control-lg rounded-pill"
-                               placeholder="Search Restaurants"/>
+                               placeholder="Search Restaurants"
+                               type="text"
+                               onChange={searchChangeHandler}
+                               value={restaurantName}/>
                         <i className="position-absolute ttr-search bi bi-search"></i>
+                        <button className="btn btn-primary position-absolute rounded-pill
+                                           ttr-search-button ps-3 pe-3">
+                            Search
+                        </button>
                     </div>
                 </div>
             </div>
