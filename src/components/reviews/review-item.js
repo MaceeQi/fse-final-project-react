@@ -1,13 +1,11 @@
 import React from "react";
-import {deleteReviewThunk, updateReviewThunk} from "../../services/reviews-thunks";
+import {deleteReviewThunk} from "../../services/reviews-thunks";
 import {useDispatch} from "react-redux";
+import UpdateReview from "./update-review";
 
 const ReviewItem = ({review}) => {
     // const critics = allCritics.filter(critic => critic._id === review.criticId);
     const dispatch = useDispatch();
-    const updateReviewHandler = (reviewid, review) => {
-        dispatch(updateReviewThunk(reviewid, review));
-    }
     const deleteReviewHandler = (reviewid) => {
         dispatch(deleteReviewThunk(reviewid));
     }
@@ -30,7 +28,9 @@ const ReviewItem = ({review}) => {
                             </span>
                         </div>
                         <div>
+                            <i id="edit" className="fa fa-edit fa-pull-right"></i>
                             <span>{review.review}</span>
+                            <UpdateReview reviewid={review._id} review={review.review}/>
                         </div>
                     </div>
                 </div>

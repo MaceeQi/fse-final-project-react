@@ -5,9 +5,6 @@ import {createReviewThunk} from "../../services/reviews-thunks";
 
 const CreateReview = ({restaurant, critic}) => {
     const [review, setReview] = useState('')
-    // const reviewChangeHandler = (event) => {
-    //     setReview(event.target.value);
-    // }
     const dispatch = useDispatch()
     const reviewSubmitHandler = () => {
         const newReview = {

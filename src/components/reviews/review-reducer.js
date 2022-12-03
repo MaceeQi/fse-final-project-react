@@ -9,9 +9,10 @@ const reviewsReducer = createSlice({
         reviews: []
     },
     extraReducers: {
-       [findAllReviewsThunk.fulfilled]: (state, action) => {
-           state.reviews = action.payload
-       },
+       [findAllReviewsThunk.fulfilled]:
+           (state, action) => {
+                state.reviews = action.payload
+            },
         [deleteReviewThunk.fulfilled] :
             (state, { payload }) => {
                 state.reviews = state.reviews
@@ -21,10 +22,16 @@ const reviewsReducer = createSlice({
             (state, { payload }) => {
                 state.reviews.push(payload)
             },
-        [updateReviewThunk.fulfilled]: (state, action) => {
-           const reviewNdx = state.reviews.findIndex((review) => review._id === action.payload._id)
-           state.reviews[reviewNdx] = {...state.reviews[reviewNdx], ...action.payload}
-       }
+        [updateReviewThunk().fulfilled]:
+            (state, { payload }) => {
+                const reviewNdx = state.review
+                    .findIndex((r) => r._id === payload._id)
+                state.reviews[reviewNdx] = {
+                    ...state.reviews[reviewNdx].review,
+                    ...payload
+                }
+            }
+
     },
    // reducers: {
    //     createReview(state, action) {
