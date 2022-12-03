@@ -8,7 +8,7 @@ import BusinessInfo from "./business-info";
 import UpdateList from "./restaurant-updates/update-list";
 import FeatureList from "./featured-items/featured-item-list";
 import "../restaurant/restaurant.css";
-import {findRestaurantByIdThunk} from "../../services/restaurants-thunks";
+import {findAllRestaurantsThunk} from "../../services/restaurants-thunks";
 
 // hardcode restaurant input, need to change later
 const BusinessProfile = () => {
@@ -21,9 +21,8 @@ const BusinessProfile = () => {
     let [restaurant, setRestaurant] = useState({});
     const dispatch = useDispatch();
     useEffect(  () => {
-        dispatch(findRestaurantByIdThunk(restId));
-        // console.log(restaurants);
-
+        dispatch(findAllRestaurantsThunk());
+        console.log(restaurants);
         setRestaurant(restaurants.filter(r => r._id === restId)[0]);
     }, [restId]);
     console.log(restaurant);
