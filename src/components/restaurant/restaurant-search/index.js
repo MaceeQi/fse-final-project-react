@@ -18,7 +18,12 @@ const RestaurantSearch = () => {
     }
 
     const searchRestaurantClickHandler = () => {
-        dispatch(findRestaurantsByNameThunk(restaurantName));
+        const noSpaces = restaurantName.replace(/\s/g, '');
+        if (noSpaces === "") {
+            alert("Must be valid search input - cannot be empty or blank")
+        } else {
+            dispatch(findRestaurantsByNameThunk(restaurantName));
+        }
     }
 
     useEffect(() => {
