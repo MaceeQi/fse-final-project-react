@@ -36,7 +36,7 @@ const featuredSlice = createSlice({
       [createFeaturedItemThunk.fulfilled]:
           (state, {payload}) => {
               state.features.push(payload);
-              console.log(payload);
+              // console.log(payload);
           },
       [deleteFeaturedItemThunk.fulfilled]:
           (state, {payload}) => {
