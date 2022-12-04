@@ -1,14 +1,21 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {findFeaturedItemsByRestaurantThunk} from "../../../services/featured-item-thunks";
+import {useLocation} from "react-router-dom";
 
-const FeatureList = ({restaurant}) => {
-    const features = useSelector(state => state.features);
+const FeatureList = () => {
+    const {features} = useSelector(state => state.features);
+    // need to update change publicPage to current user after implementing login signup
+    const {pathname} = useLocation();
+    const paths = pathname.split('/');
+    const restId = paths[paths.length-1];
 
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(findFeaturedItemsByRestaurantThunk(restaurant._id));
-    }, [])
+        dispatch(findFeaturedItemsByRestaurantThunk(restId));
+    }, [restId, dispatch])
+
+    // console.log(features);
 
     return (
         <div className="mb-3 border ttr-border-radius">
@@ -16,8 +23,7 @@ const FeatureList = ({restaurant}) => {
             <div className="ttr-scroll-menu m-2">
                 <div className="row flex-row flex-nowrap">
                 {
-                    features.filter(feature => feature.restaurant === restaurant._id)
-                        .map(feature =>
+                    features.slice(0).reverse().map(feature =>
                          <div className="card ttr-card-block border" key={feature._id}>
                              <div className="position-relative">
                                  <img className="card-img-top ttr-card-photo mt-2 mb-1"

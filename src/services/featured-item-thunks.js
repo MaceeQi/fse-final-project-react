@@ -17,8 +17,8 @@ export const findFeaturedItemByIdThunk = createAsyncThunk(
 )
 
 export const createFeaturedItemThunk = createAsyncThunk(
-    'restaurants/createFeaturedItem', async (rid, item) =>
-        await featuredItemService.createFeaturedItem(rid, item)
+    'restaurants/createFeaturedItem', async (item) =>
+        await featuredItemService.createFeaturedItem(item)
 )
 
 export const deleteFeaturedItemThunk = createAsyncThunk(

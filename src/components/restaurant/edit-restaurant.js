@@ -12,12 +12,12 @@ const EditRestaurant = () => {
     const {publicPage} = useSelector(state => state.restaurantsData);
     let [edit, setEdit] = useState(publicPage)
 
-    console.log(publicPage);
+    // console.log(publicPage);
 
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const restId = paths[paths.length-2];
-    console.log(restId);
+    // console.log(restId);
 
     let [restaurant, setRestaurant] = useState({});
     const dispatch = useDispatch();
@@ -202,8 +202,9 @@ const EditRestaurant = () => {
             {/*<EditUpdate restaurant={restaurant}/>*/}
 
             {/* featured items */}
-            {/*<EditFeature restaurant={restaurant}/>*/}
-        </form></div>
+            <EditFeature/>
+        </form>
+      </div>
     );
 };
 export default EditRestaurant;
