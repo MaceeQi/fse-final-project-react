@@ -24,7 +24,7 @@ const BusinessProfile = () => {
         dispatch(findAllRestaurantsThunk());
         console.log(restaurants);
         setRestaurant(restaurants.filter(r => r._id === restId)[0]);
-    }, [restId]);
+    }, []);
     console.log(restaurant);
 
     return (
