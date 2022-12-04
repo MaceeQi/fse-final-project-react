@@ -15,30 +15,27 @@ import {findRestaurantByIdThunk} from "../../services/restaurants-thunks";
 import {useLocation} from "react-router-dom";
 import RestaurantList from "./restaurant-search/restaurant-list";
 
-// hardcode restaurant input, need to update later
 const BusinessHome = () => {
-    // const restaurant = useSelector(state => state.restaurant);
-
     // hardcode logged in user info, need to update later
     // critic user: will see the review textbox and submit button
     const loggedIn = critics[0];
     // average user: can only see the reviews list
     // const loggedIn = users[0];
 
-    const {restaurants, loading} = useSelector(state => state.restaurantsData);
+    const {publicPage, loading} = useSelector(state => state.restaurantsData);
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const restId = paths[paths.length-1];
-    console.log(restId);
+    // console.log(restId);
 
     let [restaurant, setRestaurant] = useState({});
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(findRestaurantByIdThunk(restId));
-        setRestaurant(restaurants.filter(r => r._id === restId)[0]);
-    }, [restId]);
+        dispatch(findRestaurantByIdThunk(restId))
+            .then(setRestaurant(publicPage)).then()
+    }, [publicPage, dispatch, restId]);
 
-    console.log(restaurant);
+    // console.log(restaurant);
 
     return (
         <div className="border ttr-border-radius">

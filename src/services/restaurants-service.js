@@ -18,9 +18,10 @@ export const createRestaurant = (restaurant) =>
     axios.post(`${RESTAURANTS_API}`, restaurant)
         .then(response => response.data);
 
-export const updateRestaurant = (restaurant) =>
-    axios.put(`${RESTAURANTS_API}/${restaurant._id}`, restaurant)
-        .then(response => response.data);
+export const updateRestaurant = async (restaurant) => {
+    const response = await axios.put(`${RESTAURANTS_API}/${restaurant._id}`, restaurant);
+    return restaurant;
+}
 
 export const deleteRestaurant = (rid) =>
     axios.delete(`${RESTAURANTS_API}/${rid}`)

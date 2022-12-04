@@ -8,24 +8,21 @@ import BusinessInfo from "./business-info";
 import UpdateList from "./restaurant-updates/update-list";
 import FeatureList from "./featured-items/featured-item-list";
 import "../restaurant/restaurant.css";
-import {findAllRestaurantsThunk} from "../../services/restaurants-thunks";
+import {findRestaurantByIdThunk} from "../../services/restaurants-thunks";
 
 // hardcode restaurant input, need to change later
 const BusinessProfile = () => {
-    const {restaurants, loading} = useSelector(state => state.restaurantsData);
-    const {pathname} = useLocation();
-    const paths = pathname.split('/');
-    const restId = paths[paths.length-1];
-    console.log(restId);
+    const {currentRestaurant, loading} = useSelector(state => state.restaurantsData);
+    // const {pathname} = useLocation();
+    // const paths = pathname.split('/');
+    // const restId = paths[paths.length-1];
+    // console.log(restId);
 
-    let [restaurant, setRestaurant] = useState({});
+    let [restaurant, setRestaurant] = useState({currentRestaurant});
     const dispatch = useDispatch();
     useEffect(  () => {
-        dispatch(findAllRestaurantsThunk());
-        console.log(restaurants);
-        setRestaurant(restaurants.filter(r => r._id === restId)[0]);
+        dispatch(findRestaurantByIdThunk(currentRestaurant._id));
     }, []);
-    console.log(restaurant);
 
     return (
     <div className="border ttr-border-radius">
