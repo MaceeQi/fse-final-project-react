@@ -41,7 +41,7 @@ const BusinessHome = () => {
         fetchData();
     }, [restId, dispatch, publicPage]);
     // console.log(publicPage);
-    // console.log(restaurant);
+    console.log(restaurant);
 
     return (
         <div className="border ttr-border-radius">
@@ -65,7 +65,7 @@ const BusinessHome = () => {
                 <p className="mt-3 mb-3">{restaurant.bio}</p>
                 <BusinessInfo restaurant={restaurant}/>
                 <UpdateList restaurant={restaurant}/>
-                {/*<FeatureList restaurant={restaurant}/>*/}
+                <FeatureList restaurant={restaurant}/>
                 <div className="mb-3 border ttr-border-radius">
                     <div className="m-2">
                         <h5 className="fw-bolder">Professional Reviews</h5>
