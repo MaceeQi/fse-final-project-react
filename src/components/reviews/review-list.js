@@ -13,7 +13,7 @@ const ReviewList = ({restaurant, critics}) => {
         <div className="list-group ttr-border-radius">
             {
                 // reviews.reviews.filter(review => review.restaurantId === restaurant._id)
-                reviews.reviews
+                reviews.reviews.slice(0).reverse()
                     .map(review =>
                              <ReviewItem
                                  key={review._id}
