@@ -12,17 +12,21 @@ import {findRestaurantByIdThunk} from "../../services/restaurants-thunks";
 
 // hardcode restaurant input, need to change later
 const BusinessProfile = () => {
-    const {currentRestaurant, loading} = useSelector(state => state.restaurantsData);
-    // const {pathname} = useLocation();
-    // const paths = pathname.split('/');
-    // const restId = paths[paths.length-1];
-    // console.log(restId);
+    // need to update change publicPage to current user after implementing login signup
+    const {publicPage, loading} = useSelector(state => state.restaurantsData);
+    const {pathname} = useLocation();
+    const paths = pathname.split('/');
+    const restId = paths[paths.length-1];
 
-    let [restaurant, setRestaurant] = useState({currentRestaurant});
+    let [restaurant, setRestaurant] = useState({});
     const dispatch = useDispatch();
-    useEffect(  () => {
-        dispatch(findRestaurantByIdThunk(currentRestaurant._id));
-    }, []);
+
+    useEffect(   () => {
+        dispatch(findRestaurantByIdThunk(restId))
+            .then(setRestaurant(publicPage))
+    }, [restId, dispatch, publicPage]);
+
+    // console.log(restaurant);
 
     return (
     <div className="border ttr-border-radius">

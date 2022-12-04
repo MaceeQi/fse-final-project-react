@@ -29,12 +29,18 @@ const BusinessHome = () => {
     // console.log(restId);
 
     let [restaurant, setRestaurant] = useState({});
-    const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(findRestaurantByIdThunk(restId))
-            .then(setRestaurant(publicPage)).then()
-    }, [publicPage, dispatch, restId]);
 
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        async function fetchData() {
+            // You can await here
+            await dispatch(findRestaurantByIdThunk(restId));
+            await setRestaurant(publicPage);
+        }
+        fetchData();
+    }, [restId, dispatch, publicPage]);
+    // console.log(publicPage);
     // console.log(restaurant);
 
     return (

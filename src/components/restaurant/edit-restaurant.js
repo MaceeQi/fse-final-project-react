@@ -1,21 +1,34 @@
-import React, {useState} from "react";
-import {Link} from "react-router-dom";
+import React, {useState, useEffect} from "react";
+import {Link, useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import { updateRestaurant } from "./restaurants-reducer";
 import EditUpdate from "./restaurant-updates/edit-update";
 import EditFeature from "./featured-items/edit-featured-item";
 import "./restaurant.css";
-import {updateRestaurantThunk} from "../../services/restaurants-thunks";
+import {findRestaurantByIdThunk, updateRestaurantThunk} from "../../services/restaurants-thunks";
 
 const EditRestaurant = () => {
-    const restaurant = useSelector(state => state.restaurantsData);
-    let [edit, setEdit] = useState(restaurant)
+    // need to update change publicPage to current user after implementing login signup
+    const {publicPage} = useSelector(state => state.restaurantsData);
+    let [edit, setEdit] = useState(publicPage)
 
+    console.log(publicPage);
+
+    const {pathname} = useLocation();
+    const paths = pathname.split('/');
+    const restId = paths[paths.length-2];
+    console.log(restId);
+
+    let [restaurant, setRestaurant] = useState({});
     const dispatch = useDispatch();
+    useEffect(   () => {
+        dispatch(findRestaurantByIdThunk(restId))
+            .then(setRestaurant(publicPage))
+    }, [restId, dispatch, publicPage]);
+
     const saveClickHandler = () => {
-        dispatch(updateRestaurantThunk(edit));
+        dispatch(updateRestaurantThunk(edit))
     }
-    console.log(restaurant.bannerPicture);
 
     return(
       <div className="ttr-border p-3">
@@ -117,72 +130,72 @@ const EditRestaurant = () => {
                                 value={edit.website}/>
                             
                 </div>
-                {/*<div className="border border-secondary rounded-3 p-2 mb-3">*/}
-                {/*    <label className="fw-bolder" htmlFor="hours">Hours</label>*/}
-                {/*    <div className="row">*/}
-                {/*        <label className="col-3 align-self-center">Monday</label>*/}
-                {/*        <input id="hours" placeholder="11:00 AM - 10:00 PM"*/}
-                {/*            className="col-6 align-self-center p-1 border-0"*/}
-                {/*            type="hours"*/}
-                {/*            onChange={(e) => {*/}
-                {/*                setEdit({...edit, monday: e.target.value})}}*/}
-                {/*                value={edit.monday}/>*/}
-                {/*    </div>*/}
-                {/*    <div className="row">*/}
-                {/*        <label className="col-3 align-self-center">Tuesday</label>*/}
-                {/*        <input id="hours" placeholder="11:00 AM - 10:00 PM"*/}
-                {/*            className="col-6 align-self-center p-1 border-0"*/}
-                {/*            type="hours"*/}
-                {/*            onChange={(e) => {*/}
-                {/*                setEdit({...edit, tuesday: e.target.value})}}*/}
-                {/*                value={edit.tuesday}/>*/}
-                {/*    </div>*/}
-                {/*    <div className="row">*/}
-                {/*        <label className="col-3 align-self-center">Wednesday</label>*/}
-                {/*        <input id="hours" placeholder="11:00 AM - 10:00 PM"*/}
-                {/*            className="col-6 align-self-center p-1 border-0"*/}
-                {/*            type="hours"*/}
-                {/*            onChange={(e) => {*/}
-                {/*                setEdit({...edit, wednesday: e.target.value})}}*/}
-                {/*                value={edit.wednesday}/>*/}
-                {/*    </div>*/}
-                {/*    <div className="row">*/}
-                {/*        <label className="col-3 align-self-center">Thursday</label>*/}
-                {/*        <input id="hours" placeholder="11:00 AM - 10:00 PM"*/}
-                {/*            className="col-6 align-self-center p-1 border-0"*/}
-                {/*            type="hours"*/}
-                {/*            onChange={(e) => {*/}
-                {/*                setEdit({...edit, thursday: e.target.value})}}*/}
-                {/*                value={edit.thursday}/>*/}
-                {/*    </div>*/}
-                {/*    <div className="row">*/}
-                {/*        <label className="col-3 align-self-center">Friday</label>*/}
-                {/*        <input id="hours" placeholder="11:00 AM - 10:00 PM"*/}
-                {/*            className="col-6 align-self-center p-1 border-0"*/}
-                {/*            type="hours"*/}
-                {/*            onChange={(e) => {*/}
-                {/*                setEdit({...edit, friday: e.target.value})}}*/}
-                {/*                value={edit.friday}/>*/}
-                {/*    </div>*/}
-                {/*    <div className="row">*/}
-                {/*        <label className="col-3 align-self-center">Saturday</label>*/}
-                {/*        <input id="hours" placeholder="11:00 AM - 10:00 PM"*/}
-                {/*            className="col-6 align-self-center p-1 border-0"*/}
-                {/*            type="hours"*/}
-                {/*            onChange={(e) => {*/}
-                {/*                setEdit({...edit, saturday: e.target.value})}}*/}
-                {/*                value={edit.saturday}/>*/}
-                {/*    </div>*/}
-                {/*    <div className="row">*/}
-                {/*        <label className="col-3 align-self-center">Sunday</label>*/}
-                {/*        <input id="hours" placeholder="11:00 AM - 10:00 PM"*/}
-                {/*            className="col-6 align-self-center p-1 border-0"*/}
-                {/*            type="hours"*/}
-                {/*            onChange={(e) => {*/}
-                {/*                setEdit({...edit, sunday: e.target.value})}}*/}
-                {/*                value={edit.sunday}/>*/}
-                {/*    </div>*/}
-                {/*</div>*/}
+                <div className="border border-secondary rounded-3 p-2 mb-3">
+                    <label className="fw-bolder" htmlFor="hours">Hours</label>
+                    <div className="row">
+                        <label className="col-3 align-self-center">Monday</label>
+                        <input id="hours" placeholder="11:00 AM - 10:00 PM"
+                            className="col-6 align-self-center p-1 border-0"
+                            type="hours"
+                            onChange={(e) => {
+                                setEdit({...edit, monday: e.target.value})}}
+                                value={edit.monday}/>
+                    </div>
+                    <div className="row">
+                        <label className="col-3 align-self-center">Tuesday</label>
+                        <input id="hours" placeholder="11:00 AM - 10:00 PM"
+                            className="col-6 align-self-center p-1 border-0"
+                            type="hours"
+                            onChange={(e) => {
+                                setEdit({...edit, tuesday: e.target.value})}}
+                                value={edit.tuesday}/>
+                    </div>
+                    <div className="row">
+                        <label className="col-3 align-self-center">Wednesday</label>
+                        <input id="hours" placeholder="11:00 AM - 10:00 PM"
+                            className="col-6 align-self-center p-1 border-0"
+                            type="hours"
+                            onChange={(e) => {
+                                setEdit({...edit, wednesday: e.target.value})}}
+                                value={edit.wednesday}/>
+                    </div>
+                    <div className="row">
+                        <label className="col-3 align-self-center">Thursday</label>
+                        <input id="hours" placeholder="11:00 AM - 10:00 PM"
+                            className="col-6 align-self-center p-1 border-0"
+                            type="hours"
+                            onChange={(e) => {
+                                setEdit({...edit, thursday: e.target.value})}}
+                                value={edit.thursday}/>
+                    </div>
+                    <div className="row">
+                        <label className="col-3 align-self-center">Friday</label>
+                        <input id="hours" placeholder="11:00 AM - 10:00 PM"
+                            className="col-6 align-self-center p-1 border-0"
+                            type="hours"
+                            onChange={(e) => {
+                                setEdit({...edit, friday: e.target.value})}}
+                                value={edit.friday}/>
+                    </div>
+                    <div className="row">
+                        <label className="col-3 align-self-center">Saturday</label>
+                        <input id="hours" placeholder="11:00 AM - 10:00 PM"
+                            className="col-6 align-self-center p-1 border-0"
+                            type="hours"
+                            onChange={(e) => {
+                                setEdit({...edit, saturday: e.target.value})}}
+                                value={edit.saturday}/>
+                    </div>
+                    <div className="row">
+                        <label className="col-3 align-self-center">Sunday</label>
+                        <input id="hours" placeholder="11:00 AM - 10:00 PM"
+                            className="col-6 align-self-center p-1 border-0"
+                            type="hours"
+                            onChange={(e) => {
+                                setEdit({...edit, sunday: e.target.value})}}
+                                value={edit.sunday}/>
+                    </div>
+                </div>
             </div>
 
             {/* Updates */}

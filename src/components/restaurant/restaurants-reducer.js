@@ -1,28 +1,28 @@
 import {createSlice} from "@reduxjs/toolkit";
-// import restaurants from "../data/restaurants.json";
+
 import {
     createRestaurantThunk, deleteRestaurantThunk,
     findAllRestaurantsThunk,
     findRestaurantByIdThunk, updateRestaurantThunk
 } from "../../services/restaurants-thunks";
 
+
+// revise the currentRestaurant into null after implementing user login/signup
 const initialState = {
     restaurants: [],
+    loading: false,
     currentRestaurant: null,
-    publicPage: null,
-    loading: false
+    publicPage: null
 }
 
-const restaurantSlice = createSlice({
+const restaurantsReducer = createSlice({
     name: "restaurants",
-    // initialState: restaurants[0],
     initialState,
     extraReducers: {
         [findAllRestaurantsThunk.pending]:
             (state) => {
                 state.loading = true;
                 state.restaurants = [];
-                state.currentRestaurant = null;
                 state.publicPage = null;
             },
         [findAllRestaurantsThunk.fulfilled]:
@@ -34,7 +34,7 @@ const restaurantSlice = createSlice({
             (state, action) => {
                 state.loading = false;
                 state.publicPage = action.payload;
-                console.log(state.publicPage)
+                // console.log(state.publicPage)
             },
         [createRestaurantThunk.fulfilled]:
             (state, action) => {
@@ -50,13 +50,15 @@ const restaurantSlice = createSlice({
                         ...action.payload
                 };
                 state.currentRestaurant = {...state.currentRestaurant, ...action.payload};
+                console.log(state.currentRestaurant)
+
             },
         [deleteRestaurantThunk.fulfilled]:
             (state, action) => {
                 state.loading = false
                 const index = state.restaurants.findIndex(r => r._id === action.payload._id);
                 state.restaurants.splice(index, 1);
-            }
+            },
     }
     // reducers: {
     //     updateRestaurant(state, action) {
@@ -66,4 +68,4 @@ const restaurantSlice = createSlice({
 });
 
 // export const {updateRestaurant} = restaurantSlice.actions;
-export default restaurantSlice.reducer;
+export default restaurantsReducer.reducer;
