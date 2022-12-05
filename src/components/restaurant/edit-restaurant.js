@@ -199,7 +199,7 @@ const EditRestaurant = () => {
             </div>
 
             {/* Updates */}
-            {/*<EditUpdate restaurant={restaurant}/>*/}
+            <EditUpdate/>
 
             {/* featured items */}
             <EditFeature/>

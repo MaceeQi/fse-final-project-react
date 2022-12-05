@@ -54,7 +54,7 @@ const BusinessProfile = () => {
             </Link>
             <p className="mt-3 mb-3">{restaurant.bio}</p>
             <BusinessInfo restaurant={restaurant}/>
-            {/*<UpdateList restaurant={restaurant}/>*/}
+            <UpdateList/>
             <FeatureList/>
             <div className="mb-3 border ttr-border-radius">
                 <div className="m-2">
