@@ -25,13 +25,16 @@ import restaurantReducer from "../restaurant/restaurants-reducer";
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
 import BusinessProfile from "../restaurant/business-profile";
+
+// revised restaurants to restaurantsData for the new reducer with thunks
 const store = configureStore({reducer: {
     reviews: reviewsReducer,
-    restaurants: restaurantReducer,
-    updates:updateReducer,
-    features:featuredReducer
+    // restaurants: restaurantReducer, changed the restaurants into restaurantsData below for
+    // differentiation as this restaurantReducer were updated to take more variable fields - yutong
+    restaurantsData: restaurantReducer,
+    updates: updateReducer,
+    features: featuredReducer
 }});
-
 
 function Tuiter () {
   return(

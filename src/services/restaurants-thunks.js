@@ -8,7 +8,7 @@ export const findAllRestaurantsThunk = createAsyncThunk(
 
 export const findRestaurantByIdThunk = createAsyncThunk(
     'restaurants/findRestaurantById', async (rid) =>
-        await restaurantsService.findRestaurantById(rid)
+    await restaurantsService.findRestaurantById(rid)
 )
 
 export const createRestaurantThunk = createAsyncThunk(
@@ -30,3 +30,4 @@ export const findRestaurantsByNameThunk = createAsyncThunk(
     'restaurants/findRestaurantsByName', async (name) =>
         await restaurantsService.findRestaurantsByName(name)
 )
+

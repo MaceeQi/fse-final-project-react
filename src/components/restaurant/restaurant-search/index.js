@@ -8,7 +8,9 @@ import {
 } from "../../../services/restaurants-thunks";
 
 const RestaurantSearch = () => {
-    const restaurants = useSelector(state => state.restaurants);
+    // removed this line below as the restaurant reducer got updated - yutong
+    // const restaurants = useSelector(state => state.restaurants);
+    const {restaurants, loading} = useSelector(state => state.restaurantsData);
     const [restaurantName, setRestaurantName] = useState('')
     const dispatch = useDispatch();
 
@@ -55,7 +57,15 @@ const RestaurantSearch = () => {
 
             {/* Results - display list of restaurants */}
             <div>
-                <RestaurantList restaurants={restaurants}/>
+                {
+                    loading &&
+                    <h5>
+                        Loading...
+                    </h5>
+                }
+                {
+                    <RestaurantList restaurants={restaurants}/>
+                }
             </div>
         </div>
     );
