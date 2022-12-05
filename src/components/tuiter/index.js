@@ -32,6 +32,7 @@ const store = configureStore({reducer: {
     features:featuredReducer
 }});
 
+
 function Tuiter () {
   return(
     <Provider store={store}>

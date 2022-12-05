@@ -3,7 +3,7 @@ import {useSelector} from "react-redux";
 import {Link} from "react-router-dom";
 // import restaurants from "../data/restaurants.json";
 import critics from "../data/critic-users.json";
-import ReviewList from "../reviews/reivew-list";
+import ReviewList from "../reviews/review-list";
 import BusinessInfo from "./business-info";
 import UpdateList from "./restaurant-updates/update-list";
 import FeatureList from "./featured-items/featured-item-list";

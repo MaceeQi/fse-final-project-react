@@ -3,7 +3,7 @@ import React from "react";
 // import {Routes, Route, Router} from "react-router";
 import "./restaurant.css";
 import BusinessInfo from "./business-info";
-import ReviewList from "../reviews/reivew-list";
+import ReviewList from "../reviews/review-list";
 import CreateReview from "../reviews/create-review";
 import critics from "../data/critic-users.json";
 import UpdateList from "./restaurant-updates/update-list";
