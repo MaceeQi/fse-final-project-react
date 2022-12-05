@@ -1,12 +1,24 @@
-import React, {useState} from "react";
-import { createUpdate,deleteUpdate } from "./update-reducer";
+import React, {useEffect, useState} from "react";
+// import { createUpdate,deleteUpdate } from "./update-reducer";
 import {useDispatch, useSelector} from "react-redux";
+import {createUpdateThunk,deleteUpdateThunk,findUpdatesByRestaurantThunk} from "../../../services/restaurant-updates-thunks";
+import {useLocation} from "react-router-dom";
 
-const EditUpdate = ({restaurant}) => {
-    const updates = useSelector(state=> state.updates);
+const EditUpdate = () => {
+    const {updates} = useSelector(state=> state.updates);
+
     const [editUpdate, setUpdate] = useState('');
     const dispatch = useDispatch();
 
+    const {pathname} = useLocation();
+    const paths = pathname.split('/');
+    const restId = paths[paths.length-2];
+
+    useEffect(  () => {
+        dispatch(findUpdatesByRestaurantThunk(restId));
+    }, [dispatch, restId])
+
+    console.log(updates);
     const updateChangeHandler = (event) => {
         setUpdate(event.target.value);
     }
@@ -14,13 +26,13 @@ const EditUpdate = ({restaurant}) => {
     const updateSubmitHandler = () => {
         const newUpdate = {
             update: editUpdate,
-            restaurantId: restaurant._id,
+            updatedBy: restId
         }
-        dispatch(createUpdate(newUpdate));
+        dispatch(createUpdateThunk(newUpdate));
     }
 
     const deleteUpdateHandler = (updateId) => {
-        dispatch(deleteUpdate(updateId));
+        dispatch(deleteUpdateThunk(updateId));
     }
 
     return (
@@ -30,8 +42,7 @@ const EditUpdate = ({restaurant}) => {
                 <div className="row pb-3">
                     <ul>
                         {
-                        updates.filter(update => update.restaurantId === restaurant._id)
-                            .map(update =>
+                        updates.map(update =>
                             <li key={update._id} className="list-group-item">
                                 <div className="row pt-3">
                                     <div className="col-11">

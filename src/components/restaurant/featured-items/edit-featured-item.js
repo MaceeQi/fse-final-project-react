@@ -1,17 +1,38 @@
-import React, {useState} from "react";
-import { createFeature,deleteFeature } from "./featured-item-reducer";
+import React, {useEffect, useState} from "react";
+// import { createFeature,deleteFeature } from "./featured-item-reducer";
 import {useDispatch, useSelector} from "react-redux";
+import {
+    createFeaturedItemThunk,
+    deleteFeaturedItemThunk, findAllFeaturedItemsThunk, findFeaturedItemsByRestaurantThunk
+} from "../../../services/featured-item-thunks";
+import {
+    findAllFeaturedItems,
+    findFeaturedItemsByRestaurant
+} from "../../../services/featured-item-service";
+import {useLocation} from "react-router-dom";
+import {findRestaurantByIdThunk} from "../../../services/restaurants-thunks";
 
-const EditFeature = ({restaurant}) => {
-    const features = useSelector(state=> state.features);
-    const [editFood,setFood] = useState(features.food);
-    const [editPrice,setPrice] = useState(features.price);
-    const [editPhoto,setPhoto] = useState(features.photo);
-    const [editPopular,setPopular] = useState(features.popular);
+const EditFeature = () => {
+    const {features} = useSelector(state=> state.features);
+
+    const [editFood,setFood] = useState("");
+    const [editPrice,setPrice] = useState("");
+    const [editPhoto,setPhoto] = useState("emptyFood.jpeg");
+    const [editPopular,setPopular] = useState(false);
     const dispatch = useDispatch();
+
+    const {pathname} = useLocation();
+    const paths = pathname.split('/');
+    const restId = paths[paths.length-2];
+    // console.log(restId);
+
+    useEffect(  () => {
+        dispatch(findFeaturedItemsByRestaurantThunk(restId));
+    }, [dispatch, restId])
 
     const foodChangeHandler = (event) => {
         setFood(event.target.value);
+        console.log(editFood);
     }
 
     const priceChangeHandler = (event) => {
@@ -28,17 +49,18 @@ const EditFeature = ({restaurant}) => {
 
     const createFeatureHandler = () => {
         const newFeature = {
-            restaurant: restaurant._id,
             food: editFood,
             price: editPrice,
             photo: editPhoto,
-            popular: editPopular
+            popular: editPopular,
+            restaurant: restId
         }
-        dispatch(createFeature(newFeature));
+        console.log(newFeature);
+        dispatch(createFeaturedItemThunk(newFeature));
     }
 
     const deleteFeatureHandler = (featureId) => {
-        dispatch(deleteFeature(featureId));
+        dispatch(deleteFeaturedItemThunk(featureId));
     }
 
     return (
@@ -47,8 +69,7 @@ const EditFeature = ({restaurant}) => {
             {/* map item */}
             <ul>
                 {
-                features.filter(feature => feature.restaurant === restaurant._id)
-                    .map(feature =>
+                features.map(feature =>
                     <li key={feature._id} className="border-0 list-group-item">
                         <div className="ttr-border row p-2 mb-3 m-1">
                             <div className="col-4 align-self-center">
@@ -62,14 +83,14 @@ const EditFeature = ({restaurant}) => {
                                 <div>Menu Item Price:</div>
                                 <input id="itemPrice" value={feature.price}
                                     className="p-0 form-control" readOnly/>
-                                <input id="popularItem" type="checkbox"
-                                    name="popularItem" checked = {feature.popular === true ? 'checked': ''} readOnly/>
+                                <input id="popularItem" type="checkbox" name="popularItem"
+                                       checked = {feature.popular === true ? 'checked': ''} readOnly/>
                                 <label className="p-2" htmlFor="popularItem">Popular Item</label>
                             </div>
                             {/* delete button */}
                             <div className="col-1 p-0 align-self-center ">
                                 <i className="btn fa-regular fa-trash-can"
-                                    onClick={()=>deleteFeatureHandler(feature._id)}></i>
+                                    onClick={()=>deleteFeatureHandler(feature._id)}> </i>
                             </div>
                         </div>
                     </li>
@@ -80,7 +101,7 @@ const EditFeature = ({restaurant}) => {
             <div className="ttr-border row p-2 mb-3 m-1">
                 <div className="col-5 align-self-center">
                     <input type="file" id="foodPic" onChange={photoChangeHandler}
-                    accept="image/jpeg, image/png, image/jpg"></input>
+                    accept="image/jpeg, image/png, image/jpg"/>
                 </div>
                 <div className="col-7">
                     <div>Menu Item Name:</div>

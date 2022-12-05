@@ -8,6 +8,7 @@ const RestaurantItem = ({
                                 name: "Red Lobster",
                                 handle: "@redlobster",
                                 profilePicture: "redlobster-avatar.png",
+                                bannerPicture: 'redlobster-banner.jpeg',
                                 bio: "The best red lobster. Come and taste!",
                                 cuisine: "Seafood",
                                 price: "$$",
