@@ -2,12 +2,11 @@ import {createSlice} from "@reduxjs/toolkit";
 
 import {
     createRestaurantThunk, deleteRestaurantThunk,
-    findAllRestaurantsThunk,
-    findRestaurantByIdThunk, updateRestaurantThunk
+    findAllRestaurantsThunk, findRestaurantByIdThunk,
+    updateRestaurantThunk, findRestaurantsByNameThunk
 } from "../../services/restaurants-thunks";
 
-
-// revise the currentRestaurant into null after implementing user login/signup
+// changed the restaurant reducer to take more variables for user login/sign up implementation- yutong
 const initialState = {
     restaurants: [],
     loading: false,
@@ -15,7 +14,7 @@ const initialState = {
     publicPage: null
 }
 
-const restaurantsReducer = createSlice({
+const restaurantSlice = createSlice({
     name: "restaurants",
     initialState,
     extraReducers: {
@@ -29,7 +28,16 @@ const restaurantsReducer = createSlice({
             (state, action) => {
                 state.loading = false;
                 state.restaurants = action.payload;
+                state.restaurants = state.restaurants.sort((a, b) => a.name.localeCompare(b.name));
             },
+        // revised Macee's thunk below into the one above - yutong
+        // [findAllRestaurantsThunk.fulfilled]:
+        //     (state, action) => {
+        //         state = action.payload;
+        //         state = state.sort((a,b) => a.name.localeCompare(b.name));
+        //         return state;
+        //     },
+
         [findRestaurantByIdThunk.fulfilled]:
             (state, action) => {
                 state.loading = false;
@@ -51,7 +59,6 @@ const restaurantsReducer = createSlice({
                 };
                 state.currentRestaurant = {...state.currentRestaurant, ...action.payload};
                 console.log(state.currentRestaurant)
-
             },
         [deleteRestaurantThunk.fulfilled]:
             (state, action) => {
@@ -59,7 +66,20 @@ const restaurantsReducer = createSlice({
                 const index = state.restaurants.findIndex(r => r._id === action.payload._id);
                 state.restaurants.splice(index, 1);
             },
-    }
+        [findRestaurantsByNameThunk.fulfilled]:
+            (state, action) => {
+                state.restaurants = action.payload;
+                state.restaurants = state.restaurants.sort((a,b) => a.name.localeCompare(b.name));
+            }
+        //revised Macee's thunk below to the one above - yutong
+        // [findRestaurantsByNameThunk.fulfilled]:
+        //     (state, action) => {
+        //         state = action.payload;
+        //         state = state.sort((a,b) => a.name.localeCompare(b.name));
+        //         return state;
+        //     }
+    },
+    // removed reducers below -yutong
     // reducers: {
     //     updateRestaurant(state, action) {
     //         return {...action.payload};
@@ -68,4 +88,4 @@ const restaurantsReducer = createSlice({
 });
 
 // export const {updateRestaurant} = restaurantSlice.actions;
-export default restaurantsReducer.reducer;
+export default restaurantSlice.reducer;

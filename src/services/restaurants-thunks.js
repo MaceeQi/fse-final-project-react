@@ -7,15 +7,13 @@ export const findAllRestaurantsThunk = createAsyncThunk(
 )
 
 export const findRestaurantByIdThunk = createAsyncThunk(
-    'restaurants/findRestaurantById', async (rid) => {
-        return await restaurantsService.findRestaurantById(rid);
-    }
+    'restaurants/findRestaurantById', async (rid) =>
+    await restaurantsService.findRestaurantById(rid)
 )
 
 export const createRestaurantThunk = createAsyncThunk(
-    'restaurants/createRestaurant', async (restaurant) => {
-        return await restaurantsService.createRestaurant(restaurant);
-    }
+    'restaurants/createRestaurant', async (restaurant) =>
+        await restaurantsService.createRestaurant(restaurant)
 )
 
 export const updateRestaurantThunk = createAsyncThunk(
@@ -26,5 +24,10 @@ export const updateRestaurantThunk = createAsyncThunk(
 export const deleteRestaurantThunk = createAsyncThunk(
     'restaurants/deleteRestaurant', async (rid) =>
         await restaurantsService.deleteRestaurant(rid)
+)
+
+export const findRestaurantsByNameThunk = createAsyncThunk(
+    'restaurants/findRestaurantsByName', async (name) =>
+        await restaurantsService.findRestaurantsByName(name)
 )
 

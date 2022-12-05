@@ -21,3 +21,8 @@
     text-decoration: none;
     color: black;
 }
+
+.ttr-search-button {
+    bottom: 5px;
+    right: 7px;
+}

@@ -1,41 +1,36 @@
 import React from "react";
+import {deleteReviewThunk} from "../../services/reviews-thunks";
+import {useDispatch} from "react-redux";
+import UpdateReview from "./update-review";
 
-const ReviewItem = ({
-                        review={
-                            "_id": "1234",
-                            "restaurantId": "123",
-                            "criticId": "123",
-                            "review": "Great restaurant!",
-                            "time": "07/22/2018"
-                        },
-                        critic={
-                            "_id": "123",
-                            "type": "CRITIC",
-                            "avatarIcon": "alice.jpg",
-                            "userName": "Alice",
-                            "handle": "alice"
-                        }
-}) => {
+const ReviewItem = ({review}) => {
     // const critics = allCritics.filter(critic => critic._id === review.criticId);
-
+    const dispatch = useDispatch();
+    const deleteReviewHandler = (reviewid) => {
+        dispatch(deleteReviewThunk(reviewid));
+    }
     return (
         <li className="list-group-item">
             <div className="row row-cols-12 m-0 pt-2">
                 <div className="col-2 d-flex justify-content-center">
                     <img className="ttr-avatar"
-                         src={`/images/${critic.avatarIcon}`} alt="avatar"/>
+                         src={`/images/${review.critic.profilePhoto}`} alt="avatar"/>
                 </div>
                 <div className="col-10">
                     <div className="me-2">
                         <div>
-                            <span className="text-black fw-bolder">{critic.userName} </span>
-                            <i className="bi bi-patch-check-fill text-primary"> </i>
+                            <i onClick={() => deleteReviewHandler(review._id)} className="fas fa-remove fa-pull-right"></i>
+                            <span className="text-black fw-bolder">
+                                {review.critic && review.critic.firstName} {review.critic && review.critic.lastName}
+                            </span> <i className="bi bi-patch-check-fill text-primary"> </i>
                             <span className="text-secondary">
-                         @{critic.handle} · {review.time}
-                        </span>
+                                @{review.critic && review.critic.username} · {review.time.substring(0, review.time.indexOf("T"))}
+                            </span>
                         </div>
                         <div>
+                            <i id="edit" className="fa fa-edit fa-pull-right"></i>
                             <span>{review.review}</span>
+                            <UpdateReview reviewid={review._id} review={review.review}/>
                         </div>
                     </div>
                 </div>
