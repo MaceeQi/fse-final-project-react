@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import { updateRestaurant } from "./restaurant-reducer";
+import { updateRestaurant } from "./restaurants-reducer";
 import EditUpdate from "./restaurant-updates/edit-update";
 import EditFeature from "./featured-items/edit-featured-item";
 import "./restaurant.css";
