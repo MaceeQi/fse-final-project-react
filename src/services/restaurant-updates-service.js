@@ -19,10 +19,10 @@ export const findUpdateById = (updateId) =>
         .then(response => response.data);
 
 export const createUpdate = async (update) => {
-    const response = await axios.post(`${RESTAURANTS_API}/${update.restaurant}/updates`, update);
+    const response = await axios.post(`${RESTAURANTS_API}/${update.updatedBy}/updates`, update);
     return response.data;
 }
 
-export const deleteUpdate = (updateid) =>
+export const deleteUpdate = (updateId) =>
     axios.delete(`${UPDATES_API}/${updateId}`)
         .then(response => response.data);
