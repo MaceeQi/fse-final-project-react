@@ -26,7 +26,7 @@ const BusinessProfile = () => {
             .then(setRestaurant(publicPage))
     }, [restId, dispatch, publicPage]);
 
-    // console.log(restaurant);
+    console.log(restaurant);
 
     return (
     <div className="border ttr-border-radius">
