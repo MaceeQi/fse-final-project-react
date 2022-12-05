@@ -40,8 +40,6 @@ const BusinessHome = () => {
         }
         fetchData();
     }, [restId, dispatch, publicPage]);
-    // console.log(publicPage);
-    console.log(restaurant);
 
     return (
         <div className="border ttr-border-radius">
@@ -51,32 +49,37 @@ const BusinessHome = () => {
                     Loading...
                 </h5>
             }
-            <div className="position-relative ttr-banner d-flex justify-content-center">
-                <img src={`/images/${restaurant.bannerPicture}`}
-                     alt="banner"
-                     className="ttr-border-radius ttr-banner-width mt-3" height={200}/>
-                <img className="ttr-portrait position-absolute start-0 ms-5"
-                    alt="profile"
-                     src={`/images/${restaurant.profilePicture}`}/>
-            </div>
-            <div className="m-3 position-relative">
+            {
+                restaurant &&
+                <>
+                    <div className="position-relative ttr-banner d-flex justify-content-center">
+                        <img src={`/images/${restaurant.bannerPicture}`}
+                             alt="banner"
+                             className="ttr-border-radius ttr-banner-width mt-3" height={200}/>
+                        <img className="ttr-portrait position-absolute start-0 ms-5"
+                             alt="profile"
+                             src={`/images/${restaurant.profilePicture}`}/>
+                    </div>
+                    <div className="m-3 position-relative">
                 <span className="h5 fw-bolder">{restaurant.name} {restaurant.handle}
                 </span><br/>
-                <p className="mt-3 mb-3">{restaurant.bio}</p>
-                <BusinessInfo restaurant={restaurant}/>
-                <UpdateList restaurant={restaurant}/>
-                <FeatureList restaurant={restaurant}/>
-                <div className="mb-3 border ttr-border-radius">
-                    <div className="m-2">
-                        <h5 className="fw-bolder">Professional Reviews</h5>
-                        {
-                            loggedIn.type === "CRITIC" && <CreateReview restaurant={restaurant}
-                                                                        critic={loggedIn}/>
-                        }
-                        <ReviewList restaurant={restaurant} critics={critics}/>
+                        <p className="mt-3 mb-3">{restaurant.bio}</p>
+                        <BusinessInfo restaurant={restaurant}/>
+                        <UpdateList restaurant={restaurant}/>
+                        <FeatureList restaurant={restaurant}/>
+                        <div className="mb-3 border ttr-border-radius">
+                            <div className="m-2">
+                                <h5 className="fw-bolder">Professional Reviews</h5>
+                                {
+                                    loggedIn.type === "CRITIC" && <CreateReview restaurant={restaurant}
+                                                                                critic={loggedIn}/>
+                                }
+                                <ReviewList restaurant={restaurant} critics={critics}/>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </>
+            }
         </div>
     );
 }
