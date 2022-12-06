@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:4000/api";
+const BASE_URL = "http://localhost:4000";
 
 const LOGIN_API = `${BASE_URL}/api/login`;
 const USERS_API = `${BASE_URL}/api/users`;
@@ -27,6 +27,26 @@ export const deleteUsersByUsername = (username) =>
 export const findUserByCredentials = (credentials) =>
   axios.post(`${LOGIN_API}`, credentials)
     .then(response => response.data);
+
+export const updateUser = (uid, updates) =>
+    axios.put(`${USERS_API}/${uid}`, updates)
+        .then(response => response.data);
+
+export const deleteAllUsers = () =>
+    axios.delete(`${USERS_API}`)
+        .then(response => response.data);
+
+export const findUsersByType = (type) =>
+    axios.get(`${USERS_API}/type/${type}`)
+        .then(response => response.data);
+
+export const findUsersByRestaurant = (rid) =>
+    axios.get(`${USERS_API}/business/${rid}`)
+        .then(response => response.data);
+
+export const deleteUsersByRestaurant = (rid) =>
+    axios.delete(`${USERS_API}/business/${rid}`)
+        .then(response => response.data);
 
 const service = {
   findAllUsers
