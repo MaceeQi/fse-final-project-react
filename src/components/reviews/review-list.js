@@ -7,7 +7,7 @@ import {findAllReviewsForRestaurantThunk, findAllReviewsThunk} from "../../servi
 const ReviewList = ({restaurant, critics}) => {
     const reviews = useSelector(state => state.reviews);
     const dispatch = useDispatch();
-    useEffect(() => {dispatch(findAllReviewsThunk())})
+    useEffect(() => {dispatch(findAllReviewsThunk())}, [])
     // useEffect(() => {dispatch(findAllReviewsForRestaurantThunk(restaurant._id))})
     return (
         <div className="list-group ttr-border-radius">
