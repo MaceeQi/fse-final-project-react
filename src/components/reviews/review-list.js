@@ -5,19 +5,21 @@ import {useDispatch, useSelector} from "react-redux";
 import {findAllReviewsForRestaurantThunk} from "../../services/reviews-thunks";
 
 const ReviewList = ({restaurant}) => {
-    // console.log(restaurant);
+    console.log(restaurant);
 
     const reviews = useSelector(state => state.reviews);
     const dispatch = useDispatch();
     // useEffect(() => {dispatch(findAllReviewsThunk())})
     useEffect(() => {
-        dispatch(findAllReviewsForRestaurantThunk(restaurant._id))
-    }, [restaurant._id]);
+        if (restaurant) {
+            dispatch(findAllReviewsForRestaurantThunk(restaurant._id))
+        }
+    }, [restaurant, dispatch]);
 
     return (
         <div className="list-group ttr-border-radius">
             {
-                // reviews.reviews.filter(review => review.restaurantId === restaurant._id)
+                reviews &&
                 reviews.reviews.slice(0).reverse()
                     .map(review =>
                              <ReviewItem

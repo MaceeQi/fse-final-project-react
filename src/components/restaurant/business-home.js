@@ -21,6 +21,7 @@ const BusinessHome = () => {
     // critic user: will see the review textbox and submit button
     // average user: can only see the reviews list
     const loggedIn = currentUser;
+    // console.log(loggedIn);
 
     const {publicPage, loading} = useSelector(state => state.restaurantsData);
     const {pathname} = useLocation();
@@ -78,7 +79,7 @@ const BusinessHome = () => {
                                     loggedIn.type === "CRITIC" && <CreateReview restaurant={restaurant}
                                                                                 critic={loggedIn}/>
                                 }
-                                <ReviewList restaurant={restaurant}/>
+                                {/*<ReviewList restaurant={restaurant}/>*/}
                             </div>
                         </div>
                     </div>
