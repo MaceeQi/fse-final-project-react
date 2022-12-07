@@ -28,6 +28,11 @@ export const findUserByCredentials = (credentials) =>
   axios.post(`${LOGIN_API}`, credentials)
     .then(response => response.data);
 
+export const updateUser = async (user) => {
+  const response = await axios.put(`${USERS_API}/${user._id}`, user);
+  return user;
+}
+
 const service = {
   findAllUsers
 }
