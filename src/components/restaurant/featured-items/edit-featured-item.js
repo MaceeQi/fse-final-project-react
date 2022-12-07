@@ -3,14 +3,14 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {
     createFeaturedItemThunk,
-    deleteFeaturedItemThunk, findAllFeaturedItemsThunk, findFeaturedItemsByRestaurantThunk
+    deleteFeaturedItemThunk, findFeaturedItemsByRestaurantThunk
 } from "../../../services/featured-item-thunks";
-import {
-    findAllFeaturedItems,
-    findFeaturedItemsByRestaurant
-} from "../../../services/featured-item-service";
+// import {
+//     findAllFeaturedItems,
+//     findFeaturedItemsByRestaurant
+// } from "../../../services/featured-item-service";
 import {useLocation} from "react-router-dom";
-import {findRestaurantByIdThunk} from "../../../services/restaurants-thunks";
+// import {findRestaurantByIdThunk} from "../../../services/restaurants-thunks";
 
 const EditFeature = () => {
     const {features} = useSelector(state=> state.features);

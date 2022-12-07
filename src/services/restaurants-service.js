@@ -21,8 +21,8 @@ export const createRestaurant = (restaurant) =>
 
 
 export const updateRestaurant = async (restaurant) => {
-    const response = await axios.put(`${RESTAURANTS_API}/${restaurant._id}`, restaurant);
-    console.log(restaurant)
+    await axios.put(`${RESTAURANTS_API}/${restaurant._id}`, restaurant);
+    // console.log(restaurant)
     return restaurant;
 }
 

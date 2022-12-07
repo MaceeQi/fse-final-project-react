@@ -12,7 +12,7 @@ import Notifications from "../notifications";
 import Messages from "../messages";
 import Lists from "../lists";
 import More from "../more";
-import {Login} from "../profile/login";
+import Login from "../profile/login";
 import Movies from "../movies";
 import MovieDetails from "../movies/details";
 import BusinessHome from "../restaurant/business-home";
@@ -25,6 +25,7 @@ import restaurantReducer from "../restaurant/restaurants-reducer";
 import {Provider} from "react-redux";
 import {configureStore} from "@reduxjs/toolkit";
 import BusinessProfile from "../restaurant/business-profile";
+import usersReducer from "../profile/users-reducer";
 
 // revised restaurants to restaurantsData for the new reducer with thunks
 const store = configureStore({reducer: {
@@ -33,7 +34,8 @@ const store = configureStore({reducer: {
     // differentiation as this restaurantReducer were updated to take more variable fields - yutong
     restaurantsData: restaurantReducer,
     updates: updateReducer,
-    features: featuredReducer
+    features: featuredReducer,
+    usersData: usersReducer,
 }});
 
 function Tuiter () {
@@ -62,7 +64,9 @@ function Tuiter () {
                 <Route path="/profile/edit" element={<EditProfile/>}/>
                 {/*need to update the path below later, for testing only currently*/}
                 <Route path="/profile/business/:rid" element={<BusinessProfile/>}/>
+                <Route path="/profile/business" element={<BusinessProfile/>}/>
                 <Route path="/profile/business/:rid/edit" element={<EditRestaurant/>}/>
+                <Route path="/profile/business/edit" element={<EditRestaurant/>}/>
                 <Route path="/movies" element={<Movies/>}/>
                 <Route path="/movies/:imdbID" element={<MovieDetails/>}/>
                 <Route path="/restaurant" element={<RestaurantSearch/>}/>

@@ -30,7 +30,7 @@ const RestaurantSearch = () => {
 
     useEffect(() => {
         dispatch(findAllRestaurantsThunk())
-    }, []);
+    }, [dispatch]);
 
     return (
         <div className="p-2">

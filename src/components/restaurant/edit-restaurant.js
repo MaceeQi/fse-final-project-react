@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from "react";
 import {Link, useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import { updateRestaurant } from "./restaurants-reducer";
-import EditUpdate from "./restaurant-updates/edit-update";
+// import { updateRestaurant } from "./restaurants-reducer";
+// import EditUpdate from "./restaurant-updates/edit-update";
 import EditFeature from "./featured-items/edit-featured-item";
 import "./restaurant.css";
 import {findRestaurantByIdThunk, updateRestaurantThunk} from "../../services/restaurants-thunks";
@@ -33,11 +33,11 @@ const EditRestaurant = () => {
     return(
       <div className="ttr-border p-3">
           <div>
-              <Link to={`/profile/business/${restaurant._id}`}
+              <Link to={`/profile/business`}
                     className="btn btn-light rounded-pill fa-pull-left fw-bolder mt-2 mb-2 ms-2">
                   <i className="fa fa-close"></i>
               </Link>
-              <Link to={`/profile/business/${restaurant._id}`}
+              <Link to={`/profile/business`}
                     onClick={saveClickHandler}
                     className="btn btn-secondary rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2">
                     Save

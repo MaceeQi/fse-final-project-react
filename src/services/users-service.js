@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:4000/api";
+const BASE_URL = "http://localhost:4000";
 
 const LOGIN_API = `${BASE_URL}/api/login`;
 const USERS_API = `${BASE_URL}/api/users`;
@@ -29,7 +29,7 @@ export const findUserByCredentials = (credentials) =>
     .then(response => response.data);
 
 export const updateUser = async (user) => {
-  const response = await axios.put(`${USERS_API}/${user._id}`, user);
+  await axios.put(`${USERS_API}/${user._id}`, user);
   return user;
 }
 

@@ -26,9 +26,23 @@ const FeatureList = () => {
                     features.slice(0).reverse().map(feature =>
                          <div className="card ttr-card-block border" key={feature._id}>
                              <div className="position-relative">
-                                 <img className="card-img-top ttr-card-photo mt-2 mb-1"
-                                      src={`/images/${feature.photo}`}
-                                      alt="food"/>
+                                 {
+                                     (!feature.photo) &&
+                                     <img className="card-img-top ttr-card-photo mt-2 mb-1"
+                                          alt="food"
+                                          src={`/images/emptyFood.jpeg`}/>
+                                 }
+                                 {
+                                     feature.photo && feature.photo.includes("http") &&
+                                     <img className="card-img-top ttr-card-photo mt-2 mb-1"
+                                          src={feature.photo} alt="food"/>
+                                 }
+                                 {
+                                     feature.photo && !feature.photo.includes("http") &&
+                                     <img className="card-img-top ttr-card-photo mt-2 mb-1"
+                                          alt="food"
+                                          src={`/images/${feature.photo}`}/>
+                                 }
                                  {
                                      feature.popular &&
                                      <i className="fa-solid fa-award ttr-popular position-absolute">

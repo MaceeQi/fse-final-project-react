@@ -5,7 +5,7 @@ import {Link, useLocation} from "react-router-dom";
 import critics from "../data/critic-users.json";
 import ReviewList from "../reviews/review-list";
 import BusinessInfo from "./business-info";
-import UpdateList from "./restaurant-updates/update-list";
+// import UpdateList from "./restaurant-updates/update-list";
 import FeatureList from "./featured-items/featured-item-list";
 import "../restaurant/restaurant.css";
 import {findRestaurantByIdThunk} from "../../services/restaurants-thunks";
@@ -13,7 +13,9 @@ import {findRestaurantByIdThunk} from "../../services/restaurants-thunks";
 // hardcode restaurant input, need to change later
 const BusinessProfile = () => {
     // need to update change publicPage to current user after implementing login signup
-    const {publicPage, loading} = useSelector(state => state.restaurantsData);
+    const {publicPage} = useSelector(state => state.restaurantsData);
+    const {currentUser} = useSelector(state => state.usersData);
+
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const restId = paths[paths.length-1];
@@ -21,21 +23,20 @@ const BusinessProfile = () => {
     let [restaurant, setRestaurant] = useState({});
     const dispatch = useDispatch();
 
+    // let restId = currentUser.business;
+    // console.log(restId);
+
     useEffect(   () => {
         dispatch(findRestaurantByIdThunk(restId))
             .then(setRestaurant(publicPage))
     }, [restId, dispatch, publicPage]);
 
+    // console.log(publicPage);
+    //
     // console.log(restaurant);
 
     return (
     <div className="border ttr-border-radius">
-        {
-            loading &&
-            <h5>
-                Loading...
-            </h5>
-        }
         {
             restaurant &&
             <>
@@ -63,7 +64,7 @@ const BusinessProfile = () => {
                     <div className="mb-3 border ttr-border-radius">
                         <div className="m-2">
                             <h5 className="fw-bolder">Professional Reviews</h5>
-                            <ReviewList restaurant={restaurant} critics={critics}/>
+                            <ReviewList restaurant={restaurant}/>
                         </div>
                     </div>
                 </div>

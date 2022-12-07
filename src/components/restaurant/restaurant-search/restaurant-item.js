@@ -26,7 +26,7 @@ const RestaurantItem = ({
                     <div className="d-flex">
                         <div>
                             <img src={`/images/${restaurant.profilePicture}`}
-                                 className="ttr-square-avatar"/>
+                                 className="ttr-square-avatar" alt="profilePicture"/>
                         </div>
                         <div className="ms-3 me-1 w-50">
                             <span className="fw-bold">{restaurant.name}</span><br/>

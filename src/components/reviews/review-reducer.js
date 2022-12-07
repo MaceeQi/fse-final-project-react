@@ -1,7 +1,9 @@
 import {createSlice} from "@reduxjs/toolkit";
 // import reviews from "../data/sample-reviews.json";
-import {findAllReviewsThunk, createReviewThunk,
-    updateReviewThunk, deleteReviewThunk} from "../../services/reviews-thunks";
+import {
+    findAllReviewsThunk, createReviewThunk,
+    updateReviewThunk, deleteReviewThunk, findAllReviewsForRestaurantThunk
+} from "../../services/reviews-thunks";
 
 const reviewsReducer = createSlice({
     name: "reviews",
@@ -11,6 +13,10 @@ const reviewsReducer = createSlice({
     extraReducers: {
        [findAllReviewsThunk.fulfilled]:
            (state, action) => {
+                state.reviews = action.payload
+            },
+        [findAllReviewsForRestaurantThunk.fulfilled]:
+            (state, action) => {
                 state.reviews = action.payload
             },
         [deleteReviewThunk.fulfilled] :

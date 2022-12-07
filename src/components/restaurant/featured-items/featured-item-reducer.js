@@ -26,7 +26,7 @@ const featuredSlice = createSlice({
           (state, {payload}) => {
               state.loading = false;
               state.features = payload;
-              console.log(state.features);
+              // console.log(state.features);
           },
       [findFeaturedItemByIdThunk.fulfilled]:
           (state, {payload}) => {
