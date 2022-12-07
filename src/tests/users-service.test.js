@@ -1,5 +1,5 @@
 import {
-  createUser,
+  createUser, deleteUser,
   deleteUsersByUsername, findAllUsers,
   findUserById, updateUser
 } from "../services/users-service";
@@ -240,5 +240,37 @@ describe('updateUser', () => {
     expect(user.password).toEqual('a1234');
     expect(user.email).toEqual('ashketchum@pokemon.com');
     expect(user.type).toEqual('CRITIC');
+  });
+});
+
+describe('deleteUser', () => {
+  // sample user to delete
+  const ash = {
+    username: 'ash',
+    password: 'a123',
+    email: 'ash@pokemon.com',
+    type: 'AVERAGE'
+  };
+
+  let newUser;
+
+  // setup the tests before verification
+  beforeAll(async () => {
+    // insert the sample user we then try to update
+    newUser = await createUser(ash);
+  });
+
+  // clean up after test runs
+  afterAll(() => {
+    // remove any data we created
+    return deleteUsersByUsername(ash.username);
+  })
+
+  test('can delete user by primary key from REST API', async () => {
+    // delete a user. Assumes user already exists
+    const status = await deleteUser(newUser._id);
+
+    // verify we updated user
+    expect(status.deletedCount).toBeGreaterThanOrEqual(1);
   });
 });

@@ -34,10 +34,6 @@ export const updateUser = (uid, updates) =>
     axios.put(`${USERS_API}/${uid}`, updates)
         .then(response => response.data);
 
-export const deleteAllUsers = () =>
-    axios.delete(`${USERS_API}`)
-        .then(response => response.data);
-
 export const findUsersByType = (type) =>
     axios.get(`${USERS_API}/type/${type}`)
         .then(response => response.data);
