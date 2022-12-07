@@ -29,21 +29,13 @@ const BusinessHome = () => {
     const restId = paths[paths.length-1];
     // console.log(restId);
 
-    let [restaurant, setRestaurant] = useState({});
-
     const dispatch = useDispatch();
 
-    async function fetchData() {
-        // You can await here
-        if (restId) {
-            await dispatch(findRestaurantByIdThunk(restId));
-            await setRestaurant(publicPage);
-        }
-    }
-
     useEffect(() => {
-        fetchData();
-    }, [restId, publicPage]);
+        if (restId) {
+            dispatch(findRestaurantByIdThunk(restId));
+        }
+    }, []);
 
     return (
         <div className="border ttr-border-radius">
@@ -54,32 +46,32 @@ const BusinessHome = () => {
                 </h5>
             }
             {
-                restaurant &&
+                publicPage &&
                 <>
                     <div className="position-relative ttr-banner d-flex justify-content-center">
-                        <img src={`/images/${restaurant.bannerPicture}`}
+                        <img src={`/images/${publicPage.bannerPicture}`}
                              alt="banner"
                              className="ttr-border-radius ttr-banner-width mt-3" height={200}/>
                         <img className="ttr-portrait position-absolute start-0 ms-5"
                              alt="profile"
-                             src={`/images/${restaurant.profilePicture}`}/>
+                             src={`/images/${publicPage.profilePicture}`}/>
                     </div>
                     <div className="m-3 position-relative">
-                <span className="h5 fw-bolder">{restaurant.name} {restaurant.handle}
+                <span className="h5 fw-bolder">{publicPage.name} {publicPage.handle}
                 </span><br/>
-                        <p className="mt-3 mb-3">{restaurant.bio}</p>
-                        <BusinessInfo restaurant={restaurant}/>
-                        <UpdateList restaurant={restaurant}/>
-                        <FeatureList restaurant={restaurant}/>
+                        <p className="mt-3 mb-3">{publicPage.bio}</p>
+                        <BusinessInfo restaurant={publicPage}/>
+                        <UpdateList restaurant={publicPage}/>
+                        <FeatureList restaurant={publicPage}/>
                         <div className="mb-3 border ttr-border-radius">
                             <div className="m-2">
                                 <h5 className="fw-bolder">Professional Reviews</h5>
                                 {
                                     loggedIn &&
-                                    loggedIn.type === "CRITIC" && <CreateReview restaurant={restaurant}
+                                    loggedIn.type === "CRITIC" && <CreateReview restaurant={publicPage}
                                                                                 critic={loggedIn}/>
                                 }
-                                {/*<ReviewList restaurant={restaurant}/>*/}
+                                <ReviewList restaurant={publicPage}/>
                             </div>
                         </div>
                     </div>

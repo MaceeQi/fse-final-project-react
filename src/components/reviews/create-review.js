@@ -12,7 +12,8 @@ const CreateReview = ({restaurant, critic}) => {
             restaurantid: restaurant._id,
             criticid: critic._id
         }
-        dispatch(createReviewThunk(newReview))
+        dispatch(createReviewThunk(newReview));
+        console.log(newReview);
     }
 
     return (
