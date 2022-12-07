@@ -109,49 +109,51 @@ describe('deleteUsersByUsername', () => {
 
 describe('findUserById',  () => {
   // sample user we want to retrieve
-  const adam = {
-    username: 'adam_smith',
-    password: 'not0sum',
-    email: 'wealth@nations.com'
+  const eevee = {
+    username: 'eevee',
+    password: 'e123',
+    email: 'eevee@pokemon.com',
+    type: 'CRITIC'
   };
 
   // setup before running test
   beforeAll(() => {
     // clean up before the test making sure the user doesn't already exist
-    return deleteUsersByUsername(adam.username)
+    return deleteUsersByUsername(eevee.username)
   });
 
   // clean up after ourselves
   afterAll(() => {
     // remove any data we inserted
-    return deleteUsersByUsername(adam.username);
+    return deleteUsersByUsername(eevee.username);
   });
 
   test('can retrieve user from REST API by primary key', async () => {
     // insert the user in the database
-    const newUser = await createUser(adam);
+    const newUser = await createUser(eevee);
 
     // verify new user matches the parameter user
-    expect(newUser.username).toEqual(adam.username);
-    expect(newUser.password).toEqual(adam.password);
-    expect(newUser.email).toEqual(adam.email);
+    expect(newUser.username).toEqual(eevee.username);
+    expect(newUser.password).toEqual(eevee.password);
+    expect(newUser.email).toEqual(eevee.email);
+    expect(newUser.type).toEqual(eevee.type);
 
     // retrieve the user from the database by its primary key
-    const existingUser = await findUserById(newUser.id);
+    const existingUser = await findUserById(newUser._id);
 
     // verify retrieved user matches parameter user
-    expect(existingUser.username).toEqual(adam.username);
-    expect(existingUser.password).toEqual(adam.password);
-    expect(existingUser.email).toEqual(adam.email);
+    expect(existingUser.username).toEqual(eevee.username);
+    expect(existingUser.password).toEqual(eevee.password);
+    expect(existingUser.email).toEqual(eevee.email);
+    expect(existingUser.type).toEqual(eevee.type)
   });
 });
 
 
 describe('findAllUsers',  () => {
-
   // sample users we'll insert to then retrieve
   const usernames = [
-    "larry", "curley", "moe"
+    "pikachu", "charizard", "snorlax"
   ];
 
   // setup data before test
@@ -161,7 +163,8 @@ describe('findAllUsers',  () => {
       createUser({
         username,
         password: `${username}123`,
-        email: `${username}@stooges.com`
+        email: `${username}@pokemon.com`,
+        type: 'AVERAGE'
       })
     )
   );
@@ -190,7 +193,8 @@ describe('findAllUsers',  () => {
       const username = usernames.find(username => username === user.username);
       expect(user.username).toEqual(username);
       expect(user.password).toEqual(`${username}123`);
-      expect(user.email).toEqual(`${username}@stooges.com`);
+      expect(user.email).toEqual(`${username}@pokemon.com`);
+      expect(user.type).toEqual('AVERAGE');
     });
   });
 });
