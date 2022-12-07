@@ -1,7 +1,7 @@
 import {
   createUser, deleteUser,
   deleteUsersByUsername, findAllUsers,
-  findUserById, updateUser
+  findUserById, findUsersByType, updateUser
 } from "../services/users-service";
 
 describe('createUser', () => {
@@ -219,7 +219,7 @@ describe('updateUser', () => {
   // clean up after test runs
   afterAll(() => {
     // remove any data we created
-    return deleteUsersByUsername(ash.username);
+    return deleteUser(newUser._id);
   })
 
   test('can update user from REST API', async () => {
@@ -274,3 +274,61 @@ describe('deleteUser', () => {
     expect(status.deletedCount).toBeGreaterThanOrEqual(1);
   });
 });
+
+describe('findUsersByType - average',  () => {
+  // sample AVERAGE users we'll insert to then retrieve
+  const averages = [
+    "abra", "absol", "aggron"
+  ];
+
+  // setup data before test
+  beforeAll(() =>
+      // insert several known AVERAGE users
+      averages.map(average =>
+          createUser({
+             username: average,
+             password: `${average}123`,
+             email: `${average}@pokemon.com`,
+             type: 'AVERAGE'
+           })
+      )
+  );
+
+  // clean up after ourselves
+  afterAll(async () => {
+    // delete the users we inserted
+    for (let user of averages) {
+      await deleteUsersByUsername(user);
+    }
+  });
+
+  test('can retrieve all users of AVERAGE type from REST API', async () => {
+    // retrieve all AVERAGE users
+    const users = await findUsersByType('AVERAGE');
+
+    // there should be a minimum number of AVERAGE users
+    expect(users.length).toBeGreaterThanOrEqual(averages.length);
+
+    // let's check each user we inserted
+    const usersWeInserted = users.filter(
+        user => averages.indexOf(user.username) >= 0);
+
+    // compare the actual users in database with the ones we sent
+    usersWeInserted.forEach(user => {
+      const username = averages.find(username => username === user.username);
+      expect(user.username).toEqual(username);
+      expect(user.password).toEqual(`${username}123`);
+      expect(user.email).toEqual(`${username}@pokemon.com`);
+      expect(user.type).toEqual('AVERAGE');
+    });
+  });
+});
+
+
+const businesses = [
+  "bagon", "baltoy", "banette"
+];
+
+const critics = [
+  "cacnea", "cacturne", "calyrex"
+];
