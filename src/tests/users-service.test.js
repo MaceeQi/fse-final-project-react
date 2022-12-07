@@ -5,33 +5,75 @@ import {
 } from "../services/users-service";
 
 describe('createUser', () => {
-  // sample user to insert
-  const ripley = {
-    username: 'ellenripley',
-    password: 'lv426',
-    email: 'ellenripley@aliens.com'
+  // sample users to insert (3 types)
+  const ash = {
+    username: 'ash',
+    password: 'a123',
+    email: 'ash@pokemon.com',
+    type: 'AVERAGE'
   };
 
+  const buzz = {
+    username: 'buzz',
+    password: 'b123',
+    email: 'buzz@lightyear.com',
+    type: 'BUSINESS'
+  }
+
+  const clifford = {
+    username: 'clifford',
+    password: 'c123',
+    email: 'clifford@bigreddog.com',
+    type: 'CRITIC'
+  }
+
   // setup test before running test
-  beforeAll(() => {
+  beforeAll(async () => {
     // remove any/all users to make sure we create it in the test
-    return deleteUsersByUsername(ripley.username);
+    await deleteUsersByUsername(ash.username);
+    await deleteUsersByUsername(buzz.username);
+    await deleteUsersByUsername(clifford.username);
   })
 
   // clean up after test runs
-  afterAll(() => {
+  afterAll(async () => {
     // remove any data we created
-    return deleteUsersByUsername(ripley.username);
+    await deleteUsersByUsername(ash.username);
+    await deleteUsersByUsername(buzz.username);
+    await deleteUsersByUsername(clifford.username);
   })
 
-  test('can insert new users with REST API', async () => {
+  test('can insert new AVERAGE user with REST API', async () => {
     // insert new user in the database
-    const newUser = await createUser(ripley);
+    const newUser = await createUser(ash);
 
     // verify inserted user's properties match parameter user
-    expect(newUser.username).toEqual(ripley.username);
-    expect(newUser.password).toEqual(ripley.password);
-    expect(newUser.email).toEqual(ripley.email);
+    expect(newUser.username).toEqual(ash.username);
+    expect(newUser.password).toEqual(ash.password);
+    expect(newUser.email).toEqual(ash.email);
+    expect(newUser.type).toEqual(ash.type)
+  });
+
+  test('can insert new BUSINESS user with REST API', async () => {
+    // insert new user in the database
+    const newUser = await createUser(buzz);
+
+    // verify inserted user's properties match parameter user
+    expect(newUser.username).toEqual(buzz.username);
+    expect(newUser.password).toEqual(buzz.password);
+    expect(newUser.email).toEqual(buzz.email);
+    expect(newUser.type).toEqual(buzz.type)
+  });
+
+  test('can insert new CRITIC user with REST API', async () => {
+    // insert new user in the database
+    const newUser = await createUser(clifford);
+
+    // verify inserted user's properties match parameter user
+    expect(newUser.username).toEqual(clifford.username);
+    expect(newUser.password).toEqual(clifford.password);
+    expect(newUser.email).toEqual(clifford.email);
+    expect(newUser.type).toEqual(clifford.type)
   });
 });
 
