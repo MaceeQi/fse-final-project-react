@@ -324,11 +324,100 @@ describe('findUsersByType - average',  () => {
   });
 });
 
+describe('findUsersByType - business',  () => {
+  // sample BUSINESS users we'll insert to then retrieve
+  const businesses = [
+    "bagon", "baltoy", "banette"
+  ];
 
-const businesses = [
-  "bagon", "baltoy", "banette"
-];
+  // setup data before test
+  beforeAll(() =>
+      // insert several known BUSINESS users
+      businesses.map(business =>
+           createUser({
+                username: business,
+                password: `${business}123`,
+                email: `${business}@pokemon.com`,
+                type: 'BUSINESS'
+           })
+      )
+  );
 
-const critics = [
-  "cacnea", "cacturne", "calyrex"
-];
+  // clean up after ourselves
+  afterAll(async () => {
+    // delete the users we inserted
+    for (let user of businesses) {
+      await deleteUsersByUsername(user);
+    }
+  });
+
+  test('can retrieve all users of BUSINESS type from REST API', async () => {
+    // retrieve all BUSINESS users
+    const users = await findUsersByType('BUSINESS');
+
+    // there should be a minimum number of BUSINESS users
+    expect(users.length).toBeGreaterThanOrEqual(businesses.length);
+
+    // let's check each user we inserted
+    const usersWeInserted = users.filter(
+        user => businesses.indexOf(user.username) >= 0);
+
+    // compare the actual users in database with the ones we sent
+    usersWeInserted.forEach(user => {
+      const username = businesses.find(username => username === user.username);
+      expect(user.username).toEqual(username);
+      expect(user.password).toEqual(`${username}123`);
+      expect(user.email).toEqual(`${username}@pokemon.com`);
+      expect(user.type).toEqual('BUSINESS');
+    });
+  });
+});
+
+describe('findUsersByType - critic',  () => {
+  // sample CRITIC users we'll insert to then retrieve
+  const critics = [
+    "cacnea", "cacturne", "calyrex"
+  ];
+
+  // setup data before test
+  beforeAll(() =>
+      // insert several known CRITIC users
+      critics.map(critic =>
+           createUser({
+                username: critic,
+                password: `${critic}123`,
+                email: `${critic}@pokemon.com`,
+                type: 'CRITIC'
+           })
+)
+  );
+
+  // clean up after ourselves
+  afterAll(async () => {
+    // delete the users we inserted
+    for (let user of critics) {
+      await deleteUsersByUsername(user);
+    }
+  });
+
+  test('can retrieve all users of CRITIC type from REST API', async () => {
+    // retrieve all CRITIC users
+    const users = await findUsersByType('CRITIC');
+
+    // there should be a minimum number of CRITIC users
+    expect(users.length).toBeGreaterThanOrEqual(critics.length);
+
+    // let's check each user we inserted
+    const usersWeInserted = users.filter(
+        user => critics.indexOf(user.username) >= 0);
+
+    // compare the actual users in database with the ones we sent
+    usersWeInserted.forEach(user => {
+      const username = critics.find(username => username === user.username);
+      expect(user.username).toEqual(username);
+      expect(user.password).toEqual(`${username}123`);
+      expect(user.email).toEqual(`${username}@pokemon.com`);
+      expect(user.type).toEqual('CRITIC');
+    });
+  });
+});
