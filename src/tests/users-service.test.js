@@ -1,5 +1,5 @@
 import {
-  createUser, deleteUser,
+  createUser, deleteUser, deleteUsersByRestaurant,
   deleteUsersByUsername, findAllUsers,
   findUserById, findUsersByRestaurant, findUsersByType, updateUser
 } from "../services/users-service";
@@ -470,7 +470,7 @@ describe('findUsersByRestaurant',  () => {
   });
 
   test('can retrieve users associated to restaurant by restaurant primary key', async () => {
-``  // retrieve users from the database by restaurant its associated to
+    // retrieve users from the database by restaurant its associated to
     const users = await findUsersByRestaurant(newRestaurant._id);
 
     // there should be only one user
@@ -485,5 +485,60 @@ describe('findUsersByRestaurant',  () => {
     expect(businessUser.email).toEqual(newUser.email);
     expect(businessUser.type).toEqual(newUser.type);
     expect(businessUser.business).toEqual(newUser.business);
+  });
+});
+
+describe('deleteUsersByRestaurant',  () => {
+  // sample business user associated to restaurant
+  const katara = {
+    username: 'katara',
+    password: 'k123',
+    email: 'katara@avatar.com',
+    type: 'BUSINESS'
+  };
+
+  // sample restaurant
+  const restaurant = {
+    name: "Katara's Restaurant",
+    handle: "@kataras",
+    cuisine: "Asian",
+    price: "$",
+    address: "Southern Water Tribe",
+    phone: "000-000-0000"
+  };
+
+  let newUser;
+  let newRestaurant;
+
+  // setup before running test
+  beforeAll(async () => {
+    // clean up before the test making sure the user and restaurant don't already exist
+    await deleteUsersByUsername(katara.username);
+    await deleteRestaurantByRestaurantName(restaurant.name);
+
+    // create user
+    newUser = await createUser(katara);
+
+    // create restaurant
+    newRestaurant = await createRestaurant({...restaurant, ownedBy: newUser._id});
+
+    // associate restaurant to user
+    await updateUser(newUser._id, {...newUser, business: newRestaurant._id});
+    newUser = await findUserById(newUser._id);
+  });
+
+  // clean up after ourselves
+  afterAll(async () => {
+    // remove any data we inserted
+    await deleteUsersByUsername(katara.username);
+    await deleteRestaurantByRestaurantName(restaurant.name);
+  });
+
+  test('can delete users based on associated restaurant', async () => {
+    // retrieve users from the database by restaurant its associated to
+    const status = await deleteUsersByRestaurant(newRestaurant._id);
+
+    // there should be only one user
+    expect(status.deletedCount).toEqual(1);
   });
 });
