@@ -27,7 +27,7 @@ const reviewsReducer = createSlice({
             (state, { payload }) => {
                 state.reviews.push(payload)
             },
-        [updateReviewThunk().fulfilled]:
+        [updateReviewThunk.fulfilled]:
             (state, { payload }) => {
                 const reviewNdx = state.review
                     .findIndex((r) => r._id === payload._id)

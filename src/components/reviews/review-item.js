@@ -19,7 +19,7 @@ const ReviewItem = ({review}) => {
                 <div className="col-10">
                     <div className="me-2">
                         <div>
-                            <i onClick={() => deleteReviewHandler(review._id)} className="fas fa-remove fa-pull-right"></i>
+                            <i onClick={() => deleteReviewHandler(review._id)} className="fas fa-remove fa-pull-right"/>
                             <span className="text-black fw-bolder">
                                 {review.critic && review.critic.firstName} {review.critic && review.critic.lastName}
                             </span> <i className="bi bi-patch-check-fill text-primary"> </i>
@@ -28,7 +28,7 @@ const ReviewItem = ({review}) => {
                             </span>
                         </div>
                         <div>
-                            <i id="edit" className="fa fa-edit fa-pull-right"></i>
+                            <i id="edit" className="fa fa-edit fa-pull-right"/>
                             <span>{review.review}</span>
                             <UpdateReview reviewid={review._id} review={review.review}/>
                         </div>
