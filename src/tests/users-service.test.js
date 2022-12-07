@@ -1,8 +1,9 @@
 import {
   createUser, deleteUser,
   deleteUsersByUsername, findAllUsers,
-  findUserById, findUsersByType, updateUser
+  findUserById, findUsersByRestaurant, findUsersByType, updateUser
 } from "../services/users-service";
+import {createRestaurant, deleteRestaurantByRestaurantName} from "../services/restaurants-service";
 
 describe('createUser', () => {
   // sample users to insert (3 types)
@@ -145,7 +146,7 @@ describe('findUserById',  () => {
     expect(existingUser.username).toEqual(eevee.username);
     expect(existingUser.password).toEqual(eevee.password);
     expect(existingUser.email).toEqual(eevee.email);
-    expect(existingUser.type).toEqual(eevee.type)
+    expect(existingUser.type).toEqual(eevee.type);
   });
 });
 
@@ -419,5 +420,70 @@ describe('findUsersByType - critic',  () => {
       expect(user.email).toEqual(`${username}@pokemon.com`);
       expect(user.type).toEqual('CRITIC');
     });
+  });
+});
+
+describe('findUsersByRestaurant',  () => {
+  // sample business user associated to restaurant
+  const katara = {
+    username: 'katara',
+    password: 'k123',
+    email: 'katara@avatar.com',
+    type: 'BUSINESS'
+  };
+
+  // sample restaurant
+  const restaurant = {
+    name: "Katara's Restaurant",
+    handle: "@kataras",
+    cuisine: "Asian",
+    price: "$",
+    address: "Southern Water Tribe",
+    phone: "000-000-0000"
+  };
+
+  let newUser;
+  let newRestaurant;
+
+  // setup before running test
+  beforeAll(async () => {
+    // clean up before the test making sure the user and restaurant don't already exist
+    await deleteUsersByUsername(katara.username);
+    await deleteRestaurantByRestaurantName(restaurant.name);
+
+    // create user
+    newUser = await createUser(katara);
+
+    // create restaurant
+    newRestaurant = await createRestaurant({...restaurant, ownedBy: newUser._id});
+
+    // associate restaurant to user
+    await updateUser(newUser._id, {...newUser, business: newRestaurant._id});
+    newUser = await findUserById(newUser._id);
+  });
+
+  // clean up after ourselves
+  afterAll(async () => {
+    // remove any data we inserted
+    await deleteUsersByUsername(katara.username);
+    await deleteRestaurantByRestaurantName(restaurant.name);
+  });
+
+  test('can retrieve users associated to restaurant by restaurant primary key', async () => {
+``  // retrieve users from the database by restaurant its associated to
+    const users = await findUsersByRestaurant(newRestaurant._id);
+
+    // there should be only one user
+    expect(users.length).toEqual(1);
+
+    // let's check the user we inserted
+    const businessUser = users[0];
+
+    // verify retrieved business user is correct user
+    expect(businessUser.username).toEqual(newUser.username);
+    expect(businessUser.password).toEqual(newUser.password);
+    expect(businessUser.email).toEqual(newUser.email);
+    expect(businessUser.type).toEqual(newUser.type);
+    expect(businessUser.business).toEqual(newUser.business);
   });
 });
