@@ -1,7 +1,7 @@
 import {
   createUser,
   deleteUsersByUsername, findAllUsers,
-  findUserById
+  findUserById, updateUser
 } from "../services/users-service";
 
 describe('createUser', () => {
@@ -196,5 +196,49 @@ describe('findAllUsers',  () => {
       expect(user.email).toEqual(`${username}@pokemon.com`);
       expect(user.type).toEqual('AVERAGE');
     });
+  });
+});
+
+describe('updateUser', () => {
+  // sample user to update
+  const ash = {
+    username: 'ash',
+    password: 'a123',
+    email: 'ash@pokemon.com',
+    type: 'AVERAGE'
+  };
+
+  let newUser;
+
+  // setup the tests before verification
+  beforeAll(async () => {
+    // insert the sample user we then try to update
+    newUser = await createUser(ash);
+  });
+
+  // clean up after test runs
+  afterAll(() => {
+    // remove any data we created
+    return deleteUsersByUsername(ash.username);
+  })
+
+  test('can update user from REST API', async () => {
+    // update a user. Assumes user already exists
+    const status = await updateUser(newUser._id, {
+      username: 'ashpokemon',
+      password: 'a1234',
+      email: 'ashketchum@pokemon.com',
+      type: 'CRITIC'
+    });
+
+    // verify we updated user
+    expect(status.modifiedCount).toBeGreaterThanOrEqual(1);
+
+    // verify properties were updated
+    const user = await findUserById(newUser._id);
+    expect(user.username).toEqual('ashpokemon');
+    expect(user.password).toEqual('a1234');
+    expect(user.email).toEqual('ashketchum@pokemon.com');
+    expect(user.type).toEqual('CRITIC');
   });
 });
