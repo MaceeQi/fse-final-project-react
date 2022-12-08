@@ -13,13 +13,16 @@ const Register = () => {
 
     const signup = () => {
         if (!newUser.email) {
-            alert("Please fill out the email info")
+            alert("Please fill out the email info");
+            return;
         }
         if (!newUser.username) {
-            alert("Please fill out the username info")
+            alert("Please fill out the username info");
+            return;
         }
         if (!newUser.password) {
-            alert("Please fill out the password info")
+            alert("Please fill out the password info");
+            return;
         }
         if (!newUser.type) {
             newUser.type = "AVERAGE";

@@ -17,18 +17,23 @@ const Profile = () => {
         .then(() => navigate('/login'));
   }
 
-  useEffect(() => {
-    if (currentUser) {
-      try {
-        dispatch(findUserByIdThunk(currentUser._id))
-      }
-      catch(e) {
-        navigate('/login');
-      }
-    }
-  }, [currentUser]);
+  // useEffect(() => {
+  //   if (currentUser) {
+  //     try {
+  //       dispatch(findUserByIdThunk(currentUser._id))
+  //     }
+  //     catch(e) {
+  //       navigate('/login');
+  //     }
+  //   }
+  // }, [currentUser]);
+  //
+  // let profile = publicProfile;
 
-  let profile = publicProfile;
+  if (!currentUser) {
+    navigate('/login');
+  }
+  let profile = currentUser;
 
   const dayOptions = {
     year: 'numeric',

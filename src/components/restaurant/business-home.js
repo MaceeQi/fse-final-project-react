@@ -57,7 +57,7 @@ const BusinessHome = () => {
                              src={`/images/${publicPage.profilePicture}`}/>
                     </div>
                     <div className="m-3 position-relative">
-                <span className="h5 fw-bolder">{publicPage.name} {publicPage.handle}
+                <span className="h5 fw-bolder">{publicPage.name} @{publicPage.handle}
                 </span><br/>
                         <p className="mt-3 mb-3">{publicPage.bio}</p>
                         <BusinessInfo restaurant={publicPage}/>
