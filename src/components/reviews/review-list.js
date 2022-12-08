@@ -3,17 +3,16 @@ import ReviewItem from "./review-item";
 import "./reviews.css";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllReviewsForRestaurantThunk} from "../../services/reviews-thunks";
-import {useLocation} from "react-router-dom";
 
 const ReviewList = ({restaurant, critics}) => {
     const reviews = useSelector(state => state.reviews);
-    const {pathname} = useLocation();
-    const paths = pathname.split('/');
-    const restaurantid = paths[paths.length-1];
     const dispatch = useDispatch();
+    // useEffect(() => {dispatch(findAllReviewsThunk())})
     useEffect(() => {
-        dispatch(findAllReviewsForRestaurantThunk(restaurantid))
-    }, [dispatch, restaurantid])
+        if (restaurant) {
+            dispatch(findAllReviewsForRestaurantThunk(restaurant._id))
+        }
+    }, [reviews.reviews.length]);
     return (
         <div className="list-group ttr-border-radius">
             {
