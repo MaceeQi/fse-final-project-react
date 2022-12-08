@@ -26,7 +26,7 @@ export const findReviewById = (reviewid) =>
 export const createReview = async (criticid, restaurantid, review) => {
     const response = await axios
         .post(`${RESTAURANTS_API}/${restaurantid}/users/${criticid}/reviews`, review);
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
 }
 
