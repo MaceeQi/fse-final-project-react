@@ -26,7 +26,6 @@ export const createReviewThunk = createAsyncThunk(
         await reviewsService.createReview(review.criticid, review.restaurantid, review);
         console.log(review);
     }
-
 )
 
 export const updateReviewThunk = createAsyncThunk(
