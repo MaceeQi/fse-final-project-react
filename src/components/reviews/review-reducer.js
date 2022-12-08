@@ -18,6 +18,7 @@ const reviewsReducer = createSlice({
         [findAllReviewsForRestaurantThunk.fulfilled]:
             (state, action) => {
                 state.reviews = action.payload
+                state.reviews = state.reviews.sort((a,b) => a.restaurant.localeCompare(b.restaurant))
             },
         [deleteReviewThunk.fulfilled] :
             (state, { payload }) => {
