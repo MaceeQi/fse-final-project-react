@@ -38,14 +38,20 @@ const BusinessProfile = () => {
                          src={`/images/${publicPage.profilePicture}`}/>
                 </div>
                 <div className="m-3 position-relative">
-                <span className="h5 fw-bolder">{publicPage.name} {publicPage.handle}
-                </span><br/>
-                    {/*Profile edit button*/}
-                    <Link to="./edit">
-                        <button className="btn btn-white border rounded-pill fw-bolder
+                    <div className="row-cols-12">
+                        <div className="col-10">
+                            <span className="h5 fw-bolder">{publicPage.name} {publicPage.handle}
+                            </span>
+                        </div>
+                        <div className="col-2">
+                            {/*Profile edit button*/}
+                            <Link to="./edit">
+                                <button className="btn btn-white border rounded-pill fw-bolder
             float-end me-3 mt-2">Edit
-                        </button>
-                    </Link>
+                                </button>
+                            </Link>
+                        </div>
+                    </div>
                     <p className="mt-3 mb-3">{publicPage.bio}</p>
                     <BusinessInfo restaurant={publicPage}/>
                     <UpdateList restaurant={publicPage}/>
