@@ -48,6 +48,7 @@ const restaurantSlice = createSlice({
             (state, action) => {
                 state.loading = false
                 state.restaurants.push(action.payload);
+                state.currentRestaurant = action.payload;
             },
         [updateRestaurantThunk.fulfilled]:
             (state, action) => {

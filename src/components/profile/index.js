@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {findUserByIdThunk} from "../../services/users-thunks";
 import {useNavigate} from "react-router-dom";
 import {logoutThunk} from "../../services/auth-thunks";
+import CreateBusinessPage from "./create-business-page";
 
 const Profile = () => {
   const {currentUser, publicProfile}= useSelector(state => state.usersData);
@@ -82,6 +83,7 @@ const Profile = () => {
               {
                   profile.type === "BUSINESS" &&
                   <>
+                    <CreateBusinessPage user={profile}/>
                     <i className="far fa-link ms-3 me-2"></i>
                     <Link to="/profile/business" className="nav-link">
                       <span>Business Profile Page</span>
