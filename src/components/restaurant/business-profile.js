@@ -38,16 +38,16 @@ const BusinessProfile = () => {
                          src={`/images/${publicPage.profilePicture}`}/>
                 </div>
                 <div className="m-3 position-relative">
-                    <div className="row-cols-12">
-                        <div className="col-10">
+                    <div className="row row-cols-12">
+                        <div className="row col-10">
                             <span className="h5 fw-bolder">{publicPage.name} {publicPage.handle}
                             </span>
                         </div>
-                        <div className="col-2">
+                        <div className="row col-2">
                             {/*Profile edit button*/}
                             <Link to="./edit">
                                 <button className="btn btn-white border rounded-pill fw-bolder
-            float-end me-3 mt-2">Edit
+            float-end">Edit
                                 </button>
                             </Link>
                         </div>

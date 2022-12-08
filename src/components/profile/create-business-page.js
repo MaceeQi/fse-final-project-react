@@ -17,7 +17,8 @@ const CreateBusinessPage = ({user}) => {
             phone: "phone",
         }
         dispatch(createRestaurantThunk(newRest))
-            .then(dispatch(updateUserThunk({...user, business: currentRestaurant._id})))
+            .then((currentRestaurant) &&
+                dispatch(updateUserThunk({...user, business: currentRestaurant._id})))
             .then(alert("Business page is created successfully!"))
 
     }
