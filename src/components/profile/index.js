@@ -82,14 +82,14 @@ const Profile = () => {
               <h6 className="pt-0">@{profile.type}</h6>
               {
                   profile.type === "BUSINESS" &&
-                  <>
+                  <div>
                     <CreateBusinessPage user={profile}/>
-                    <i className="far fa-link ms-3 me-2"></i>
-                    <Link to="/profile/business" className="nav-link">
+                    <Link to="/profile/business">
                       <span>Business Profile Page</span>
                     </Link>
-                  </>
+                  </div>
               }
+              <br/>
               <p>
                 {
                   profile.dateOfBirth &&

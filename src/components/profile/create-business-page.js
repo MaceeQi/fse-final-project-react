@@ -22,8 +22,8 @@ const CreateBusinessPage = ({user}) => {
     }
 
     return(
-        <div className="mt-2 me-2 btn btn-large btn-light border border-secondary fw-bolder
-        rounded-pill fa-pull-right" onClick={createClickHandler}>
+        <div className="mt-2 btn btn-large btn-light border border-secondary fw-bolder
+        rounded-pill fa-pull-right float-end" onClick={createClickHandler}>
             Create Business Profile
         </div>
     );
