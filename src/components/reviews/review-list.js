@@ -13,7 +13,7 @@ const ReviewList = ({restaurant}) => {
         if (restaurant) {
             dispatch(findAllReviewsForRestaurantThunk(restaurant._id))
         }
-    }, [reviews.reviews.length]);
+    }, []);
 
     return (
         <div className="list-group ttr-border-radius">
