@@ -9,47 +9,36 @@ import BusinessInfo from "./business-info";
 import FeatureList from "./featured-items/featured-item-list";
 import "../restaurant/restaurant.css";
 import {findRestaurantByIdThunk} from "../../services/restaurants-thunks";
+import UpdateList from "./restaurant-updates/update-list";
 
-// hardcode restaurant input, need to change later
 const BusinessProfile = () => {
-    // need to update change publicPage to current user after implementing login signup
     const {publicPage} = useSelector(state => state.restaurantsData);
     const {currentUser} = useSelector(state => state.usersData);
 
-    const {pathname} = useLocation();
-    const paths = pathname.split('/');
-    const restId = paths[paths.length-1];
-
-    let [restaurant, setRestaurant] = useState({});
     const dispatch = useDispatch();
 
-    // let restId = currentUser.business;
+    let restId = currentUser.business;
     // console.log(restId);
 
     useEffect(   () => {
         dispatch(findRestaurantByIdThunk(restId))
-            .then(setRestaurant(publicPage))
-    }, [restId, dispatch, publicPage]);
-
-    // console.log(publicPage);
-    //
-    // console.log(restaurant);
+    }, []);
 
     return (
     <div className="border ttr-border-radius">
         {
-            restaurant &&
+            publicPage &&
             <>
                 <div className="position-relative ttr-banner d-flex justify-content-center">
-                    <img src={`/images/${restaurant.bannerPicture}`}
+                    <img src={`/images/${publicPage.bannerPicture}`}
                          alt="banner"
                          className="ttr-border-radius ttr-banner-width mt-3" height={200}/>
                     <img className="ttr-portrait position-absolute start-0 ms-5"
                          alt="profile"
-                         src={`/images/${restaurant.profilePicture}`}/>
+                         src={`/images/${publicPage.profilePicture}`}/>
                 </div>
                 <div className="m-3 position-relative">
-                <span className="h5 fw-bolder">{restaurant.name} {restaurant.handle}
+                <span className="h5 fw-bolder">{publicPage.name} {publicPage.handle}
                 </span><br/>
                     {/*Profile edit button*/}
                     <Link to="./edit">
@@ -57,14 +46,14 @@ const BusinessProfile = () => {
             float-end me-3 mt-2">Edit
                         </button>
                     </Link>
-                    <p className="mt-3 mb-3">{restaurant.bio}</p>
-                    <BusinessInfo restaurant={restaurant}/>
-                    {/*<UpdateList restaurant={restaurant}/>*/}
-                    <FeatureList/>
+                    <p className="mt-3 mb-3">{publicPage.bio}</p>
+                    <BusinessInfo restaurant={publicPage}/>
+                    <UpdateList restaurant={publicPage}/>
+                    <FeatureList restaurant={publicPage}/>
                     <div className="mb-3 border ttr-border-radius">
                         <div className="m-2">
                             <h5 className="fw-bolder">Professional Reviews</h5>
-                            <ReviewList restaurant={restaurant}/>
+                            <ReviewList restaurant={publicPage}/>
                         </div>
                     </div>
                 </div>

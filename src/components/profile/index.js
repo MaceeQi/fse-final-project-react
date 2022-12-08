@@ -29,6 +29,12 @@ const Profile = () => {
 
   let profile = publicProfile;
 
+  const dayOptions = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  };
+
   return(
     <div className="ttr-profile">
       {
@@ -37,25 +43,28 @@ const Profile = () => {
           <div className="border border-bottom-0">
             <h4 className="p-2 mb-0 pb-0 fw-bolder">{profile.firstName} {profile.lastName}<i className="fa fa-badge-check text-primary"></i></h4>
             <div className="mb-5 position-relative">
-              <img className="w-100" src="/images/emptyBanner.jpeg" alt="banner"/>
+              {
+                !profile.headerImage &&
+                <img className="w-100" src="/images/emptyHeader.jpeg" alt="header image"/>
+              }
               <div className="bottom-0 left-0 position-absolute">
                 <div className="position-relative">
                   {
-                      (!profile.avatar) &&
+                      (!profile.profilePhoto) &&
                       <img className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px"
-                           alt="avatar"
+                           alt="profilePhoto"
                            src={`/images/emptyAvatar.png`}/>
                   }
                   {
-                      profile.avatar && profile.avatar.includes("http") &&
+                      profile.profilePhoto && profile.profilePhoto.includes("http") &&
                       <img className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px"
-                           src={profile.avatar} alt="avatar"/>
+                           src={profile.profilePhoto} alt="profilePhoto"/>
                   }
                   {
-                      profile.avatar && !profile.avatar.includes("http") &&
+                      profile.profilePhoto && !profile.profilePhoto.includes("http") &&
                       <img className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px"
-                           alt="avatar"
-                           src={`/images/${profile.avatar}`}/>
+                           alt="profilePhoto"
+                           src={`/images/${profile.profilePhoto}`}/>
                   }
                 </div>
               </div>
@@ -71,11 +80,37 @@ const Profile = () => {
               </h4>
               <h6 className="pt-0">@{profile.type}</h6>
               {
-                profile.type === "BUSINESS" &&
-                <Link to="/profile/business" className="nav-link">
-                  <span>Business Profile Page</span>
-                </Link>
+                  profile.type === "BUSINESS" &&
+                  <>
+                    <i className="far fa-link ms-3 me-2"></i>
+                    <Link to="/profile/business" className="nav-link">
+                      <span>Business Profile Page</span>
+                    </Link>
+                  </>
               }
+              <p>
+                {
+                  profile.dateOfBirth &&
+                  <>
+                    <i className="far fa-balloon ms-3 me-2"></i>
+                    <span className="text-secondary me-3">
+                        Born {
+                      new Date(profile.dateOfBirth)
+                          .toLocaleString('en-US', dayOptions)
+                    }</span>
+                  </>
+                }
+                {
+                  profile.joined &&
+                  <>
+                    <i className="far fa-calendar me-2"></i>
+                    <span className="text-secondary">Joined {
+                      new Date(profile.joined)
+                          .toLocaleString('en-US', dayOptions)
+                    }</span>
+                  </>
+                }
+              </p>
               <ul className="mt-4 nav nav-pills nav-fill">
                 <li className="nav-item">
                   <Link to="/profile/tuits"

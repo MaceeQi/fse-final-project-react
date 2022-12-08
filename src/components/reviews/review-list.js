@@ -7,7 +7,7 @@ import {findAllReviewsForRestaurantThunk} from "../../services/reviews-thunks";
 const ReviewList = ({restaurant}) => {
     // console.log(restaurant);
 
-    const reviews = useSelector(state => state.reviews);
+    const {reviews, loading} = useSelector(state => state.reviews);
     const dispatch = useDispatch();
     useEffect(() => {
         if (restaurant) {
@@ -18,8 +18,14 @@ const ReviewList = ({restaurant}) => {
     return (
         <div className="list-group ttr-border-radius">
             {
-                reviews &&
-                reviews.reviews.slice(0).reverse()
+                loading &&
+                <li className="list-group-item">
+                    Loading...
+                </li>
+            }
+            {
+                !loading && reviews &&
+                reviews.slice(0).reverse()
                     .map(review =>
                              <ReviewItem
                                  key={review._id}

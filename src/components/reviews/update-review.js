@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
-import {updateReviewThunk} from "../../services/reviews-thunks";
+import {findAllReviewsForRestaurantThunk, updateReviewThunk} from "../../services/reviews-thunks";
 
 const UpdateReview = ({reviewid, review}) => {
     const [update, setUpdate] = useState(review)

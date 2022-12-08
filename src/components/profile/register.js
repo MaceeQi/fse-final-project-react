@@ -29,6 +29,19 @@ const Register = () => {
                    placeholder="password (required)" type="password"
                    onChange={(e) =>
                        setNewUser({...newUser, password: e.target.value})}/>
+            <input className="mb-2 form-control"
+                   placeholder="firstname"
+                   onChange={(e) =>
+                       setNewUser({...newUser, firstName: e.target.value})}/>
+            <input className="mb-2 form-control"
+                   placeholder="lastname"
+                   onChange={(e) =>
+                       setNewUser({...newUser, lastName: e.target.value})}/>
+            <input className="mb-2 form-control"
+                   placeholder="email (required)"
+                   type="email"
+                   onChange={(e) =>
+                       setNewUser({...newUser, email: e.target.value})}/>
             <select className="mb-2 form-control wd-edit-input"
                     onChange={(e) => {
                         setNewUser({...newUser, type: e.target.value})}}>
@@ -40,30 +53,24 @@ const Register = () => {
                     CRITIC</option>
             </select>
             <input className="mb-2 form-control"
-                   placeholder="firstname"
-                   onChange={(e) =>
-                       setNewUser({...newUser, firstName: e.target.value})}/>
-            <input className="mb-2 form-control"
-                   placeholder="lastname"
-                   onChange={(e) =>
-                       setNewUser({...newUser, lastName: e.target.value})}/>
-            <input className="mb-2 form-control"
-                   placeholder="avatar image url"
+                   placeholder="profile photo url"
                    type="url"
                    onChange={(e) =>
-                       setNewUser({...newUser, avatar: e.target.value})}/>
+                       setNewUser({...newUser, profilePhoto: e.target.value})}/>
+            <input className="mb-2 form-control"
+                   placeholder="header image url"
+                   type="url"
+                   onChange={(e) =>
+                       setNewUser({...newUser, headerImage: e.target.value})}/>
             <textarea className="mb-2 form-control"
-                      placeholder="bio"
+                      placeholder="biography"
                       onChange={(e) =>
-                          setNewUser({...newUser, bio: e.target.value})}/>
-            {
-                newUser.type === "PRO CHEF" &&
-                <input className="mb-2 form-control"
-                       placeholder="business website"
-                       type="url"
-                       onChange={(e) =>
-                           setNewUser({...newUser, business: e.target.value})}/>
-            }
+                          setNewUser({...newUser, biography: e.target.value})}/>
+            <input className="mb-2 form-control"
+                   type="date"
+                   title="date of birth"
+                   onChange={(e) =>
+                       setNewUser({...newUser, dateOfBirth: e.target.value})}/>
             <button className="btn btn-primary mb-5"
                     onClick={signup}>Register</button>
         </div>

@@ -2,9 +2,13 @@ import React from "react";
 import {deleteReviewThunk} from "../../services/reviews-thunks";
 import {useDispatch} from "react-redux";
 import UpdateReview from "./update-review";
+import {useLocation} from "react-router-dom";
 
 const ReviewItem = ({review}) => {
-    // const critics = allCritics.filter(critic => critic._id === review.criticId);
+    const {pathname} = useLocation();
+    const paths = pathname.split('/');
+    const isInProfile = paths[paths.length-1] === "business";
+
     const dispatch = useDispatch();
     const deleteReviewHandler = (reviewid) => {
         dispatch(deleteReviewThunk(reviewid));
@@ -13,8 +17,23 @@ const ReviewItem = ({review}) => {
         <li className="list-group-item">
             <div className="row row-cols-12 m-0 pt-2">
                 <div className="col-2 d-flex justify-content-center">
-                    <img className="ttr-avatar"
-                         src={`/images/${review.critic.profilePhoto}`} alt="avatar"/>
+                    {
+                        (!review.critic.profilePhoto) &&
+                        <img className="ttr-avatar"
+                             alt="profilePhoto"
+                             src={`/images/emptyAvatar.png`}/>
+                    }
+                    {
+                        review.critic.profilePhoto && review.critic.profilePhoto.includes("http") &&
+                        <img className="ttr-avatar"
+                             src={review.critic.profilePhoto} alt="profilePhoto"/>
+                    }
+                    {
+                        review.critic.profilePhoto && !review.critic.profilePhoto.includes("http") &&
+                        <img className="ttr-avatar"
+                             alt="profilePhoto"
+                             src={`/images/${review.critic.profilePhoto}`}/>
+                    }
                 </div>
                 <div className="col-10">
                     <div className="me-2">
@@ -30,7 +49,10 @@ const ReviewItem = ({review}) => {
                         <div>
                             <i id="edit" className="fa fa-edit fa-pull-right"></i>
                             <span>{review.review}</span>
-                            <UpdateReview reviewid={review._id} review={review.review}/>
+                            {
+                                !isInProfile &&
+                                <UpdateReview reviewid={review._id} review={review.review}/>
+                            }
                         </div>
                     </div>
                 </div>
