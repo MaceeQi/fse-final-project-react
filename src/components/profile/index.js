@@ -69,25 +69,26 @@ const Profile = () => {
                   }
                 </div>
               </div>
-              <Link to="/profile/edit"
-                    className="mt-2 me-2 btn btn-large btn-light border border-secondary fw-bolder rounded-pill fa-pull-right">
-                Edit profile
-              </Link>
+              {/*<Link to="/profile/edit"*/}
+              {/*      className="mt-2 me-2 btn btn-large btn-light border border-secondary fw-bolder rounded-pill fa-pull-right">*/}
+              {/*  Edit profile*/}
+              {/*</Link>*/}
             </div>
 
             <div className="p-2">
               <h4 className="fw-bolder pb-0 mb-0">
-                {profile.username}<i className="fa fa-badge-check text-primary"></i>
+                @{profile.username}<i className="fa fa-badge-check text-primary"></i>
               </h4>
-              <h6 className="pt-0">@{profile.type}</h6>
+              <h6 className="pt-0">User Type: {profile.type}</h6>
               {
-                  profile.type === "BUSINESS" &&
-                  <div>
-                    <CreateBusinessPage user={profile}/>
+                  profile.type === "BUSINESS" && !profile.business &&
+                  <CreateBusinessPage user={profile}/>
+              }
+              {
+                  profile.type === "BUSINESS" && profile.business &&
                     <Link to="/profile/business">
                       <span>Business Profile Page</span>
                     </Link>
-                  </div>
               }
               <br/>
               <p>

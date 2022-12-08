@@ -12,6 +12,18 @@ const Register = () => {
     // const navigate = useNavigate();
 
     const signup = () => {
+        if (!newUser.email) {
+            alert("Please fill out the email info")
+        }
+        if (!newUser.username) {
+            alert("Please fill out the username info")
+        }
+        if (!newUser.password) {
+            alert("Please fill out the password info")
+        }
+        if (!newUser.type) {
+            newUser.type = "AVERAGE";
+        }
             dispatch(signupThunk(newUser))
     }
 
@@ -44,6 +56,7 @@ const Register = () => {
                    onChange={(e) =>
                        setNewUser({...newUser, email: e.target.value})}/>
             <select className="mb-2 form-control wd-edit-input"
+                    defaultValue="AVERAGE"
                     onChange={(e) => {
                         setNewUser({...newUser, type: e.target.value})}}>
                 <option value="AVERAGE">
