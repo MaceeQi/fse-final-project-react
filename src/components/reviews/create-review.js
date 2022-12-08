@@ -3,6 +3,8 @@ import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import {createReviewThunk, findAllReviewsForRestaurantThunk} from "../../services/reviews-thunks";
 
+let reviewCreated = 0
+
 const CreateReview = ({restaurant, critic}) => {
     const [review, setReview] = useState('')
     const dispatch = useDispatch()
@@ -14,7 +16,7 @@ const CreateReview = ({restaurant, critic}) => {
         }
         dispatch(createReviewThunk(newReview))
             .then(dispatch(findAllReviewsForRestaurantThunk(restaurant._id)));
-        // console.log(newReview);
+        reviewCreated += 1
     }
 
     return (
@@ -39,3 +41,4 @@ const CreateReview = ({restaurant, critic}) => {
     )
 };
 export default CreateReview;
+export {reviewCreated};

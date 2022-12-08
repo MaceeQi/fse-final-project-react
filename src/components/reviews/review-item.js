@@ -1,6 +1,6 @@
 import React from "react";
 import {deleteReviewThunk} from "../../services/reviews-thunks";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import UpdateReview from "./update-review";
 import {useLocation} from "react-router-dom";
 
@@ -13,6 +13,8 @@ const ReviewItem = ({review}) => {
     const deleteReviewHandler = (reviewid) => {
         dispatch(deleteReviewThunk(reviewid));
     }
+    const {currentUser} = useSelector(state => state.usersData);
+    const loggedIn = currentUser;
     return (
         <li className="list-group-item">
             <div className="row row-cols-12 m-0 pt-2">
@@ -38,7 +40,11 @@ const ReviewItem = ({review}) => {
                 <div className="col-10">
                     <div className="me-2">
                         <div>
-                            <i onClick={() => deleteReviewHandler(review._id)} className="fas fa-remove fa-pull-right"></i>
+                            {
+                                loggedIn && loggedIn._id === review.critic._id &&
+                                <i onClick={() => deleteReviewHandler(review._id)}
+                                className="fas fa-remove fa-pull-right"/>
+                            }
                             <span className="text-black fw-bolder">
                                 {review.critic && review.critic.firstName} {review.critic && review.critic.lastName}
                             </span> <i className="bi bi-patch-check-fill text-primary"> </i>
@@ -47,11 +53,10 @@ const ReviewItem = ({review}) => {
                             </span>
                         </div>
                         <div>
-                            <i id="edit" className="fa fa-edit fa-pull-right"></i>
                             <span>{review.review}</span>
                             {
-                                !isInProfile &&
-                                <UpdateReview reviewid={review._id} review={review.review}/>
+                                !isInProfile && loggedIn && loggedIn._id === review.critic._id &&
+                                <UpdateReview reviewid={review._id} review={review.review} restaurant={review.restaurant}/>
                             }
                         </div>
                     </div>

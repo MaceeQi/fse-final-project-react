@@ -3,6 +3,8 @@ import ReviewItem from "./review-item";
 import "./reviews.css";
 import {useDispatch, useSelector} from "react-redux";
 import {findAllReviewsForRestaurantThunk} from "../../services/reviews-thunks";
+import {reviewCreated} from "./create-review";
+import {reviewUpdated} from "./update-review";
 
 const ReviewList = ({restaurant}) => {
     // console.log(restaurant);
@@ -13,7 +15,7 @@ const ReviewList = ({restaurant}) => {
         if (restaurant) {
             dispatch(findAllReviewsForRestaurantThunk(restaurant._id))
         }
-    }, []);
+    }, [reviewCreated, reviewUpdated]);
 
     return (
         <div className="list-group ttr-border-radius">
