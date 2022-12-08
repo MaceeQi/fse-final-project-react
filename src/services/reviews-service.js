@@ -4,6 +4,8 @@ const BASE_URL = "http://localhost:4000";
 const RESTAURANTS_API = `${BASE_URL}/api/restaurants`;
 const REVIEWS_API = `${BASE_URL}/api/reviews`;
 
+axios.defaults.adapter = require('axios/lib/adapters/http');
+
 const api = axios.create({withCredentials: true});
 
 export const findAllReviews = () =>

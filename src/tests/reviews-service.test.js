@@ -7,27 +7,29 @@ describe('can create review with REST API', () => {
     const testCritic = {
         username: "harshreviewer",
         password: "reviews123uwu",
-        email: "restaurant@critics.com"
-    }
+        email: "restaurant@critics.com",
+        type: "CRITIC"
+    };
     const testReview = {
         review: "this place sucks!",
         restaurant: "637c182a59bca90266c414a6"
-    }
+    };
     let newCritic;
-    beforeAll(async () => {
-        newCritic = await createUser(testCritic);
+    let createdReviews = [];
+    beforeAll( async () => {
+        await deleteUsersByUsername(testCritic.username);
     })
     afterAll(async () => {
-        const reviews = await findAllReviewsByCritic(newCritic.id);
-        for (let each of reviews) {
-            await deleteReview(each._id)
+        for (let each of createdReviews) {
+            await deleteReview(each)
         }
         await deleteUsersByUsername(newCritic.username)
     })
 
     test('createReview', async () => {
-        const newReview = await createReview(newCritic.id, testReview.restaurant, testReview);
-
+        newCritic = await createUser(testCritic)
+        const newReview = await createReview(newCritic._id, testReview.restaurant, testReview);
+        createdReviews.push(newReview._id);
         expect(newReview.review).toEqual(testReview.review);
         expect(newReview.restaurant).toEqual(testReview.restaurant);
         expect(newReview.critic).toEqual(newCritic._id);
@@ -39,7 +41,8 @@ describe('can update review with REST API', () => {
     const testCritic = {
         username: "harshreviewer",
         password: "reviews123uwu",
-        email: "restaurant@critics.com"
+        email: "restaurant@critics.com",
+        type: "CRITIC"
     }
     const testReview = {
         review: "this place sucks!",
@@ -49,26 +52,28 @@ describe('can update review with REST API', () => {
         review: "actually it's pretty good"
     }
     let newCritic;
-    beforeAll(async () => {
-        newCritic = await createUser(testCritic);
+    let createdReviews = [];
+    beforeAll( async () => {
+        await deleteUsersByUsername(testCritic.username)
     })
-    afterAll(async () => {
-        const reviews = await findAllReviewsByCritic(newCritic.id);
-        for (let each of reviews) {
-            await deleteReview(each._id)
+    afterAll( () => {
+        for (let each of createdReviews) {
+            deleteReview(each)
         }
-        await deleteUsersByUsername(newCritic.username)
+        return deleteUsersByUsername(newCritic.username)
     })
 
     test('updateReview', async () => {
-        const newReview = await createReview(newCritic.id, testReview.restaurant, testReview);
-
+        newCritic = await createUser(testCritic);
+        const newReview = await createReview(newCritic._id, testReview.restaurant, testReview);
+        createdReviews.push(newReview._id);
         expect(newReview.review).toEqual(testReview.review);
         expect(newReview.restaurant).toEqual(testReview.restaurant);
         expect(newReview.critic).toEqual(newCritic._id);
 
-        await updateReview(newReview, testUpdate);
-        expect(newReview.review).toEqual(testUpdate.review);
+        await updateReview(newReview._id, testUpdate);
+        const updatedReview = await findReviewById(newReview._id)
+        expect(updatedReview.review).toEqual(testUpdate.review);
     })
 });
 
@@ -77,27 +82,29 @@ describe('can delete review with REST API', () => {
     const testCritic = {
         username: "harshreviewer",
         password: "reviews123uwu",
-        email: "restaurant@critics.com"
+        email: "restaurant@critics.com",
+        type: "CRITIC"
     }
     const testReview = {
         review: "this place sucks!",
         restaurant: "637c182a59bca90266c414a6"
     }
     let newCritic;
-    beforeAll(async () => {
-        newCritic = await createUser(testCritic);
+    let createdReviews = [];
+    beforeAll(() => {
+        return deleteUsersByUsername(testCritic.username)
     })
     afterAll(async () => {
-        const reviews = await findAllReviewsByCritic(newCritic.id);
-        for (let each of reviews) {
-            await deleteReview(each._id)
+        for (let each of createdReviews) {
+            await deleteReview(each)
         }
         await deleteUsersByUsername(newCritic.username)
     })
 
     test('deleteReview', async () => {
-        const newReview = await createReview(newCritic.id, testReview.restaurant, testReview);
-
+        newCritic = await createUser(testCritic)
+        const newReview = await createReview(newCritic._id, testReview.restaurant, testReview);
+        createdReviews.push(newReview._id);
         expect(newReview.review).toEqual(testReview.review);
         expect(newReview.restaurant).toEqual(testReview.restaurant);
         expect(newReview.critic).toEqual(newCritic._id);
@@ -112,7 +119,8 @@ describe('can retrieve review by id with REST API', () => {
     const testCritic = {
         username: "harshreviewer",
         password: "reviews123uwu",
-        email: "restaurant@critics.com"
+        email: "restaurant@critics.com",
+        type: "CRITIC"
     }
     const testReview = {
         review: "this place sucks!",
@@ -120,23 +128,24 @@ describe('can retrieve review by id with REST API', () => {
     }
     let newCritic;
     let newReview;
+    let createdReviews = [];
     beforeAll(async () => {
         newCritic = await createUser(testCritic);
-        newReview = await createReview(newCritic.id, testReview.restaurant, testReview);
+        newReview = await createReview(newCritic._id, testReview.restaurant, testReview);
+        createdReviews.push(newReview._id);
     })
     afterAll(async () => {
-        const reviews = await findAllReviewsByCritic(newCritic.id);
-        for (let each of reviews) {
-            await deleteReview(each._id)
+        for (let each of createdReviews) {
+            await deleteReview(each)
         }
         await deleteUsersByUsername(newCritic.username)
     })
 
-    test('createReview', async () => {
+    test('findReviewById', async () => {
         const getReview = await findReviewById(newReview._id)
         expect(getReview.review).toEqual(testReview.review);
         expect(getReview.restaurant).toEqual(testReview.restaurant);
-        expect(getReview.critic).toEqual(newCritic._id);
+        expect(getReview.critic._id).toEqual(newCritic._id);
     })
 });
 
@@ -145,7 +154,8 @@ describe('can retrieve all reviews with REST API', () => {
     const testCritic = {
         username: "harshreviewer",
         password: "reviews123uwu",
-        email: "restaurant@critics.com"
+        email: "restaurant@critics.com",
+        type: "CRITIC"
     }
     const testReview = {
         review: "this place sucks!",
@@ -159,7 +169,8 @@ describe('can retrieve all reviews with REST API', () => {
     const testCritic2 = {
         username: "boringreviewer",
         password: "reviews123owo",
-        email: "restaurant@observers.com"
+        email: "restaurant@observers.com",
+        type: "CRITIC"
     }
     const testReview3 = {
         review: "no comment",
@@ -167,23 +178,23 @@ describe('can retrieve all reviews with REST API', () => {
     }
     let newCritic;
     let newCritic2;
+    let createdReviews = [];
     beforeAll(async () => {
         newCritic = await createUser(testCritic);
-        await createReview(newCritic.id, testReview.restaurant, testReview);
-        await createReview(newCritic.id, testReview2.restaurant, testReview2);
+        const newReview1 = await createReview(newCritic._id, testReview.restaurant, testReview);
+        const newReview2 = await createReview(newCritic._id, testReview2.restaurant, testReview2);
+        createdReviews.push(newReview1._id);
+        createdReviews.push(newReview2._id);
 
         newCritic2 = await createUser(testCritic2);
-        await createReview(newCritic2.id, testReview3.restaurant, testReview3);
+        const newReview3 = await createReview(newCritic2._id, testReview3.restaurant, testReview3);
+        createdReviews.push(newReview3._id);
     })
     afterAll(async () => {
-        const reviews = await findAllReviewsByCritic(newCritic.id);
-        for (let each of reviews) {
-            await deleteReview(each._id)
+        for (let each of createdReviews) {
+            await deleteReview(each)
         }
-        const reviews2 = await findAllReviewsByCritic(newCritic2.id);
-        for (let each of reviews2) {
-            await deleteReview(each._id)
-        }
+
         await deleteUsersByUsername(newCritic.username)
         await deleteUsersByUsername(newCritic2.username)
     })
@@ -199,7 +210,8 @@ describe('can retrieve all reviews for a restaurant with REST API', () => {
     const testCritic = {
         username: "harshreviewer",
         password: "reviews123uwu",
-        email: "restaurant@critics.com"
+        email: "restaurant@critics.com",
+        type: "CRITIC"
     }
     const testReview = {
         review: "this place sucks!",
@@ -213,7 +225,8 @@ describe('can retrieve all reviews for a restaurant with REST API', () => {
     const testCritic2 = {
         username: "boringreviewer",
         password: "reviews123owo",
-        email: "restaurant@observers.com"
+        email: "restaurant@observers.com",
+        type: "CRITIC"
     }
     const testReview3 = {
         review: "no comment",
@@ -221,23 +234,23 @@ describe('can retrieve all reviews for a restaurant with REST API', () => {
     }
     let newCritic;
     let newCritic2;
+    let createdReviews = [];
     beforeAll(async () => {
         newCritic = await createUser(testCritic);
-        await createReview(newCritic.id, testReview.restaurant, testReview);
-        await createReview(newCritic.id, testReview2.restaurant, testReview2);
+        const newReview1 = await createReview(newCritic._id, testReview.restaurant, testReview);
+        const newReview2 = await createReview(newCritic._id, testReview2.restaurant, testReview2);
+        createdReviews.push(newReview1._id);
+        createdReviews.push(newReview2._id);
 
         newCritic2 = await createUser(testCritic2);
-        await createReview(newCritic2.id, testReview3.restaurant, testReview3);
+        const newReview3 = await createReview(newCritic2._id, testReview3.restaurant, testReview3);
+        createdReviews.push(newReview3._id);
     })
     afterAll(async () => {
-        const reviews = await findAllReviewsByCritic(newCritic.id);
-        for (let each of reviews) {
-            await deleteReview(each._id)
+        for (let each of createdReviews) {
+            await deleteReview(each)
         }
-        const reviews2 = await findAllReviewsByCritic(newCritic2.id);
-        for (let each of reviews2) {
-            await deleteReview(each._id)
-        }
+
         await deleteUsersByUsername(newCritic.username)
         await deleteUsersByUsername(newCritic2.username)
     })
@@ -255,7 +268,8 @@ describe('can retrieve all reviews by a critic with REST API', () => {
     const testCritic = {
         username: "harshreviewer",
         password: "reviews123uwu",
-        email: "restaurant@critics.com"
+        email: "restaurant@critics.com",
+        type: "CRITIC"
     }
     const testReview = {
         review: "this place sucks!",
@@ -269,7 +283,8 @@ describe('can retrieve all reviews by a critic with REST API', () => {
     const testCritic2 = {
         username: "boringreviewer",
         password: "reviews123owo",
-        email: "restaurant@observers.com"
+        email: "restaurant@observers.com",
+        type: "CRITIC"
     }
     const testReview3 = {
         review: "no comment",
@@ -277,31 +292,31 @@ describe('can retrieve all reviews by a critic with REST API', () => {
     }
     let newCritic;
     let newCritic2;
+    let createdReviews = [];
     beforeAll(async () => {
         newCritic = await createUser(testCritic);
-        await createReview(newCritic.id, testReview.restaurant, testReview);
-        await createReview(newCritic.id, testReview2.restaurant, testReview2);
+        const newReview1 = await createReview(newCritic._id, testReview.restaurant, testReview);
+        const newReview2 = await createReview(newCritic._id, testReview2.restaurant, testReview2);
+        createdReviews.push(newReview1._id);
+        createdReviews.push(newReview2._id);
 
         newCritic2 = await createUser(testCritic2);
-        await createReview(newCritic2.id, testReview3.restaurant, testReview3);
+        const newReview3 = await createReview(newCritic2._id, testReview3.restaurant, testReview3);
+        createdReviews.push(newReview3._id);
     })
     afterAll(async () => {
-        const reviews = await findAllReviewsByCritic(newCritic.id);
-        for (let each of reviews) {
-            await deleteReview(each._id)
+        for (let each of createdReviews) {
+            await deleteReview(each)
         }
-        const reviews2 = await findAllReviewsByCritic(newCritic2.id);
-        for (let each of reviews2) {
-            await deleteReview(each._id)
-        }
+
         await deleteUsersByUsername(newCritic.username)
         await deleteUsersByUsername(newCritic2.username)
     })
 
-    test('findAllReviewsForRestaurant', async () => {
+    test('findAllReviewsByCritic', async () => {
         const reviews = await findAllReviewsByCritic(newCritic._id);
         expect(reviews.length).toEqual(2);
-        const reviews2 = await findAllReviewsForRestaurant(newCritic2._id);
+        const reviews2 = await findAllReviewsByCritic(newCritic2._id);
         expect(reviews2.length).toEqual(1);
     })
 });
