@@ -56,7 +56,7 @@ const ReviewItem = ({review}) => {
                             <span>{review.review}</span>
                             {
                                 !isInProfile && loggedIn && loggedIn._id === review.critic._id &&
-                                <UpdateReview reviewid={review._id} review={review.review}/>
+                                <UpdateReview reviewid={review._id} review={review.review} restaurant={review.restaurant}/>
                             }
                         </div>
                     </div>
