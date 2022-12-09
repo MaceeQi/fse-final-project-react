@@ -89,7 +89,7 @@ describe('deleteUsersByUsername', () => {
 
   // setup the tests before verification
   beforeAll(() => {
-    // insert the sample user we then try to remove
+    // insert the sample user we then try to remove by username
     return createUser(donald);
   });
 
@@ -213,7 +213,7 @@ describe('updateUser', () => {
 
   // setup the tests before verification
   beforeAll(async () => {
-    // insert the sample user we then try to update
+    // insert the sample user we can then try to update
     newUser = await createUser(ash);
   });
 
@@ -257,7 +257,7 @@ describe('deleteUser', () => {
 
   // setup the tests before verification
   beforeAll(async () => {
-    // insert the sample user we then try to update
+    // insert the sample user we then try to delete
     newUser = await createUser(ash);
   });
 
@@ -271,7 +271,7 @@ describe('deleteUser', () => {
     // delete a user. Assumes user already exists
     const status = await deleteUser(newUser._id);
 
-    // verify we updated user
+    // verify we deleted user
     expect(status.deletedCount).toBeGreaterThanOrEqual(1);
   });
 });
@@ -470,10 +470,10 @@ describe('findUsersByRestaurant',  () => {
   });
 
   test('can retrieve users associated to restaurant by restaurant primary key', async () => {
-    // retrieve users from the database by restaurant its associated to
+    // retrieve users from the database by restaurant it's associated to
     const users = await findUsersByRestaurant(newRestaurant._id);
 
-    // there should be only one user
+    // there should be only one user for this restaurant
     expect(users.length).toEqual(1);
 
     // let's check the user we inserted
@@ -535,10 +535,10 @@ describe('deleteUsersByRestaurant',  () => {
   });
 
   test('can delete users based on associated restaurant', async () => {
-    // retrieve users from the database by restaurant its associated to
+    // retrieve users from the database by restaurant it's associated to
     const status = await deleteUsersByRestaurant(newRestaurant._id);
 
-    // there should be only one user
+    // there should be only one user for this restaurant
     expect(status.deletedCount).toEqual(1);
   });
 });
