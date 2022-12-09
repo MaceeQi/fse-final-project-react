@@ -17,7 +17,7 @@ export const findRestaurantById = async (rid) => {
 
 export const createRestaurant = async (restaurant) => {
     const response = await axios.post(`${RESTAURANTS_API}`, restaurant);
-    // console.log(response.data);
+    console.log(response.data);
     return response.data;
 }
 

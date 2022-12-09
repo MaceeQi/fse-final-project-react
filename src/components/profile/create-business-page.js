@@ -1,12 +1,15 @@
 import {createRestaurantThunk} from "../../services/restaurants-thunks";
 import {useDispatch, useSelector} from "react-redux";
 import {updateUserThunk} from "../../services/users-thunks";
+import {useEffect} from "react";
 
 const CreateBusinessPage = ({user}) => {
     const {currentRestaurant} = useSelector(state => state.restaurantsData);
+    console.log(currentRestaurant);
     const dispatch = useDispatch();
+    console.log(user._id);
 
-    const createClickHandler = () => {
+    useEffect(() => {
         const newRest = {
             name: "business",
             ownedBy: user._id,
@@ -15,12 +18,14 @@ const CreateBusinessPage = ({user}) => {
             price: "price",
             address: "address",
             phone: "phone",
-        }
-        dispatch(createRestaurantThunk(newRest))
-            .then((currentRestaurant) &&
-                dispatch(updateUserThunk({...user, business: currentRestaurant._id})))
-            .then(alert("Business page is created successfully!"))
+        };
+        console.log(newRest);
+        dispatch(createRestaurantThunk(newRest));
+    }, [user])
 
+    const createClickHandler = () => {
+        dispatch(updateUserThunk({...user, business: currentRestaurant._id}));
+        alert("Business page is created successfully!")
     }
 
     return(
