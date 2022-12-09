@@ -4,6 +4,8 @@ const BASE_URL = "http://localhost:4000";
 const LOGIN_API = `${BASE_URL}/api/login`;
 const USERS_API = `${BASE_URL}/api/users`;
 
+axios.defaults.adapter = require('axios/lib/adapters/http')
+
 export const createUser = (user) =>
   axios.post(`${USERS_API}`, user)
     .then(response => response.data);
