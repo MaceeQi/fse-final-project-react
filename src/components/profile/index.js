@@ -51,25 +51,25 @@ const Profile = () => {
             <div className="mb-5 position-relative">
               {
                 !profile.headerImage &&
-                <img className="w-100" src="/images/emptyHeader.jpeg" alt="header image"/>
+                <img className="w-100" src="/images/emptyHeader.jpeg" height={200} alt="header image"/>
               }
               <div className="bottom-0 left-0 position-absolute">
                 <div className="position-relative">
                   {
                       (!profile.profilePhoto) &&
-                      <img className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px"
-                           alt="profilePhoto"
+                      <img className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px rounded-circle"
+                           alt="profilePhoto" width = {120}
                            src={`/images/emptyAvatar.png`}/>
                   }
                   {
                       profile.profilePhoto && profile.profilePhoto.includes("http") &&
-                      <img className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px"
-                           src={profile.profilePhoto} alt="profilePhoto"/>
+                      <img className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px rounded-circle"
+                           src={profile.profilePhoto} alt="profilePhoto" width = {120}/>
                   }
                   {
                       profile.profilePhoto && !profile.profilePhoto.includes("http") &&
-                      <img className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px"
-                           alt="profilePhoto"
+                      <img className="position-relative ttr-z-index-1 ttr-top-40px ttr-width-150px rounded-circle"
+                           alt="profilePhoto" width = {120}
                            src={`/images/${profile.profilePhoto}`}/>
                   }
                 </div>
