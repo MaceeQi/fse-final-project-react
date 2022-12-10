@@ -9,11 +9,10 @@ const UpdateList = ({restaurant}) => {
 
     const {pathname} = useLocation();
     const paths = pathname.split('/');
-    const restId = paths[paths.length-1];
-
+    // const restId = paths[paths.length-1];
     useEffect(() => {
-        dispatch(findUpdatesByRestaurantThunk(restId));
-    }, [dispatch, restId])
+        dispatch(findUpdatesByRestaurantThunk(restaurant._id));
+    }, [dispatch])
 
     return (
         <div className="mb-3 border ttr-border-radius">
