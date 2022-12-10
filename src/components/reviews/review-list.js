@@ -28,7 +28,7 @@ const ReviewList = ({restaurant}) => {
             {
                 !loading && reviews &&
                 reviews.slice(0).reverse()
-                    .map(review =>
+                    .map(review => review &&
                              <ReviewItem
                                  key={review._id}
                                  review={review}/>
