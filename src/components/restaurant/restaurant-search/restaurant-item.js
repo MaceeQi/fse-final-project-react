@@ -25,8 +25,21 @@ const RestaurantItem = ({
                 <div className="ttr-restaurant-post-border p-3 ttr-remove-decoration">
                     <div className="d-flex">
                         <div>
-                            <img src={`/images/${restaurant.profilePicture}`}
-                                 className="ttr-square-avatar"/>
+                            {
+                                (!restaurant.profilePicture) &&
+                                <img className="ttr-square-avatar" alt="profilePicture"
+                                     src={`/images/emptyAvatar.png`}/>
+                            }
+                            {
+                                restaurant.profilePicture && restaurant.profilePicture.includes("http") &&
+                                <img className="ttr-square-avatar" alt="profilePicture"
+                                     src={restaurant.profilePicture}/>
+                            }
+                            {
+                                restaurant.profilePicture && !restaurant.profilePicture.includes("http") &&
+                                <img className="ttr-square-avatar" alt="profilePicture"
+                                     src={`/images/${restaurant.profilePicture}`}/>
+                            }
                         </div>
                         <div className="ms-3 me-1 w-50">
                             <span className="fw-bold">{restaurant.name}</span><br/>
