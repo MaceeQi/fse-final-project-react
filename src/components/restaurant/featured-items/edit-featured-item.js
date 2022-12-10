@@ -3,16 +3,16 @@ import React, {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {
     createFeaturedItemThunk,
-    deleteFeaturedItemThunk, findAllFeaturedItemsThunk, findFeaturedItemsByRestaurantThunk
+    deleteFeaturedItemThunk, findFeaturedItemsByRestaurantThunk
 } from "../../../services/featured-item-thunks";
-import {
-    findAllFeaturedItems,
-    findFeaturedItemsByRestaurant
-} from "../../../services/featured-item-service";
+// import {
+//     findAllFeaturedItems,
+//     findFeaturedItemsByRestaurant
+// } from "../../../services/featured-item-service";
 import {useLocation} from "react-router-dom";
-import {findRestaurantByIdThunk} from "../../../services/restaurants-thunks";
+// import {findRestaurantByIdThunk} from "../../../services/restaurants-thunks";
 
-const EditFeature = () => {
+const EditFeature = ({restaurant}) => {
     const {features} = useSelector(state=> state.features);
 
     const [editFood,setFood] = useState("");
@@ -21,14 +21,14 @@ const EditFeature = () => {
     const [editPopular,setPopular] = useState(false);
     const dispatch = useDispatch();
 
-    const {pathname} = useLocation();
-    const paths = pathname.split('/');
-    const restId = paths[paths.length-2];
+    // const {pathname} = useLocation();
+    // const paths = pathname.split('/');
+    // const restId = paths[paths.length-2];
     // console.log(restId);
 
     useEffect(  () => {
-        dispatch(findFeaturedItemsByRestaurantThunk(restId));
-    }, [dispatch, restId])
+        dispatch(findFeaturedItemsByRestaurantThunk(restaurant._id));
+    }, [])
 
     const foodChangeHandler = (event) => {
         setFood(event.target.value);
@@ -53,7 +53,7 @@ const EditFeature = () => {
             price: editPrice,
             photo: editPhoto,
             popular: editPopular,
-            restaurant: restId
+            restaurant: restaurant._id
         }
         console.log(newFeature);
         dispatch(createFeaturedItemThunk(newFeature));
