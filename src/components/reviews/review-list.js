@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {findAllReviewsForRestaurantThunk} from "../../services/reviews-thunks";
 import {reviewCreated} from "./create-review";
 import {reviewUpdated} from "./update-review";
+import {businessCreated} from "../profile/create-business-page";
 
 const ReviewList = ({restaurant}) => {
     // console.log(restaurant);
@@ -12,10 +13,12 @@ const ReviewList = ({restaurant}) => {
     const {reviews, loading} = useSelector(state => state.reviews);
     const dispatch = useDispatch();
     useEffect(() => {
+        // console.log(restaurant)
         if (restaurant) {
             dispatch(findAllReviewsForRestaurantThunk(restaurant._id))
         }
-    }, [reviewCreated, reviewUpdated]);
+    }, [reviewCreated, reviewUpdated, businessCreated, restaurant]);
+    // console.log(reviews);
 
     return (
         <div className="list-group ttr-border-radius">
@@ -28,7 +31,7 @@ const ReviewList = ({restaurant}) => {
             {
                 !loading && reviews &&
                 reviews.slice(0).reverse()
-                    .map(review =>
+                    .map(review => review &&
                              <ReviewItem
                                  key={review._id}
                                  review={review}/>

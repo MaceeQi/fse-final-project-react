@@ -70,7 +70,7 @@ const restaurantSlice = createSlice({
                         ...action.payload
                 };
                 state.currentRestaurant = {...state.currentRestaurant, ...action.payload};
-                console.log(state.currentRestaurant)
+                // console.log(state.currentRestaurant)
             },
         [deleteRestaurantThunk.fulfilled]:
             (state, action) => {

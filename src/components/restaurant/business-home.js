@@ -35,7 +35,7 @@ const BusinessHome = () => {
         if (restId) {
             dispatch(findRestaurantByIdThunk(restId));
         }
-    }, []);
+    }, [restId]);
 
     return (
         <div className="border ttr-border-radius">
@@ -49,12 +49,42 @@ const BusinessHome = () => {
                 publicPage &&
                 <>
                     <div className="position-relative ttr-banner d-flex justify-content-center">
-                        <img src={`/images/${publicPage.bannerPicture}`}
-                             alt="banner"
-                             className="ttr-border-radius ttr-banner-width mt-3" height={200}/>
-                        <img className="ttr-portrait position-absolute start-0 ms-5"
-                             alt="profile"
-                             src={`/images/${publicPage.profilePicture}`}/>
+                        {/*Banner Picture*/}
+                        {
+                            (!publicPage.bannerPicture) &&
+                            <img className="ttr-border-radius ttr-banner-width mt-3" height={200} alt="banner"
+                                 src={`/images/emptyBanner.jpeg`}/>
+                        }
+                        {
+                            publicPage.bannerPicture && publicPage.bannerPicture.includes("http") &&
+                            <img className="ttr-border-radius ttr-banner-width mt-3" height={200} alt="banner"
+                                 src={publicPage.bannerPicture}/>
+                        }
+                        {
+                            publicPage.bannerPicture && !publicPage.bannerPicture.includes("http") &&
+                            <img className="ttr-border-radius ttr-banner-width mt-3" height={200} alt="banner"
+                                 src={`/images/${publicPage.bannerPicture}`}/>
+                        }
+
+                        {/*Profile Picture*/}
+                        {
+                            (!publicPage.profilePicture) &&
+                            <img className="ttr-portrait position-absolute start-0 ms-5
+                        rounded-circle" width = {160} alt="profile"
+                                 src={`/images/emptyAvatar.png`}/>
+                        }
+                        {
+                            publicPage.profilePicture && publicPage.profilePicture.includes("http") &&
+                            <img className="ttr-portrait position-absolute start-0 ms-5
+                        rounded-circle" width = {160} alt="profile"
+                                 src={publicPage.profilePicture}/>
+                        }
+                        {
+                            publicPage.profilePicture && !publicPage.profilePicture.includes("http") &&
+                            <img className="ttr-portrait position-absolute start-0 ms-5
+                        rounded-circle" width = {160} alt="profile"
+                                 src={`/images/${publicPage.profilePicture}`}/>
+                        }
                     </div>
                     <div className="m-3 position-relative">
                 <span className="h5 fw-bolder">{publicPage.name} @{publicPage.handle}

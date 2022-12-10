@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react";
-import {Link, useLocation} from "react-router-dom";
+import React, {useState} from "react";
+import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 // import { updateRestaurant } from "./restaurants-reducer";
 // import EditUpdate from "./restaurant-updates/edit-update";
 import EditFeature from "./featured-items/edit-featured-item";
 import "./restaurant.css";
-import {findRestaurantByIdThunk, updateRestaurantThunk} from "../../services/restaurants-thunks";
+import {updateRestaurantThunk} from "../../services/restaurants-thunks";
 import EditUpdate from "./restaurant-updates/edit-update";
 
 const EditRestaurant = () => {
@@ -15,15 +15,7 @@ const EditRestaurant = () => {
 
     // console.log(publicPage);
 
-    // const {pathname} = useLocation();
-    // const paths = pathname.split('/');
-    // const restId = paths[paths.length-2];
-    // console.log(restId);
-
     const dispatch = useDispatch();
-    // useEffect(   () => {
-    //     dispatch(findRestaurantByIdThunk(restId))
-    // }, []);
 
     const saveClickHandler = () => {
         dispatch(updateRestaurantThunk(edit))
@@ -43,11 +35,37 @@ const EditRestaurant = () => {
               </Link>
               <h4 className="p-2 mb-0 pb-0 fw-bolder">Edit Restaurant</h4>
               <div className="position-relative ttr-mb7">
-                <img className="ttr-edit-banner" alt="banner"
-                    src={`/images/${publicPage.bannerPicture}`}/>
+                  {
+                      (!publicPage.bannerPicture) &&
+                      <img className="ttr-edit-banner" alt="banner" height={200}
+                           src={`/images/emptyBanner.jpeg`}/>
+                  }
+                  {
+                      publicPage.bannerPicture && publicPage.bannerPicture.includes("http") &&
+                      <img className="ttr-edit-banner" alt="banner" height={200}
+                           src={publicPage.bannerPicture}/>
+                  }
+                  {
+                      publicPage.bannerPicture && !publicPage.bannerPicture.includes("http") &&
+                      <img className="ttr-edit-banner" alt="banner" height={200}
+                           src={`/images/${publicPage.bannerPicture}`}/>
+                  }
                 <div className="position-absolute ttr-profile-nudge-up">
-                    <img className="rounded-circle" width = {160} alt="profile"
-                        src={`/images/${publicPage.profilePicture}`}/>
+                    {
+                        (!publicPage.profilePicture) &&
+                        <img className="rounded-circle" width = {160} alt="profile"
+                             src={`/images/emptyAvatar.png`}/>
+                    }
+                    {
+                        publicPage.profilePicture && publicPage.profilePicture.includes("http") &&
+                        <img className="rounded-circle" width = {160} alt="profile"
+                             src={publicPage.profilePicture}/>
+                    }
+                    {
+                        publicPage.profilePicture && !publicPage.profilePicture.includes("http") &&
+                        <img className="rounded-circle" width = {160} alt="profile"
+                             src={`/images/${publicPage.profilePicture}`}/>
+                    }
                 </div>
               </div>
           </div>
@@ -87,6 +105,26 @@ const EditRestaurant = () => {
                             value={edit.bio}>
                     </textarea>
                 </div>
+                <div className="border border-secondary rounded-3 p-2 mb-3">
+                    <label className="fw-bolder" htmlFor="restaurantProfileImage">Restaurant Profile Image</label>
+                    <input type="url" placeholder="profile image url" title="profile image url"
+                           id="restaurantProfileImage" className="p-0 form-control border-0"
+                           onChange={(e) => {
+                               setEdit({...edit, profilePicture: e.target.value})
+                           }}
+                           value={edit.profilePicture ? `${edit.profilePicture}` : ``}>
+                    </input>
+                </div>
+                <div className="border border-secondary rounded-3 p-2 mb-3">
+                    <label className="fw-bolder" htmlFor="restaurantBannerImage">Restaurant Banner Image</label>
+                    <input type="url" placeholder="banner image url" title="banner image url"
+                           id="restaurantBannerImage" className="p-0 form-control border-0"
+                           onChange={(e) => {
+                               setEdit({...edit, bannerPicture: e.target.value})
+                           }}
+                           value={edit.bannerPicture ? `${edit.bannerPicture}` : ``}>
+                    </input>
+                </div>
             </div>
             
             {/* hours */}
@@ -100,6 +138,15 @@ const EditRestaurant = () => {
                             onChange={(e) => {
                                 setEdit({...edit, cuisine: e.target.value})}}
                                 value={edit.cuisine}/>
+                </div>
+                <div className="border border-secondary rounded-3 p-2 mb-3">
+                    <label className="fw-bolder" htmlFor="cuisine">Price</label>
+                    <input id="price" placeholder="$$"
+                           className="p-0 form-control border-0"
+                           type="price"
+                           onChange={(e) => {
+                               setEdit({...edit, price: e.target.value})}}
+                           value={edit.price}/>
                 </div>
                 <div className="border border-secondary rounded-3 p-2 mb-3">
                     <label className="fw-bolder" htmlFor="address">Address</label>
