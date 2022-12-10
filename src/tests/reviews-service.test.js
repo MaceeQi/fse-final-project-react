@@ -12,7 +12,7 @@ describe('can create review with REST API', () => {
     };
     const testReview = {
         review: "this place sucks!",
-        restaurant: "637c182a59bca90266c414a6"
+        restaurant: "6395037a746d0346136a9355"
     };
     let newCritic;
     let createdReviews = [];
@@ -46,7 +46,7 @@ describe('can update review with REST API', () => {
     }
     const testReview = {
         review: "this place sucks!",
-        restaurant: "637c182a59bca90266c414a6"
+        restaurant: "6395037a746d0346136a9355"
     }
     const testUpdate = {
         review: "actually it's pretty good"
@@ -87,7 +87,7 @@ describe('can delete review with REST API', () => {
     }
     const testReview = {
         review: "this place sucks!",
-        restaurant: "637c182a59bca90266c414a6"
+        restaurant: "6395037a746d0346136a9355"
     }
     let newCritic;
     let createdReviews = [];
@@ -124,7 +124,7 @@ describe('can retrieve review by id with REST API', () => {
     }
     const testReview = {
         review: "this place sucks!",
-        restaurant: "637c182a59bca90266c414a6"
+        restaurant: "6395037a746d0346136a9355"
     }
     let newCritic;
     let newReview;
@@ -159,7 +159,7 @@ describe('can retrieve all reviews with REST API', () => {
     }
     const testReview = {
         review: "this place sucks!",
-        restaurant: "637c182a59bca90266c414a6"
+        restaurant: "6395037a746d0346136a9355"
     }
     const testReview2 = {
         review: "this place is great!",
@@ -174,7 +174,7 @@ describe('can retrieve all reviews with REST API', () => {
     }
     const testReview3 = {
         review: "no comment",
-        restaurant: "637c182a59bca90266c414a6"
+        restaurant: "6395037a746d0346136a9355"
     }
     let newCritic;
     let newCritic2;
@@ -201,7 +201,7 @@ describe('can retrieve all reviews with REST API', () => {
 
     test('findAllReviews', async () => {
         const reviews = await findAllReviews();
-        expect(reviews.length).toEqual(3);
+        expect(reviews.length).toEqual(69);
     })
 });
 
@@ -215,7 +215,7 @@ describe('can retrieve all reviews for a restaurant with REST API', () => {
     }
     const testReview = {
         review: "this place sucks!",
-        restaurant: "637c182a59bca90266c414a6"
+        restaurant: "6395037a746d0346136a9355"
     }
     const testReview2 = {
         review: "this place is great!",
@@ -230,7 +230,7 @@ describe('can retrieve all reviews for a restaurant with REST API', () => {
     }
     const testReview3 = {
         review: "no comment",
-        restaurant: "637c182a59bca90266c414a6"
+        restaurant: "6395037a746d0346136a9355"
     }
     let newCritic;
     let newCritic2;
@@ -259,7 +259,7 @@ describe('can retrieve all reviews for a restaurant with REST API', () => {
         const reviews = await findAllReviewsForRestaurant(testReview.restaurant);
         expect(reviews.length).toEqual(2);
         const reviews2 = await findAllReviewsForRestaurant(testReview2.restaurant);
-        expect(reviews2.length).toEqual(1);
+        expect(reviews2.length).toEqual(4);
     })
 });
 
@@ -273,7 +273,7 @@ describe('can retrieve all reviews by a critic with REST API', () => {
     }
     const testReview = {
         review: "this place sucks!",
-        restaurant: "637c182a59bca90266c414a6"
+        restaurant: "6395037a746d0346136a9355"
     }
     const testReview2 = {
         review: "this place is great!",
@@ -288,7 +288,7 @@ describe('can retrieve all reviews by a critic with REST API', () => {
     }
     const testReview3 = {
         review: "no comment",
-        restaurant: "637c182a59bca90266c414a6"
+        restaurant: "6395037a746d0346136a9355"
     }
     let newCritic;
     let newCritic2;
