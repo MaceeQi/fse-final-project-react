@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
 import {Link, useLocation} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import { updateRestaurant } from "./restaurants-reducer";
-import EditUpdate from "./restaurant-updates/edit-update";
+// import { updateRestaurant } from "./restaurants-reducer";
+// import EditUpdate from "./restaurant-updates/edit-update";
 import EditFeature from "./featured-items/edit-featured-item";
 import "./restaurant.css";
 import {findRestaurantByIdThunk, updateRestaurantThunk} from "../../services/restaurants-thunks";
+import EditUpdate from "./restaurant-updates/edit-update";
 
 const EditRestaurant = () => {
     // need to update change publicPage to current user after implementing login signup
@@ -14,17 +15,15 @@ const EditRestaurant = () => {
 
     // console.log(publicPage);
 
-    const {pathname} = useLocation();
-    const paths = pathname.split('/');
-    const restId = paths[paths.length-2];
+    // const {pathname} = useLocation();
+    // const paths = pathname.split('/');
+    // const restId = paths[paths.length-2];
     // console.log(restId);
 
-    let [restaurant, setRestaurant] = useState({});
     const dispatch = useDispatch();
-    useEffect(   () => {
-        dispatch(findRestaurantByIdThunk(restId))
-            .then(setRestaurant(publicPage))
-    }, [restId, dispatch, publicPage]);
+    // useEffect(   () => {
+    //     dispatch(findRestaurantByIdThunk(restId))
+    // }, []);
 
     const saveClickHandler = () => {
         dispatch(updateRestaurantThunk(edit))
@@ -33,11 +32,11 @@ const EditRestaurant = () => {
     return(
       <div className="ttr-border p-3">
           <div>
-              <Link to={`/profile/business/${restaurant._id}`}
+              <Link to={`/profile/business`}
                     className="btn btn-light rounded-pill fa-pull-left fw-bolder mt-2 mb-2 ms-2">
                   <i className="fa fa-close"></i>
               </Link>
-              <Link to={`/profile/business/${restaurant._id}`}
+              <Link to={`/profile/business`}
                     onClick={saveClickHandler}
                     className="btn btn-secondary rounded-pill fa-pull-right fw-bolder mt-2 mb-2 me-2">
                     Save
@@ -45,10 +44,10 @@ const EditRestaurant = () => {
               <h4 className="p-2 mb-0 pb-0 fw-bolder">Edit Restaurant</h4>
               <div className="position-relative ttr-mb7">
                 <img className="ttr-edit-banner" alt="banner"
-                    src={`/images/${restaurant.bannerPicture}`}/>
+                    src={`/images/${publicPage.bannerPicture}`}/>
                 <div className="position-absolute ttr-profile-nudge-up">
                     <img className="rounded-circle" width = {160} alt="profile"
-                        src={`/images/${restaurant.profilePicture}`}/>
+                        src={`/images/${publicPage.profilePicture}`}/>
                 </div>
               </div>
           </div>
@@ -199,10 +198,10 @@ const EditRestaurant = () => {
             </div>
 
             {/* Updates */}
-            <EditUpdate/>
+            <EditUpdate restaurant={publicPage}/>
 
             {/* featured items */}
-            <EditFeature/>
+            <EditFeature restaurant={publicPage}/>
         </form>
       </div>
     );

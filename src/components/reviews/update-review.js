@@ -1,8 +1,10 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
-import {updateReviewThunk} from "../../services/reviews-thunks";
+import {findAllReviewsForRestaurantThunk, updateReviewThunk} from "../../services/reviews-thunks";
 
-const UpdateReview = ({reviewid, review}) => {
+let reviewUpdated = 0
+
+const UpdateReview = ({reviewid, review, restaurant}) => {
     const [update, setUpdate] = useState(review)
     const dispatch = useDispatch()
     const updateSubmitHandler = () => {
@@ -11,6 +13,9 @@ const UpdateReview = ({reviewid, review}) => {
             review: update
         }
         dispatch(updateReviewThunk(newReview))
+            .then(dispatch(findAllReviewsForRestaurantThunk(restaurant)));
+        setUpdate(newReview.review)
+        reviewUpdated += 1
     }
 
     return (
@@ -35,3 +40,4 @@ const UpdateReview = ({reviewid, review}) => {
     )
 };
 export default UpdateReview;
+export {reviewUpdated};

@@ -37,17 +37,29 @@ const restaurantSlice = createSlice({
         //         state = state.sort((a,b) => a.name.localeCompare(b.name));
         //         return state;
         //     },
-
+        [findRestaurantByIdThunk.pending]:
+            (state) => {
+                state.loading = true;
+                state.publicPage = null;
+                // console.log(state.publicPage)
+            },
         [findRestaurantByIdThunk.fulfilled]:
             (state, action) => {
                 state.loading = false;
                 state.publicPage = action.payload;
                 // console.log(state.publicPage)
             },
+        [createRestaurantThunk.pending]:
+            (state, action) => {
+                state.loading = true;
+                state.currentRestaurant = null;
+            },
         [createRestaurantThunk.fulfilled]:
             (state, action) => {
                 state.loading = false
                 state.restaurants.push(action.payload);
+                state.currentRestaurant = action.payload;
+                console.log(state.currentRestaurant);
             },
         [updateRestaurantThunk.fulfilled]:
             (state, action) => {
