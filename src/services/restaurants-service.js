@@ -37,9 +37,9 @@ export const deleteRestaurant = (rid) =>
         .then(response => response.data);
 
 
-// export const deleteRestaurantByRestaurantName = (name) =>
-//     axios.delete(`${RESTAURANTS_API}/name/${name}/delete`)
-//         .then(response => response.data);
+export const deleteRestaurantByRestaurantName = (name) =>
+    axios.delete(`${RESTAURANTS_API}/name/${name}/delete`)
+        .then(response => response.data);
 
 
 export const findRestaurantsByName = (name) =>
