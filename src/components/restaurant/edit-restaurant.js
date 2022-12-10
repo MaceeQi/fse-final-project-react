@@ -102,6 +102,15 @@ const EditRestaurant = () => {
                                 value={edit.cuisine}/>
                 </div>
                 <div className="border border-secondary rounded-3 p-2 mb-3">
+                    <label className="fw-bolder" htmlFor="cuisine">Price</label>
+                    <input id="price" placeholder="$$"
+                           className="p-0 form-control border-0"
+                           type="price"
+                           onChange={(e) => {
+                               setEdit({...edit, price: e.target.value})}}
+                           value={edit.price}/>
+                </div>
+                <div className="border border-secondary rounded-3 p-2 mb-3">
                     <label className="fw-bolder" htmlFor="address">Address</label>
                     <input id="address" placeholder="123 Main St, Boston, MA, 02115"
                             className="p-0 form-control border-0"
