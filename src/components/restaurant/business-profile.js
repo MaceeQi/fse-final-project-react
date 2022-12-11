@@ -23,7 +23,9 @@ const BusinessProfile = () => {
     useEffect(   () => {
         dispatch(findRestaurantByIdThunk(restId))
     }, [restId]);
+
     // console.log(publicPage);
+    
     return (
     <div className="border ttr-border-radius">
         {
