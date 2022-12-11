@@ -1,6 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-// import { deleteUpdate } from "../../../services/restaurant-updates-service";
-import updates from "../../data/restaurant-updates.json";
 import {
     findAllUpdatesThunk,
     findUpdatesByRestaurantThunk,
@@ -26,7 +24,6 @@ const updateSlice = createSlice({
             (state, {payload}) => {
                 state.loading = false;
                 state.updates = payload;
-                console.log(state.updates);
             },
         [findUpdateByIdThunk.fulfilled]:
             (state, {payload}) => {

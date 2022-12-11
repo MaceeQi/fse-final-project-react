@@ -1,38 +1,24 @@
 import React, {useEffect, useState} from "react";
-// import { createFeature,deleteFeature } from "./featured-item-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {
     createFeaturedItemThunk,
     deleteFeaturedItemThunk, findFeaturedItemsByRestaurantThunk
 } from "../../../services/featured-item-thunks";
-// import {
-//     findAllFeaturedItems,
-//     findFeaturedItemsByRestaurant
-// } from "../../../services/featured-item-service";
-import {useLocation} from "react-router-dom";
-// import {findRestaurantByIdThunk} from "../../../services/restaurants-thunks";
 
 const EditFeature = ({restaurant}) => {
     const {features} = useSelector(state=> state.features);
-
     const [editFood,setFood] = useState("");
     const [editPrice,setPrice] = useState("");
     const [editPhoto,setPhoto] = useState("emptyFood.jpeg");
     const [editPopular,setPopular] = useState(false);
     const dispatch = useDispatch();
 
-    // const {pathname} = useLocation();
-    // const paths = pathname.split('/');
-    // const restId = paths[paths.length-2];
-    // console.log(restId);
-
     useEffect(  () => {
         dispatch(findFeaturedItemsByRestaurantThunk(restaurant._id));
-    }, [])
+    }, [dispatch, restaurant._id])
 
     const foodChangeHandler = (event) => {
         setFood(event.target.value);
-        console.log(editFood);
     }
 
     const priceChangeHandler = (event) => {
@@ -55,7 +41,6 @@ const EditFeature = ({restaurant}) => {
             popular: editPopular,
             restaurant: restaurant._id
         }
-        console.log(newFeature);
         dispatch(createFeaturedItemThunk(newFeature));
     }
 

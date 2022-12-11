@@ -1,18 +1,14 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {findUpdatesByRestaurantThunk} from "../../../services/restaurant-updates-thunks";
-import {useLocation} from "react-router-dom";
 
 const UpdateList = ({restaurant}) => {
     const {updates} = useSelector(state=> state.updates);
     const dispatch = useDispatch();
 
-    const {pathname} = useLocation();
-    const paths = pathname.split('/');
-    // const restId = paths[paths.length-1];
     useEffect(() => {
         dispatch(findUpdatesByRestaurantThunk(restaurant._id));
-    }, [dispatch])
+    }, [dispatch, restaurant._id])
 
     return (
         <div className="mb-3 border ttr-border-radius">
