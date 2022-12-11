@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from "react";
-// import { createUpdate,deleteUpdate } from "./update-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {createUpdateThunk,deleteUpdateThunk,findUpdatesByRestaurantThunk} from "../../../services/restaurant-updates-thunks";
-import {useLocation} from "react-router-dom";
 
 const EditUpdate = ({restaurant}) => {
     const {updates} = useSelector(state=> state.updates);
@@ -10,15 +8,10 @@ const EditUpdate = ({restaurant}) => {
     const [editUpdate, setUpdate] = useState('');
     const dispatch = useDispatch();
 
-    const {pathname} = useLocation();
-    const paths = pathname.split('/');
-    // const restId = paths[paths.length-2];
-
     useEffect(  () => {
         dispatch(findUpdatesByRestaurantThunk(restaurant._id));
-    }, [dispatch])
+    }, [dispatch, restaurant._id])
 
-    console.log(updates);
     const updateChangeHandler = (event) => {
         setUpdate(event.target.value);
     }

@@ -4,14 +4,11 @@ import {findFeaturedItemsByRestaurantThunk} from "../../../services/featured-ite
 
 const FeatureList = ({restaurant}) => {
     const {features} = useSelector(state => state.features);
-    // console.log(restaurant._id);
 
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(findFeaturedItemsByRestaurantThunk(restaurant._id));
-    }, [])
-
-    // console.log(features);
+    }, [dispatch, restaurant._id])
 
     return (
         <div className="mb-3 border ttr-border-radius">
