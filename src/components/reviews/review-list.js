@@ -18,7 +18,6 @@ const ReviewList = ({restaurant}) => {
             dispatch(findAllReviewsForRestaurantThunk(restaurant._id))
         }
     }, [reviewCreated, reviewUpdated, businessCreated, restaurant]);
-    // console.log(reviews);
 
     return (
         <div className="list-group ttr-border-radius">
