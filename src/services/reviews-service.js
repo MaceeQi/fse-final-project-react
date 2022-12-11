@@ -6,7 +6,7 @@ const REVIEWS_API = `${BASE_URL}/api/reviews`;
 
 axios.defaults.adapter = require('axios/lib/adapters/http');
 
-const api = axios.create({withCredentials: true});
+// const api = axios.create({withCredentials: true});
 
 export const findAllReviews = () =>
     axios.get(`${REVIEWS_API}`)

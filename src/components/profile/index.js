@@ -102,28 +102,28 @@ const Profile = () => {
                   </>
                 }
               </p>
-              <ul className="mt-4 nav nav-pills nav-fill">
-                <li className="nav-item">
-                  <Link to="/profile/tuits"
-                        className="nav-link active">
-                    Tuits</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/profile/tuits-and-replies"
-                        className="nav-link">
-                    Tuits & replies</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/profile/media"
-                        className="nav-link">
-                    Media</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/profile/likes"
-                        className="nav-link">
-                    Likes</Link>
-                </li>
-              </ul>
+              {/*<ul className="mt-4 nav nav-pills nav-fill">*/}
+              {/*  <li className="nav-item">*/}
+              {/*    <Link to="/profile/tuits"*/}
+              {/*          className="nav-link active">*/}
+              {/*      Tuits</Link>*/}
+              {/*  </li>*/}
+              {/*  <li className="nav-item">*/}
+              {/*    <Link to="/profile/tuits-and-replies"*/}
+              {/*          className="nav-link">*/}
+              {/*      Tuits & replies</Link>*/}
+              {/*  </li>*/}
+              {/*  <li className="nav-item">*/}
+              {/*    <Link to="/profile/media"*/}
+              {/*          className="nav-link">*/}
+              {/*      Media</Link>*/}
+              {/*  </li>*/}
+              {/*  <li className="nav-item">*/}
+              {/*    <Link to="/profile/likes"*/}
+              {/*          className="nav-link">*/}
+              {/*      Likes</Link>*/}
+              {/*  </li>*/}
+              {/*</ul>*/}
             </div>
           </div>
           <div className="p-2">
