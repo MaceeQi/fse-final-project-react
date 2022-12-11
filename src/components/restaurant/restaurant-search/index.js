@@ -8,8 +8,6 @@ import {
 } from "../../../services/restaurants-thunks";
 
 const RestaurantSearch = () => {
-    // removed this line below as the restaurant reducer got updated - yutong
-    // const restaurants = useSelector(state => state.restaurants);
     const {restaurants, loading} = useSelector(state => state.restaurantsData);
     const [restaurantName, setRestaurantName] = useState('')
     const dispatch = useDispatch();
