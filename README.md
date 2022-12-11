@@ -58,15 +58,15 @@ restaurant's business.
 Running the application locally entails running both the backend service and a frontend.
 
 ## Starting the backend
-You can start it in master branch of the fse-final-project-node directory by running npm run build 
-(the first time you run it, you will also need to run npm install).
+You can start it in master branch of the `fse-final-project-node` directory by running `npm run build` 
+(the first time you run it, you will also need to run `npm install`).
 
 ## Running the frontend
-In the master branch of the fse-final-project-react directory, run npm start (you'll need to run 
+In the master branch of the `fse-final-project-react` directory, run `npm start` (you'll need to run 
 npm install the very first time you run it). After several moments (or minutes, depending on the 
 speed of your machine), a browser will open with the frontend running locally. The frontend will 
 automatically re-compile and reload in your browser if you change any files in the 
-fse-final-project-react/src directory.
+`fse-final-project-react/src` directory.
 
 ## Links 
 
@@ -75,9 +75,9 @@ GitHub repos
 * Back End: https://github.com/MaceeQi/fse-final-project-node 
 
 ## Authors
-* Chanon Bovornvirakit (GitHub username: bovornc)
-* Macee Qi (GitHub username: MaceeQi)
-* Yena Shin (GitHub username: t1yena)
-* Yutong He (GitHub username: nala-he)
+* Chanon Bovornvirakit (bovornc)
+* Macee Qi (MaceeQi)
+* Yena Shin (t1yena)
+* Yutong He (nala-he)
 
 
