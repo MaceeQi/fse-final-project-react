@@ -1,15 +1,12 @@
 import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-// import { updateRestaurant } from "./restaurants-reducer";
-// import EditUpdate from "./restaurant-updates/edit-update";
 import EditFeature from "./featured-items/edit-featured-item";
 import "./restaurant.css";
 import {updateRestaurantThunk} from "../../services/restaurants-thunks";
 import EditUpdate from "./restaurant-updates/edit-update";
 
 const EditRestaurant = () => {
-    // need to update change publicPage to current user after implementing login signup
     const {publicPage} = useSelector(state => state.restaurantsData);
     let [edit, setEdit] = useState(publicPage)
 

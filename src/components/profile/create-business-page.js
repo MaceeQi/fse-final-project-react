@@ -2,7 +2,6 @@ import {createRestaurantThunk} from "../../services/restaurants-thunks";
 import {useDispatch, useSelector} from "react-redux";
 import {updateUserThunk} from "../../services/users-thunks";
 import {useEffect} from "react";
-import {reviewCreated} from "../reviews/create-review";
 
 let businessCreated = 0;
 
@@ -24,7 +23,7 @@ const CreateBusinessPage = ({user}) => {
         };
         // console.log(newRest);
         dispatch(createRestaurantThunk(newRest));
-    }, [user])
+    }, [user, dispatch])
 
     const createClickHandler = () => {
         dispatch(updateUserThunk({...user, business: currentRestaurant._id}));

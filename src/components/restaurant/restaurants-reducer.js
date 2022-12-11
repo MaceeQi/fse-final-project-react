@@ -6,7 +6,6 @@ import {
     updateRestaurantThunk, findRestaurantsByNameThunk
 } from "../../services/restaurants-thunks";
 
-// changed the restaurant reducer to take more variables for user login/sign up implementation- yutong
 const initialState = {
     restaurants: [],
     loading: false,
@@ -30,13 +29,6 @@ const restaurantSlice = createSlice({
                 state.restaurants = action.payload;
                 state.restaurants = state.restaurants.sort((a, b) => a.name.localeCompare(b.name));
             },
-        // revised Macee's thunk below into the one above - yutong
-        // [findAllRestaurantsThunk.fulfilled]:
-        //     (state, action) => {
-        //         state = action.payload;
-        //         state = state.sort((a,b) => a.name.localeCompare(b.name));
-        //         return state;
-        //     },
         [findRestaurantByIdThunk.pending]:
             (state) => {
                 state.loading = true;
@@ -83,21 +75,7 @@ const restaurantSlice = createSlice({
                 state.restaurants = action.payload;
                 state.restaurants = state.restaurants.sort((a,b) => a.name.localeCompare(b.name));
             }
-        //revised Macee's thunk below to the one above - yutong
-        // [findRestaurantsByNameThunk.fulfilled]:
-        //     (state, action) => {
-        //         state = action.payload;
-        //         state = state.sort((a,b) => a.name.localeCompare(b.name));
-        //         return state;
-        //     }
     },
-    // removed reducers below -yutong
-    // reducers: {
-    //     updateRestaurant(state, action) {
-    //         return {...action.payload};
-    //     }
-    // }
 });
 
-// export const {updateRestaurant} = restaurantSlice.actions;
 export default restaurantSlice.reducer;

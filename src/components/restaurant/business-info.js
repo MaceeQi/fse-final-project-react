@@ -69,12 +69,6 @@ const BusinessInfo = ({
                         <span className="col-3">Sunday</span>
                         <span className="col-5">{restaurant.sunday}</span>
                     </div>
-                    {/* {restaurant.hours.map(day =>
-                        <div className="row">
-                            <span className="col-3">{day.weekday}</span>
-                            <span className="col-5">{day.open === "closed" ? "Closed": day.hour}</span>
-                        </div>
-                    )} */}
                 </div>
             </div>
         </div>

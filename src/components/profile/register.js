@@ -3,13 +3,11 @@ import {useDispatch, useSelector} from "react-redux";
 import {signupThunk} from "../../services/auth-thunks";
 import React from "react";
 import {Navigate} from "react-router-dom";
-import {createRestaurantThunk} from "../../services/restaurants-thunks";
 
 const Register = () => {
     const {currentUser} = useSelector(state => state.usersData);
     const [newUser, setNewUser] = useState({});
     const dispatch = useDispatch();
-    // const navigate = useNavigate();
 
     const signup = () => {
         if (!newUser.email) {

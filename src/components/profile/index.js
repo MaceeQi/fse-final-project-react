@@ -1,14 +1,13 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Tuits from "../tuits";
 import {Link} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {findUserByIdThunk} from "../../services/users-thunks";
 import {useNavigate} from "react-router-dom";
 import {logoutThunk} from "../../services/auth-thunks";
 import CreateBusinessPage from "./create-business-page";
 
 const Profile = () => {
-  const {currentUser, publicProfile}= useSelector(state => state.usersData);
+  const {currentUser}= useSelector(state => state.usersData);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -16,19 +15,6 @@ const Profile = () => {
     dispatch(logoutThunk())
         .then(() => navigate('/login'));
   }
-
-  // useEffect(() => {
-  //   if (currentUser) {
-  //     try {
-  //       dispatch(findUserByIdThunk(currentUser._id))
-  //     }
-  //     catch(e) {
-  //       navigate('/login');
-  //     }
-  //   }
-  // }, [currentUser]);
-  //
-  // let profile = publicProfile;
 
   if (!currentUser) {
     navigate('/login');
@@ -51,7 +37,7 @@ const Profile = () => {
             <div className="mb-5 position-relative">
               {
                 !profile.headerImage &&
-                <img className="w-100" src="/images/emptyHeader.jpeg" height={200} alt="header image"/>
+                <img className="w-100" src="/images/emptyHeader.jpeg" height={200} alt="header"/>
               }
               <div className="bottom-0 left-0 position-absolute">
                 <div className="position-relative">

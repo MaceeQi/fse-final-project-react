@@ -1,19 +1,13 @@
-import React, {useState, useEffect} from "react";
-// import {useSelector} from "react-redux";
-// import {Routes, Route, Router} from "react-router";
+import React, {useEffect} from "react";
 import "./restaurant.css";
 import BusinessInfo from "./business-info";
 import ReviewList from "../reviews/review-list";
 import CreateReview from "../reviews/create-review";
-// import critics from "../data/critic-users.json";
 import UpdateList from "./restaurant-updates/update-list";
 import FeatureList from "./featured-items/featured-item-list";
-// import users from "../data/average-users.json";
-// import restaurants from "../data/restaurants.json";
 import {useDispatch, useSelector} from "react-redux";
 import {findRestaurantByIdThunk} from "../../services/restaurants-thunks";
 import {useLocation} from "react-router-dom";
-// import RestaurantList from "./restaurant-search/restaurant-list";
 
 const BusinessHome = () => {
     const {currentUser} = useSelector(state => state.usersData);
@@ -35,7 +29,7 @@ const BusinessHome = () => {
         if (restId) {
             dispatch(findRestaurantByIdThunk(restId));
         }
-    }, [restId]);
+    }, [restId, dispatch]);
 
     return (
         <div className="border ttr-border-radius">
