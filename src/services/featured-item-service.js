@@ -11,7 +11,6 @@ export const findAllFeaturedItems = () =>
 export const findFeaturedItemsByRestaurant = (rid) =>
     axios.get(`${RESTAURANTS_API}/${rid}/items`)
         .then(response => {
-            // console.log(response.data)
             return response.data
         });
 
@@ -20,7 +19,6 @@ export const findFeaturedItemById = (itemId) =>
         .then(response => response.data);
 
 export const createFeaturedItem = async (item) => {
-    console.log(item);
     const response = await axios.post(`${RESTAURANTS_API}/${item.restaurant}/items`, item);
     return response.data;
 }
