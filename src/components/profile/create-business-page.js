@@ -7,9 +7,7 @@ let businessCreated = 0;
 
 const CreateBusinessPage = ({user}) => {
     const {currentRestaurant} = useSelector(state => state.restaurantsData);
-    // console.log(currentRestaurant);
     const dispatch = useDispatch();
-    // console.log(user._id);
 
     useEffect(() => {
         const newRest = {
@@ -21,7 +19,6 @@ const CreateBusinessPage = ({user}) => {
             address: "address",
             phone: "phone",
         };
-        // console.log(newRest);
         dispatch(createRestaurantThunk(newRest));
     }, [user, dispatch])
 

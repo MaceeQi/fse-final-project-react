@@ -11,18 +11,14 @@ import UpdateList from "./restaurant-updates/update-list";
 const BusinessProfile = () => {
     const {publicPage} = useSelector(state => state.restaurantsData);
     const {currentUser} = useSelector(state => state.usersData);
-    // console.log(currentUser);
     const dispatch = useDispatch();
 
     let restId = currentUser.business;
-    // console.log(restId);
 
     useEffect(   () => {
         dispatch(findRestaurantByIdThunk(restId))
     }, [restId, dispatch]);
 
-    // console.log(publicPage);
-    
     return (
     <div className="border ttr-border-radius">
         {

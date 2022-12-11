@@ -60,10 +60,7 @@ const Profile = () => {
                   }
                 </div>
               </div>
-              {/*<Link to="/profile/edit"*/}
-              {/*      className="mt-2 me-2 btn btn-large btn-light border border-secondary fw-bolder rounded-pill fa-pull-right">*/}
-              {/*  Edit profile*/}
-              {/*</Link>*/}
+
             </div>
 
             <div className="p-2">

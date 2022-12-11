@@ -33,16 +33,14 @@ const restaurantSlice = createSlice({
             (state) => {
                 state.loading = true;
                 state.publicPage = null;
-                // console.log(state.publicPage)
             },
         [findRestaurantByIdThunk.fulfilled]:
             (state, action) => {
                 state.loading = false;
                 state.publicPage = action.payload;
-                // console.log(state.publicPage)
             },
         [createRestaurantThunk.pending]:
-            (state, action) => {
+            (state) => {
                 state.loading = true;
                 state.currentRestaurant = null;
             },
@@ -62,7 +60,6 @@ const restaurantSlice = createSlice({
                         ...action.payload
                 };
                 state.currentRestaurant = {...state.currentRestaurant, ...action.payload};
-                // console.log(state.currentRestaurant)
             },
         [deleteRestaurantThunk.fulfilled]:
             (state, action) => {

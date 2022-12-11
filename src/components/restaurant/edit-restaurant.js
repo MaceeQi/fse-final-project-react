@@ -10,8 +10,6 @@ const EditRestaurant = () => {
     const {publicPage} = useSelector(state => state.restaurantsData);
     let [edit, setEdit] = useState(publicPage)
 
-    // console.log(publicPage);
-
     const dispatch = useDispatch();
 
     const saveClickHandler = () => {

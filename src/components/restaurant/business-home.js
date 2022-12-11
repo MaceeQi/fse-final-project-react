@@ -15,13 +15,11 @@ const BusinessHome = () => {
     // critic user: will see the review textbox and submit button
     // average user: can only see the reviews list
     const loggedIn = currentUser;
-    // console.log(loggedIn);
 
     const {publicPage, loading} = useSelector(state => state.restaurantsData);
     const {pathname} = useLocation();
     const paths = pathname.split('/');
     const restId = paths[paths.length-1];
-    // console.log(restId);
 
     const dispatch = useDispatch();
 
