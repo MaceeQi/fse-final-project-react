@@ -14,7 +14,7 @@ const usersReducer = createSlice({
     initialState,
     extraReducers: {
          [findAllUsersThunk.pending]:
-             (state, {payload}) => {
+             (state) => {
                  state.loading = true;
                  state.users = [];
                  state.currentUser = null;
@@ -28,7 +28,6 @@ const usersReducer = createSlice({
              (state, {payload}) => {
                  state.loading = false;
                  state.publicProfile = payload;
-                 // console.log(payload);
              },
          [updateUserThunk.fulfilled]:
              (state, {payload}) => {
@@ -40,10 +39,8 @@ const usersReducer = createSlice({
                      ...payload
                  };
                  state.currentUser = {...state.currentUser, ...payload};
-                 // console.log(state.currentUser);
-                 // console.log(payload);
              },
-         [logoutThunk.fulfilled]: (state, action) => {
+         [logoutThunk.fulfilled]: (state) => {
              state.currentUser = null;
              state.publicProfile = null;
          },
