@@ -38,7 +38,7 @@ going to the restaurant’s profile and creating reviews. When logged in as a cr
 able to see a section on each restaurant’s business page to leave a review for that restaurant.
 Users will also be able to update or delete their previously created reviews.
 
-![Alt text](/images/architecture.jpeg?raw=true)
+![Alt text](/images/architecture.jpeg)
 
 The figure above depicts the high-level architecture of the Restaurant Feature. The front end uses 
 React and Javascript to create Tuiter Business Account Interface. It communicates with the backend 
