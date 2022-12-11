@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-// import {createReview} from "./review-reducer";
 import {useDispatch} from "react-redux";
 import {createReviewThunk, findAllReviewsForRestaurantThunk} from "../../services/reviews-thunks";
 

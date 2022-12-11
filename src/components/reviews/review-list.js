@@ -8,12 +8,9 @@ import {reviewUpdated} from "./update-review";
 import {businessCreated} from "../profile/create-business-page";
 
 const ReviewList = ({restaurant}) => {
-    // console.log(restaurant);
-
     const {reviews, loading} = useSelector(state => state.reviews);
     const dispatch = useDispatch();
     useEffect(() => {
-        // console.log(restaurant)
         if (restaurant) {
             dispatch(findAllReviewsForRestaurantThunk(restaurant._id))
         }

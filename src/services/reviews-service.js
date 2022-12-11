@@ -24,14 +24,11 @@ export const findReviewById = (reviewid) =>
     axios.get(`${REVIEWS_API}/${reviewid}`)
         .then(response => response.data);
 
-
 export const createReview = async (criticid, restaurantid, review) => {
     const response = await axios
         .post(`${RESTAURANTS_API}/${restaurantid}/users/${criticid}/reviews`, review);
-    // console.log(response.data);
     return response.data;
 }
-
 
 export const updateReview = (reviewid, review) =>
     axios.put(`${REVIEWS_API}/${reviewid}`, review)

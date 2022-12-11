@@ -1,5 +1,4 @@
 import {createSlice} from "@reduxjs/toolkit";
-// import reviews from "../data/sample-reviews.json";
 import {
     findAllReviewsThunk, createReviewThunk,
     updateReviewThunk, deleteReviewThunk, findAllReviewsForRestaurantThunk
@@ -47,16 +46,6 @@ const reviewsReducer = createSlice({
             }
 
     },
-   // reducers: {
-   //     createReview(state, action) {
-   //         state.unshift({
-   //                           ...action.payload,
-   //                           _id: (new Date()).getTime() + "",
-   //                           time: new Date().toLocaleString('en-US')
-   //         })
-   //     }
-   // }
 });
 
-// export const {createReview} = reviewSlice.actions;
 export default reviewsReducer.reducer;
