@@ -38,9 +38,11 @@ describe('can create review with REST API', () => {
         await deleteUsersByUsername(testCritic.username);
         await deleteUsersByUsername(testOwner.username);
         newCritic = await createUser(testCritic);
+
         newOwner = await createUser(testOwner);
         testRestaurant.ownedBy = newOwner._id
         newRestaurant = await createRestaurant(testRestaurant);
+
         testReview.restaurant = newRestaurant._id
     })
     afterAll(async () => {
@@ -98,10 +100,13 @@ describe('can update review with REST API', () => {
     beforeAll( async () => {
         await deleteUsersByUsername(testCritic.username);
         await deleteUsersByUsername(testOwner.username);
+
         newCritic = await createUser(testCritic);
+
         newOwner = await createUser(testOwner);
         testRestaurant.ownedBy = newOwner._id
         newRestaurant = await createRestaurant(testRestaurant);
+
         testReview.restaurant = newRestaurant._id
     })
     afterAll(async () => {
@@ -159,10 +164,13 @@ describe('can delete review with REST API', () => {
     beforeAll( async () => {
         await deleteUsersByUsername(testCritic.username);
         await deleteUsersByUsername(testOwner.username);
+
         newCritic = await createUser(testCritic);
+
         newOwner = await createUser(testOwner);
         testRestaurant.ownedBy = newOwner._id
         newRestaurant = await createRestaurant(testRestaurant);
+
         testReview.restaurant = newRestaurant._id
     })
     afterAll(async () => {
@@ -217,10 +225,13 @@ describe('can retrieve review by id with REST API', () => {
     beforeAll( async () => {
         await deleteUsersByUsername(testCritic.username);
         await deleteUsersByUsername(testOwner.username);
+
         newCritic = await createUser(testCritic);
+
         newOwner = await createUser(testOwner);
         testRestaurant.ownedBy = newOwner._id
         newRestaurant = await createRestaurant(testRestaurant);
+        
         testReview.restaurant = newRestaurant._id
         newReview = await createReview(newCritic._id, newRestaurant._id, testReview);
         createdReviews.push(newReview._id);
@@ -307,6 +318,7 @@ describe('can retrieve all reviews for a restaurant with REST API', () => {
         await deleteUsersByUsername(testOwner2.username);
 
         newCritic = await createUser(testCritic);
+        
         newOwner = await createUser(testOwner);
         testRestaurant.ownedBy = newOwner._id
         newRestaurant = await createRestaurant(testRestaurant);
@@ -318,8 +330,10 @@ describe('can retrieve all reviews for a restaurant with REST API', () => {
         newOwner2 = await createUser(testOwner2);
         testRestaurant2.ownedBy = newOwner2._id
         newRestaurant2 = await createRestaurant(testRestaurant2);
+        
         newReview2 = await createReview(newCritic._id, newRestaurant2._id, testReview2);
         createdReviews.push(newReview2._id);
+
         newReview3 = await createReview(newCritic._id, newRestaurant2._id, testReview3);
         createdReviews.push(newReview3._id);
     })
@@ -391,6 +405,7 @@ describe('can retrieve all reviews by a critic with REST API', () => {
     let createdReviews = [];
     beforeAll(async () => {
         newCritic = await createUser(testCritic);
+
         newOwner = await createUser(testOwner);
         testRestaurant.ownedBy = newOwner._id
         newRestaurant = await createRestaurant(testRestaurant);
@@ -492,15 +507,18 @@ describe('can retrieve all reviews with REST API', () => {
         currentReviewsLength = currentReviews.length;
 
         newCritic = await createUser(testCritic);
+
         newOwner = await createUser(testOwner);
         testRestaurant.ownedBy = newOwner._id
         newRestaurant = await createRestaurant(testRestaurant);
+
         const newReview1 = await createReview(newCritic._id, newRestaurant._id, testReview);
         createdReviews.push(newReview1._id);
 
         newOwner2 = await createUser(testOwner2);
         testRestaurant2.ownedBy = newOwner2._id
         newRestaurant2 = await createRestaurant(testRestaurant2);
+
         const newReview2 = await createReview(newCritic._id, newRestaurant2._id, testReview2);
         createdReviews.push(newReview2._id);
 
