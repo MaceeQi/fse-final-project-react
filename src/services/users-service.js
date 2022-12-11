@@ -30,9 +30,10 @@ export const findUserByCredentials = (credentials) =>
   axios.post(`${LOGIN_API}`, credentials)
     .then(response => response.data);
 
-export const updateUser = (uid, updates) =>
-    axios.put(`${USERS_API}/${uid}`, updates)
-        .then(response => response.data);
+export const updateUser = async (user) => {
+  await axios.put(`${USERS_API}/${user._id}`, user);
+  return user;
+}
 
 export const findUsersByType = (type) =>
     axios.get(`${USERS_API}/type/${type}`)

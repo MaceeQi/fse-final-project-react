@@ -159,15 +159,15 @@ describe('findAllUsers',  () => {
 
   // setup data before test
   beforeAll(() =>
-    // insert several known users
-    usernames.map(username =>
-      createUser({
-        username,
-        password: `${username}123`,
-        email: `${username}@pokemon.com`,
-        type: 'AVERAGE'
-      })
-    )
+                // insert several known users
+                usernames.map(username =>
+                                  createUser({
+                                               username,
+                                               password: `${username}123`,
+                                               email: `${username}@pokemon.com`,
+                                               type: 'AVERAGE'
+                                             })
+                )
   );
 
   // clean up after ourselves
@@ -187,7 +187,7 @@ describe('findAllUsers',  () => {
 
     // let's check each user we inserted
     const usersWeInserted = users.filter(
-      user => usernames.indexOf(user.username) >= 0);
+        user => usernames.indexOf(user.username) >= 0);
 
     // compare the actual users in database with the ones we sent
     usersWeInserted.forEach(user => {
@@ -225,22 +225,19 @@ describe('updateUser', () => {
 
   test('can update user from REST API', async () => {
     // update a user. Assumes user already exists
-    const status = await updateUser(newUser._id, {
-      username: 'ashpokemon',
-      password: 'a1234',
-      email: 'ashketchum@pokemon.com',
-      type: 'CRITIC'
-    });
-
-    // verify we updated user
-    expect(status.modifiedCount).toBeGreaterThanOrEqual(1);
+    const updatedUser = await updateUser({
+                                           ...newUser,
+                                           username: 'ashpokemon',
+                                           password: 'a1234',
+                                           email: 'ashketchum@pokemon.com',
+                                           type: 'CRITIC'
+                                         });
 
     // verify properties were updated
-    const user = await findUserById(newUser._id);
-    expect(user.username).toEqual('ashpokemon');
-    expect(user.password).toEqual('a1234');
-    expect(user.email).toEqual('ashketchum@pokemon.com');
-    expect(user.type).toEqual('CRITIC');
+    expect(updatedUser.username).toEqual('ashpokemon');
+    expect(updatedUser.password).toEqual('a1234');
+    expect(updatedUser.email).toEqual('ashketchum@pokemon.com');
+    expect(updatedUser.type).toEqual('CRITIC');
   });
 });
 
@@ -284,15 +281,15 @@ describe('findUsersByType - average',  () => {
 
   // setup data before test
   beforeAll(() =>
-      // insert several known AVERAGE users
-      averages.map(average =>
-          createUser({
-             username: average,
-             password: `${average}123`,
-             email: `${average}@pokemon.com`,
-             type: 'AVERAGE'
-           })
-      )
+                // insert several known AVERAGE users
+                averages.map(average =>
+                                 createUser({
+                                              username: average,
+                                              password: `${average}123`,
+                                              email: `${average}@pokemon.com`,
+                                              type: 'AVERAGE'
+                                            })
+                )
   );
 
   // clean up after ourselves
@@ -333,15 +330,15 @@ describe('findUsersByType - business',  () => {
 
   // setup data before test
   beforeAll(() =>
-      // insert several known BUSINESS users
-      businesses.map(business =>
-           createUser({
-                username: business,
-                password: `${business}123`,
-                email: `${business}@pokemon.com`,
-                type: 'BUSINESS'
-           })
-      )
+                // insert several known BUSINESS users
+                businesses.map(business =>
+                                   createUser({
+                                                username: business,
+                                                password: `${business}123`,
+                                                email: `${business}@pokemon.com`,
+                                                type: 'BUSINESS'
+                                              })
+                )
   );
 
   // clean up after ourselves
@@ -382,15 +379,15 @@ describe('findUsersByType - critic',  () => {
 
   // setup data before test
   beforeAll(() =>
-      // insert several known CRITIC users
-      critics.map(critic =>
-           createUser({
-                username: critic,
-                password: `${critic}123`,
-                email: `${critic}@pokemon.com`,
-                type: 'CRITIC'
-           })
-)
+                // insert several known CRITIC users
+                critics.map(critic =>
+                                createUser({
+                                             username: critic,
+                                             password: `${critic}123`,
+                                             email: `${critic}@pokemon.com`,
+                                             type: 'CRITIC'
+                                           })
+                )
   );
 
   // clean up after ourselves
@@ -458,7 +455,7 @@ describe('findUsersByRestaurant',  () => {
     newRestaurant = await createRestaurant({...restaurant, ownedBy: newUser._id});
 
     // associate restaurant to user
-    await updateUser(newUser._id, {...newUser, business: newRestaurant._id});
+    await updateUser({...newUser, business: newRestaurant._id});
     newUser = await findUserById(newUser._id);
   });
 
@@ -523,7 +520,7 @@ describe('deleteUsersByRestaurant',  () => {
     newRestaurant = await createRestaurant({...restaurant, ownedBy: newUser._id});
 
     // associate restaurant to user
-    await updateUser(newUser._id, {...newUser, business: newRestaurant._id});
+    await updateUser({...newUser, business: newRestaurant._id});
     newUser = await findUserById(newUser._id);
   });
 
