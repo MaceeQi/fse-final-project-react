@@ -1,0 +1,85 @@
+/** {*/
+/*    outline: 1px solid red;*/
+/*}*/
+
+.ttr-icon-large {
+    font-size: 30px;
+}
+
+.ttr-banner {
+    padding-bottom: 75px;
+}
+
+.ttr-banner-width {
+    width: 95%;
+}
+
+.ttr-portrait {
+    height: 150px;
+    width: 150px;
+    border-radius: 150px;
+    top: 125px;
+    z-index: 10;
+    object-fit: cover;
+}
+
+.ttr-border-radius {
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.ttr-scroll-menu {
+    overflow: auto;
+}
+
+.ttr-card-block {
+    display: inline-block;
+    text-align: left;
+    margin-left: 12px;
+    height: 120px;
+    width: 160px;
+    border: 1px;
+    background: none;
+    border-radius: 20px;
+}
+
+.ttr-card-photo {
+    height: 60px;
+    width: 100%;
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+.ttr-card-text {
+    font-size: 15px;
+}
+
+.ttr-popular {
+    color: #FCB90D;
+    left: 0px;
+    bottom: 35px;
+    z-index: 10;
+    font-size: 35px;
+}
+
+.ttr-border {
+    border-style: solid;
+    border-radius: 12px;
+    border-color: rgb(199, 194, 194);
+    border-width: 1px;
+}
+.ttr-profile-nudge-up {
+    bottom:-60px;
+    left: 40px;
+ }
+
+.ttr-edit-banner {
+    width: 100%;
+    border-radius: 20px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.ttr-mb7 {
+    margin-bottom: 70px;
+}

@@ -1,8 +1,10 @@
 import axios from "axios";
-const BASE_URL = "http://localhost:4000/api";
+const BASE_URL = "http://localhost:4000";
 
 const LOGIN_API = `${BASE_URL}/api/login`;
 const USERS_API = `${BASE_URL}/api/users`;
+
+axios.defaults.adapter = require('axios/lib/adapters/http')
 
 export const createUser = (user) =>
   axios.post(`${USERS_API}`, user)
@@ -27,6 +29,23 @@ export const deleteUsersByUsername = (username) =>
 export const findUserByCredentials = (credentials) =>
   axios.post(`${LOGIN_API}`, credentials)
     .then(response => response.data);
+
+export const updateUser = async (user) => {
+  await axios.put(`${USERS_API}/${user._id}`, user);
+  return user;
+}
+
+export const findUsersByType = (type) =>
+    axios.get(`${USERS_API}/type/${type}`)
+        .then(response => response.data);
+
+export const findUsersByRestaurant = (rid) =>
+    axios.get(`${USERS_API}/business/${rid}`)
+        .then(response => response.data);
+
+export const deleteUsersByRestaurant = (rid) =>
+    axios.delete(`${USERS_API}/business/${rid}`)
+        .then(response => response.data);
 
 const service = {
   findAllUsers

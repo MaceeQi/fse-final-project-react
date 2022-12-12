@@ -1,0 +1,28 @@
+.ttr-search {
+    bottom: 10px;
+    left: 15px;
+    font-size: 18px;
+}
+
+.ttr-restaurant-post-border {
+    border: 3px solid #F0F1F2;
+    border-radius: 15px;
+}
+
+.ttr-square-avatar {
+    border-radius: 15px;
+    border: 1px solid #F0F1F2;
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+}
+
+.ttr-remove-decoration {
+    text-decoration: none;
+    color: black;
+}
+
+.ttr-search-button {
+    bottom: 5px;
+    right: 7px;
+}

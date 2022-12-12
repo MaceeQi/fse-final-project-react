@@ -1,0 +1,20 @@
+[
+  {"_id": "1234",
+    "restaurantId": "123",
+    "criticId": "123",
+    "review": "Great restaurant!",
+    "time": "07/22/2018, 6:10:33 PM"
+  },
+  {"_id": "2345",
+    "restaurantId": "123",
+    "criticId": "124",
+    "review": "Decent price for its quality",
+    "time": "09/01/2020, 1:10:33 AM"
+  },
+  {"_id": "3456",
+    "restaurantId": "124",
+    "criticId": "125",
+    "review": "Amazing",
+    "time": "01/01/2022, 10:10:33 PM"
+  }
+]
